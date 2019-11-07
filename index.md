@@ -3,11 +3,11 @@
 这里主要用于记录我个人总结的技术文章。
 
 这个是 Github page
-> https://bourne7.github.io
+> [bourne7.github.io](https://bourne7.github.io)
 
 这个是 本项目的 github 地址
-> https://github.com/bourne7/bourne7.github.io
-> 
+> [github.com/bourne7/bourne7.github.io](https://github.com/bourne7/bourne7.github.io)
+
 如需转载我的文章，请注明文章标题，作者和链接。
 
 ## 目录
