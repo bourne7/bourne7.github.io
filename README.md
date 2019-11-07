@@ -2,11 +2,11 @@
 
 > https://bourne7.github.io/
 
-这个 github page 是用了一个 python 脚本来生成目录的。
+这个 github page 是用了一个 python3 脚本来生成目录的。
 
 使用方法：clone下来本项目，然后cd到本项目里面，执行下面的命令。
 ```
-python3 blog_generator.py
+python blog_generator.py
 ```
 
 即可生成对应的目录了。由于这个脚本比较简陋。生成的 index.md 文件里面：
