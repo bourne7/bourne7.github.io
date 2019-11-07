@@ -1,6 +1,10 @@
-# 欢迎来到我的 Github 主页
+## 欢迎来到我的 Github Page 仓库
 
-> https://bourne7.github.io/
+这个是 Github Page
+> https://bourne7.github.io
+
+这个是 本项目的仓库
+> https://github.com/bourne7/bourne7.github.io
 
 这个 github page 是用了一个 python3 脚本来生成目录的。
 
