@@ -1,6 +1,9 @@
-## 欢迎来到我的笔记本
-
-这里主要用于记录我个人总结的技术文章。
+## Bourne7 的个人博客
+<head>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+一个记录个人文章的超级轻量级博客。
 
 这个是 Github page
 > [bourne7.github.io](https://bourne7.github.io)
