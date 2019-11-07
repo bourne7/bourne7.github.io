@@ -1,5 +1,8 @@
 ## Bourne7 的个人博客
 
+<style type="text/css"> 
+    .markdown-body{font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Microsoft YaHei", Tahoma, Arial, sans-serif;} 
+</style>
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"> 
 
 一个记录个人文章的超级轻量级博客。
