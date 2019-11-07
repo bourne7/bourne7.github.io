@@ -1,40 +1,16 @@
-# 欢迎来到我的笔记本
+# 欢迎来到我的 Github 主页
 
-这里主要用于记录我个人总结的技术文章。
+> https://bourne7.github.io/
 
-如需转载我的文章，请注明文章标题，作者和链接。
+这个 github page 是用了一个 python 脚本来生成目录的。
 
-# 目录
+使用方法：clone下来本项目，然后cd到本项目里面，执行下面的命令。
+```
+python3 blog_generator.py
+```
 
-## Programming
-
-* [Algorithm](programming/algorithm/README.md)
-  * [最大公约数算法](programming/algorithm/algorithm-gcd.md)
-  * [HyperLogLog算法](programming/algorithm/algorithm-hyperloglog.md)
-  * [找出缺失的整数](programming/algorithm/find-missing-integer.md)
-* [Database](programming/database/README.md)
-  * [Mysql 主从备份](programming/database/mysql-master-slave.md)
-  * [Mysql Workbench 使用笔记](programming/database/mysql-workbench.md)
-  * [SQL指令](programming/database/sql-command.md)
-  * [SQL笔记](programming/database/sql-notes.md)
-* [Front-end](programming/front_end/README.md)
-  * [Javascript 笔记](programming/front_end/javascript-notes.md)
-* [Git](programming/git/README.md)
-  * [Git 笔记](programming/git/git-notes.md)
-  * [Git 工作区、暂存区和版本库](programming/git/git-working-stage-repository.md)
-* [Java](programming/java/README.md)
-  * [Java 代码片段笔记](programming/java/java-dai-ma-pian-duan-bi-ji.md)
-  * [Java 随机数源码学习](programming/java/java-jdk-random-nextint.md)
-* [Linux](programming/linux/README.md)
-  * [Linux 指令笔记](programming/linux/linux-command.md)
-  * [快速安装 Nginx 用于分享文件](programming/linux/install-nginx-guide.md)
-  * [Ubuntu 安装常用软件](programming/linux/ubuntu-software-guide.md)
-* [Miscellaneous](programming/miscellaneous/README.md)
-  * [Mac使用笔记](programming/miscellaneous/mac-notes.md)
-  * [网址收藏夹](programming/miscellaneous/webpage-collection.md)
-* [Python](programming/python/README.md)
-  * [Python random choice](programming/python/python-random-choice.md)
-* [Reproduce](programming/reproduce/README.md)
-  * [字符编码笔记：ASCII，Unicode和UTF-8 - 阮一峰的网络日志](programming/reproduce/character-encoding.md)
-
-**Lawrence Peng © 2019。保留所有的权利。**
+即可生成对应的目录了。由于这个脚本比较简陋。生成的 index.md 文件里面：
+```
+## 目录
+```
+这一行以及这一行以下的所有项目都会被替换成为更新以后的目录。而具体的格式也可以通过修改这个脚本来进行自定义。

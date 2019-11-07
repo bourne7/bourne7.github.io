@@ -4,37 +4,42 @@
 
 如需转载我的文章，请注明文章标题，作者和链接。
 
-# 目录
+## 目录
 
-## Programming
+### 个人日志
 
-* [Algorithm](programming/algorithm/README.md)
-  * [最大公约数算法](programming/algorithm/algorithm-gcd.md)
-  * [HyperLogLog算法](programming/algorithm/algorithm-hyperloglog.md)
-  * [找出缺失的整数](programming/algorithm/find-missing-integer.md)
-* [Database](programming/database/README.md)
-  * [Mysql 主从备份](programming/database/mysql-master-slave.md)
-  * [Mysql Workbench 使用笔记](programming/database/mysql-workbench.md)
-  * [SQL指令](programming/database/sql-command.md)
-  * [SQL笔记](programming/database/sql-notes.md)
-* [Front-end](programming/front_end/README.md)
-  * [Javascript 笔记](programming/front_end/javascript-notes.md)
-* [Git](programming/git/README.md)
-  * [Git 笔记](programming/git/git-notes.md)
-  * [Git 工作区、暂存区和版本库](programming/git/git-working-stage-repository.md)
-* [Java](programming/java/README.md)
-  * [Java 代码片段笔记](programming/java/java-dai-ma-pian-duan-bi-ji.md)
-  * [Java 随机数源码学习](programming/java/java-jdk-random-nextint.md)
-* [Linux](programming/linux/README.md)
-  * [Linux 指令笔记](programming/linux/linux-command.md)
-  * [快速安装 Nginx 用于分享文件](programming/linux/install-nginx-guide.md)
-  * [Ubuntu 安装常用软件](programming/linux/ubuntu-software-guide.md)
-* [Miscellaneous](programming/miscellaneous/README.md)
-  * [Mac使用笔记](programming/miscellaneous/mac-notes.md)
-  * [网址收藏夹](programming/miscellaneous/webpage-collection.md)
-* [Python](programming/python/README.md)
-  * [Python random choice](programming/python/python-random-choice.md)
-* [Reproduce](programming/reproduce/README.md)
-  * [字符编码笔记：ASCII，Unicode和UTF-8 - 阮一峰的网络日志](programming/reproduce/character-encoding.md)
 
-**Lawrence Peng © 2019。保留所有的权利。**
+### 技术文章
+
+* **Git**
+  * [Git 笔记](目录\技术文章\git\git-notes.md)
+  * [Git 工作区、暂存区和版本库](目录\技术文章\git\git-working-stage-repository.md)
+* **Java**
+  * [Gradle 笔记](目录\技术文章\java\gradle-notes.md)
+  * [Java 代码片段笔记](目录\技术文章\java\java-dai-ma-pian-duan-bi-ji.md)
+  * [Java 通用笔记](目录\技术文章\java\java-general-notes.md)
+  * [Java 随机数源码学习](目录\技术文章\java\java-jdk-random-nextint.md)
+* **Linux**
+  * [快速安装 Nginx 用于分享文件](目录\技术文章\linux\install-nginx-guide.md)
+  * [Linux 指令笔记](目录\技术文章\linux\linux-command.md)
+  * [Ubuntu 安装常用软件](目录\技术文章\linux\ubuntu-software-guide.md)
+  * [Vim 笔记](目录\技术文章\linux\vim-guide.md)
+* **Python**
+  * [Python random choice](目录\技术文章\python\python-random-choice.md)
+* **前端**
+  * [Javascript 笔记](目录\技术文章\前端\javascript-notes.md)
+* **数据库**
+  * [Mysql 主从备份](目录\技术文章\数据库\mysql-master-slave.md)
+  * [Mysql Workbench 使用笔记](目录\技术文章\数据库\mysql-workbench.md)
+  * [SQL指令](目录\技术文章\数据库\sql-command.md)
+  * [SQL笔记](目录\技术文章\数据库\sql-notes.md)
+* **杂项**
+  * [Mac使用笔记](目录\技术文章\杂项\mac-notes.md)
+  * [网址收藏夹](目录\技术文章\杂项\webpage-collection.md)
+  * [Windows使用笔记](目录\技术文章\杂项\windows-notes.md)
+* **算法**
+  * [最大公约数算法](目录\技术文章\算法\algorithm-gcd.md)
+  * [HyperLogLog算法](目录\技术文章\算法\algorithm-hyperloglog.md)
+  * [找出缺失的整数](目录\技术文章\算法\find-missing-integer.md)
+* **转载**
+  * [字符编码笔记：ASCII，Unicode和UTF-8 - 阮一峰的网络日志](目录\技术文章\转载\character-encoding.md)
