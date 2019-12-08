@@ -19,6 +19,14 @@
 
 ### 个人日志
 
+* **收藏**
+  * [iOS App 收藏](https://github.com/bourne7/bourne7.github.io/blob/master/目录/个人日志/收藏/app-ios.md)
+  * [游戏收藏 iOS篇](https://github.com/bourne7/bourne7.github.io/blob/master/目录/个人日志/收藏/game-ios.md)
+  * [游戏收藏 PC和主机篇](https://github.com/bourne7/bourne7.github.io/blob/master/目录/个人日志/收藏/game-pc-console.md)
+  * [极简收藏](https://github.com/bourne7/bourne7.github.io/blob/master/目录/个人日志/收藏/minimalism-collection.md)
+  * [游戏回忆录](https://github.com/bourne7/bourne7.github.io/blob/master/目录/个人日志/收藏/reminiscences-of-games.md)
+  * [使用电脑的一些技巧](https://github.com/bourne7/bourne7.github.io/blob/master/目录/个人日志/收藏/skill-of-using-computer.md)
+  * [软件推荐](https://github.com/bourne7/bourne7.github.io/blob/master/目录/个人日志/收藏/software-windows-and-mac.md)
 
 ### 技术文章
 
@@ -31,6 +39,7 @@
   * [Java 通用笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/java-general-notes.md)
   * [Java 随机数源码学习](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/java-jdk-random-nextint.md)
 * **Linux**
+  * [Docker笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/docker.md)
   * [快速安装 Nginx 用于分享文件](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/install-nginx-guide.md)
   * [Linux 指令笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/linux-command.md)
   * [Ubuntu 安装常用软件](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/ubuntu-software-guide.md)
