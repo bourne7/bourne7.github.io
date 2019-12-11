@@ -27,6 +27,7 @@
   * [游戏回忆录](https://github.com/bourne7/bourne7.github.io/blob/master/目录/个人日志/收藏/reminiscences-of-games.md)
   * [使用电脑的一些技巧](https://github.com/bourne7/bourne7.github.io/blob/master/目录/个人日志/收藏/skill-of-using-computer.md)
   * [软件推荐](https://github.com/bourne7/bourne7.github.io/blob/master/目录/个人日志/收藏/software-windows-and-mac.md)
+* **旧版博客备份**
 
 ### 技术文章
 
@@ -55,6 +56,7 @@
   * [SQL笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/数据库/sql-notes.md)
 * **杂项**
   * [Mac使用笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/mac-notes.md)
+  * [软件使用技巧总结](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/software-tricks.md)
   * [网址收藏夹](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/webpage-collection.md)
   * [Windows使用笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/windows-notes.md)
 * **算法**
