@@ -143,3 +143,19 @@ sudo /etc/init.d/cron start (或者: sudo service cron start )
 sudo /etc/init.d/cron stop (或者: sudo service cron stop )
 sudo /etc/init.d/cron restart (或者: sudo service cron restart )
 ```
+
+## 给控制台加上颜色
+> https://askubuntu.com/questions/517677/how-do-i-get-a-colored-bash
+
+Open ~/.bashrc in text editor and uncomment line:
+```
+force_color_prompt=yes
+```
+copy this and add it at the end of .bashrc file:
+```
+PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;35m\]\w\[\033[1;31m\]\$\[\033[0m\]'
+```
+save then execute 
+```
+source ~/.bashrc
+```

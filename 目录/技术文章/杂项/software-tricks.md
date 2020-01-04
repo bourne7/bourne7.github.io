@@ -11,3 +11,10 @@ editor.action.selectHighlights
 
 Select all occurrences of current word
 editor.action.changeAll
+
+### kindle Calibre
+
+使用Calibre轉換TXT電子書(含目錄)並傳送至Kindle Paperwhite操作全攻略
+
+> http://jdev.tw/blog/4388/kindle-with-calibre-conversion
+

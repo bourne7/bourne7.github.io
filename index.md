@@ -7,9 +7,6 @@
 
 一个记录个人文章的超级轻量级博客。
 
-这个是 Github page
-> [bourne7.github.io](https://bourne7.github.io)
-
 这个是 本项目的 github 地址
 > [github.com/bourne7/bourne7.github.io](https://github.com/bourne7/bourne7.github.io)
 
@@ -21,6 +18,7 @@
 
 * **收藏**
   * [iOS App 收藏](https://github.com/bourne7/bourne7.github.io/blob/master/目录/个人日志/收藏/app-ios.md)
+  * [设计和创造](https://github.com/bourne7/bourne7.github.io/blob/master/目录/个人日志/收藏/design-and-creativity.md)
   * [游戏收藏 iOS篇](https://github.com/bourne7/bourne7.github.io/blob/master/目录/个人日志/收藏/game-ios.md)
   * [游戏收藏 PC和主机篇](https://github.com/bourne7/bourne7.github.io/blob/master/目录/个人日志/收藏/game-pc-console.md)
   * [极简收藏](https://github.com/bourne7/bourne7.github.io/blob/master/目录/个人日志/收藏/minimalism-collection.md)
@@ -43,6 +41,7 @@
   * [Docker笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/docker.md)
   * [快速安装 Nginx 用于分享文件](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/install-nginx-guide.md)
   * [Linux 指令笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/linux-command.md)
+  * [Linux 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/linux-notes.md)
   * [Ubuntu 安装常用软件](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/ubuntu-software-guide.md)
   * [Vim 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/vim-guide.md)
 * **Python**
