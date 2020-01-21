@@ -61,6 +61,7 @@
 * **算法**
   * [最大公约数算法](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/算法/algorithm-gcd.md)
   * [HyperLogLog算法](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/算法/algorithm-hyperloglog.md)
+  * [找含单链表的环入口点](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/算法/find-loop-in-linklist.md)
   * [找出缺失的整数](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/算法/find-missing-integer.md)
 * **转载**
   * [字符编码笔记：ASCII，Unicode和UTF-8 - 阮一峰的网络日志](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/转载/character-encoding.md)
