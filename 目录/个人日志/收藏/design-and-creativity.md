@@ -5,3 +5,5 @@
 * https://www.cnblogs.com/huahuayu/articles/8372933.html Serif 和 Sans-serif 字体的区别
   
 * https://blog.typekit.com/alternate/source-han-sans-chs/ https://sspai.com/post/38705 思源字体介绍
+
+* https://www.applearchive.org/ 一个 Apple 广告收藏的网站，包含了所有苹果广告。
