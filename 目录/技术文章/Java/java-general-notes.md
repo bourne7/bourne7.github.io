@@ -58,3 +58,13 @@ System.out.printf("Desc(age) sort, list:%s\n", list);
 > lambda表达式与普通的匿名内部类的实现方式不一样，在第一次编译阶段只是多增了一个lambda方法，并通过invoke dynamic 指令指明了在第二次编译（运行）的时候需要执行的额外操作——第二次编译时通过java/lang/invoke/LambdaMetafactory.metafactory 这个工厂方法来生成一个class（其中参数传入的方法就是第一次编译时生成的lambda方法。）这个操作最终还是会生成一个实现lambda表达式的内部类。
 > https://www.cnblogs.com/chenjingquan/p/10574320.html
 
+### Java 泛型 super 和 extends
+
+看到很多例子都是拿 List 做例子，其实通配符还用在了很多地方，比如：
+
+```java
+// java.util.stream.Stream#min
+Optional<T> min(Comparator<? super T> comparator);
+```
+
+可以这么思考：给泛型对象赋值，或者读取泛型对象的时候，是否可以确认此对象满足 super 或者 extends 要求。显然，当使用 extends 的时候，对象有可能是任何 T 的子类，是无法对这个对象进行赋值的，但是读取成为 T 是没问题的。而 使用 super 的时候，如果读取成为 T 的话，是不行的，因为有可能对象是 T 的父类，缺少一些属性，所以只能读取成为一定不会缺少任何属性的 Object，但是这样就会丢失几乎所有属性。而赋值给 super 的话，则是没有问题的，但是也一定要赋值 T 或者 T 的子类，这样能确保所有的对象都能满足 继承自T 的要求。
