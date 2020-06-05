@@ -17,3 +17,14 @@ Create new virtual desktop: WIN + CTRL + D
 Close current virtual desktop: WIN + CTRL + F4
 
 Switch virtual desktop: WIN + CTRL + LEFT or RIGHT
+
+## 网络指令
+
+```
+netsh winsock reset
+netsh int ip reset
+ipconfig /release
+ipconfig /renew
+ipconfig /flushdns
+```
+

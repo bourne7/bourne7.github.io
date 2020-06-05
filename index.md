@@ -30,6 +30,7 @@
 ### 技术文章
 
 * **Git**
+  * [##Git 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Git/git-config.md)
   * [Git 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Git/git-notes.md)
   * [Git 工作区、暂存区和版本库](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Git/git-working-stage-repository.md)
 * **Java**
@@ -37,6 +38,7 @@
   * [Java 代码片段笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/java-dai-ma-pian-duan-bi-ji.md)
   * [Java 通用笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/java-general-notes.md)
   * [Java 随机数源码学习](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/java-jdk-random-nextint.md)
+  * [Java Thread 线程](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/java-thread.md)
 * **Linux**
   * [Docker笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/docker.md)
   * [快速安装 Nginx 用于分享文件](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/install-nginx-guide.md)
@@ -45,6 +47,7 @@
   * [Ubuntu 安装常用软件](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/ubuntu-software-guide.md)
   * [Vim 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/vim-guide.md)
 * **Python**
+  * [Pip代理笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Python/pip-proxy.md)
   * [Python random choice](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Python/python-random-choice.md)
 * **前端**
   * [Javascript 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/前端/javascript-notes.md)
@@ -56,10 +59,14 @@
 * **杂项**
   * [手动下载和安装 iOS app](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/install-ipa-manually.md)
   * [Mac使用笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/mac-notes.md)
+  * [Markdown 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/markdown.md)
+  * [正则表达式](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/regular-expression.md)
   * [软件使用技巧总结](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/software-tricks.md)
   * [网址收藏夹](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/webpage-collection.md)
   * [Windows使用笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/windows-notes.md)
+  * [##如何下载Youtube视频](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/youtube-dl.md)
 * **算法**
+  * [布隆过滤器](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/算法/algorithm-bloom-filter.md)
   * [最大公约数算法](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/算法/algorithm-gcd.md)
   * [HyperLogLog算法](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/算法/algorithm-hyperloglog.md)
   * [寻找含环的单链表的入口点](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/算法/find-loop-in-linklist.md)

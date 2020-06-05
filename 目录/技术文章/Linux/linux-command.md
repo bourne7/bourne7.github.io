@@ -45,7 +45,8 @@ netstat -an | grep 3306   //查看所有3306端口使用情况·
 
 ## 4.格式压缩与解压
 
-```text
+使用 tar
+```
 打包：tar -jcvf file_name target_name.tar.gz
 解包：tar -jxvf target_name.tar.gz
 
@@ -56,6 +57,14 @@ f 代表 filename（文件名），所以f后必须接文件名。
 z 代表用gzip算法来压缩/解压。生成 “.tar.gz”
 j 代表用bzip2算法来压缩/解压。生成 “.tar.bz2”
 ```
+
+7z压缩。压缩比例更高，命令更简单。
+```
+7z a file.7z file
+7z x file.7z
+```
+
+
 
 ## 5.禁止开机启动
 
@@ -124,3 +133,34 @@ server.py [-h] [--cgi] [--bind ADDRESS] [--directory DIRECTORY] [port]
 sudo python3 -m http.server 80
 ```
 来快速建立一个http服务器，这样别人可以方便的获取本目录下面的文件。有时候如果IP地址不唯一的话，需要指明绑定的 IP。
+
+## 查看文件夹下面的所有文件个数
+
+```
+ls -lR| grep "^-"| wc -l
+```
+其中 R 代表递归；用正则代表筛选出来文件；wc表示统计数量，按照行。
+
+## 查看文件夹大小
+
+```
+du -sh *
+```
+
+## SSH
+ssh 产生公钥密钥对，建议不要老是用同一对公钥密钥，还是稍微分类一下比较好。
+```
+ssh-keygen
+```
+
+部署公钥
+```
+ssh-copy-id -i [identity_file] user@host
+```
+
+如果不指明 identity_file 的话，就是默认的 id_rsa
+
+如果是放到 git 上面，可以通过下面的语句检测
+```
+ssh -T git@github.com
+```

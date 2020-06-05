@@ -105,3 +105,65 @@ linux在执行shell命令之前，就会确定好所有的输入输出位置，�
 ```
 # nohup java -jar xxxx.jar >/dev/null 2>&1 &
 ```
+
+## Gitlab
+
+在使用 gitlab docker 官方镜像进行安装运行以后，发现了一个诡异的nginx 无限重定向问题，经过排查发现是 管理员设置页面的域名有一个未登录重定向，不要填写这个就行了。
+
+## 硬盘命令
+
+- `df -hl` 查询硬盘空间
+- `df -h` 查看每个根路径的分区大小
+- `du -sh [目录名]` 返回该目录的大小
+- `du -sm [文件夹]` 返回该文件夹总M数
+
+- `history` 可以直接查看历史命令
+- `!4` 可以直接执行第四条
+- `history –c` 使用c选项清除所有的历史命令
+
+- `pwd` 显示当前路径。
+- `tail -f my.log` 动态显示log文件
+
+- `netstat -nlt` 以查看IP地址的方式,显示所有正在监听的tcp连接.
+- `netstat -nat` 以查看IP地址的方式,显示所有的tcp连接.
+
+
+## apt 命令
+
+- apt与apt-get命令的区别. 简单来说就是：apt = apt-get、apt-cache 和 apt-config 中最常用命令选项的集合。apt 可以看作 apt-get 和 apt-cache 命令的子集, 可以为包管理提供必要的命令选项。 apt-get 虽然没被弃用，但作为普通用户，还是应该首先使用 apt。https://blog.csdn.net/maizousidemao/article/details/79859669
+
+| apt 命令         | 取代的命令           | 命令的功能                     |
+| ---------------- | -------------------- | ------------------------------ |
+| apt install      | apt-get install      | 安装软件包                     |
+| apt remove       | apt-get remove       | 移除软件包                     |
+| apt purge        | apt-get purge        | 移除软件包及配置文件           |
+| apt update       | apt-get update       | 刷新存储库索引                 |
+| apt upgrade      | apt-get upgrade      | 升级所有可升级的软件包         |
+| apt autoremove   | apt-get autoremove   | 自动删除不需要的包             |
+| apt full-upgrade | apt-get dist-upgrade | 在升级软件包时自动处理依赖关系 |
+| apt search       | apt-cache search     | 搜索应用程序                   |
+| apt show         | apt-cache show       | 显示安装细节                   |
+
+| 新的apt命令      | 命令的功能                           |
+| ---------------- | ------------------------------------ |
+| apt list         | 列出包含条件的包（已安装，可升级等） |
+| apt edit-sources | 编辑源列表                           |
+
+
+## find 命令
+
+- `find` 这个用于查找文件,比较好用.http://man.linuxde.net/find
+`find /home -path "*local*"` **匹配文件路径或者文件[建议使用这个]**
+`find /home -name "*.txt"` 在/home目录下查找以.txt结尾的文件名
+`find /home -iname "*.txt"` 同上，但忽略大小写
+`find /home -iregex ".*\(\.txt\|\.pdf\)$"` 基于正则表达式匹配文件路径,忽略大小写
+`find /home -maxdepth 3 -type f` 向下最大深度限制为3
+`find /home -type f -atime -7` 搜索最近七天内被访问过的所有文件
+`find /home -type f -atime 7` 搜索恰好在七天前被访问过的所有文件
+`find /home -type f -atime +7` 搜索超过七天内被访问过的所有文件
+
+> UNIX/Linux文件系统每个文件都有三种时间戳：
+访问时间（-atime/天，-amin/分钟）：用户最近一次访问时间。
+修改时间（-mtime/天，-mmin/分钟）：文件最后一次修改时间。
+变化时间（-ctime/天，-cmin/分钟）：文件数据元（例如权限等）最后一次修改时间。
+
