@@ -140,3 +140,13 @@ cat /etc/resolv.conf
 nameserver 8.8.8.8      //google服务器
 nameserver 8.8.4.4      //google备用服务器
 
+
+
+## docker in windows wsl ubuntu
+
+按照官方教程安装好以后发现无法启动，其实是由于 wsl 本身不是管理员权限，可以在windows 里面用管理员权限启动 docker 就行了
+
+在开始菜单里面找到 ubuntu 图标，右键管理员运行，然后启动 docker
+```
+sudo service docker start
+```

@@ -42,8 +42,11 @@
 * **Linux**
   * [Docker笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/docker.md)
   * [快速安装 Nginx 用于分享文件](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/install-nginx-guide.md)
+  * [Kafka 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/kafka-notes.md)
+  * [Kubernetes 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/kubernetes.md)
   * [Linux 指令笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/linux-command.md)
   * [Linux 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/linux-notes.md)
+  * [Shell](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/shell.md)
   * [Ubuntu 安装常用软件](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/ubuntu-software-guide.md)
   * [Vim 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/vim-guide.md)
 * **Python**
@@ -52,11 +55,13 @@
 * **前端**
   * [Javascript 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/前端/javascript-notes.md)
 * **数据库**
+  * [GraphQL](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/数据库/graphql.md)
   * [Mysql 主从备份](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/数据库/mysql-master-slave.md)
   * [Mysql Workbench 使用笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/数据库/mysql-workbench.md)
   * [SQL指令](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/数据库/sql-command.md)
   * [SQL笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/数据库/sql-notes.md)
 * **杂项**
+  * [ffmpeg notes](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/ffmpeg.md)
   * [手动下载和安装 iOS app](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/install-ipa-manually.md)
   * [Mac使用笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/mac-notes.md)
   * [Markdown 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/markdown.md)
@@ -64,7 +69,7 @@
   * [软件使用技巧总结](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/software-tricks.md)
   * [网址收藏夹](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/webpage-collection.md)
   * [Windows使用笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/windows-notes.md)
-  * [##如何下载Youtube视频](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/youtube-dl.md)
+  * [youtube-dl](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/youtube-dl.md)
 * **算法**
   * [布隆过滤器](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/算法/algorithm-bloom-filter.md)
   * [最大公约数算法](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/算法/algorithm-gcd.md)

@@ -131,6 +131,7 @@ service --status-all
 ```
 server.py [-h] [--cgi] [--bind ADDRESS] [--directory DIRECTORY] [port]
 sudo python3 -m http.server 80
+python -m http.server --bind 192.168.10.6 81
 ```
 来快速建立一个http服务器，这样别人可以方便的获取本目录下面的文件。有时候如果IP地址不唯一的话，需要指明绑定的 IP。
 
@@ -147,7 +148,7 @@ ls -lR| grep "^-"| wc -l
 du -sh *
 ```
 
-## SSH
+## SSH SCP
 ssh 产生公钥密钥对，建议不要老是用同一对公钥密钥，还是稍微分类一下比较好。
 ```
 ssh-keygen
@@ -164,3 +165,14 @@ ssh-copy-id -i [identity_file] user@host
 ```
 ssh -T git@github.com
 ```
+
+
+scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
+
+-P - Specifies the remote host ssh port.
+-p - Preserves files modification and access times.
+-q - Use this option if you want to suppress the progress meter and non-error messages.
+-C - This option forces scp to compresses the data as it is sent to the destination machine.
+-r - This option tells scp to copy directories recursively.
+
+scp -r user1@192.168.110.8:/data /data

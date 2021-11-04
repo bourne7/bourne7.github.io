@@ -14,17 +14,19 @@
 
 修改~/.ssh/config以添加多个ssh配置
 
-    # Work GitHub
-    Host github.com
-        HostName github.com
-        PreferredAuthentications publickey
-        IdentityFile ~/.ssh/id_rsa_work
+```config
+# Work GitHub
+Host github.com
+    HostName github.com
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/id_rsa_work
 
-    # Personal GitHub
-    Host personal.github.com # 这个网址是随便写的.不过要和项目的对应网址一致.
-        HostName github.com
-        PreferredAuthentications publickey
-        IdentityFile ~/.ssh/id_rsa_personal
+# Personal GitHub
+Host personal.github.com # 这个网址是随便写的.不过要和项目的对应网址一致.
+    HostName github.com
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/id_rsa_personal
+```
 
 测试配置,使用如下命令,检查之前的配置是否正确:
 

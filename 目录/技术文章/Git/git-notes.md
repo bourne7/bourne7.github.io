@@ -141,3 +141,58 @@ git config --global https.proxy 'socks5://127.0.0.1:1080'
 git config --global --unset http.proxy
 git config --global --unset https.proxy
 ```
+
+## 10. Git 版本问题
+
+在 cicd 的过程中，需要获取提交的 commitID 和 branch name，搜索到的结果如下：
+
+> https://stackoverflow.com/questions/6245570/how-to-get-the-current-branch-name-in-git
+
+If you want to retrieve only the name of the branch you are on, you can do:
+```
+git rev-parse --abbrev-ref HEAD
+```
+or with Git 2.22 and above:
+```
+git branch --show-current
+```
+
+我在我本地是可以正常的跑 gradle 脚本的，也能正常获取，但就是在服务器上面不行，我看到这里的回答有说到版本22以后才有后面的指令，那么会不会上面的指令也有版本限制呢？我挖了以下cicd服务器的git，版本只有17。
+
+实际上又遇到了其他问题：
+
+> https://stackoverflow.com/questions/47098342/jenkinsfile-git-rev-parse-abbrev-ref-head-returns-head
+
+这个哥们遇到了一样的问题，我想可能是git使用方式的问题，然后通过远端的 git branch 以后，发现竟然是个 detached HEAD 。在不修改 cicd 的配置和拉取方式的情况下，只能使用 branch 来获取分支号了，指令如下：
+
+> https://stackoverflow.com/questions/13624774/how-to-i-read-the-second-line-of-the-output-of-a-command-into-a-bash-variable
+
+```
+git branch | sed -n 2p
+```
+
+后来又找到一个比较复杂的写法，但是这个提出来的人自己都觉得这么做有点过于麻烦。
+
+> https://stackoverflow.com/questions/6059336/how-to-find-the-current-git-branch-in-detached-head-state
+
+```
+git show-ref | grep $(git log --pretty=%h -1) | sed 's|.*/\(.*\)|\1|' | sort -u | grep -v HEAD
+```
+
+所以在这个提问里面，有人提出了下面2条：
+
+```
+git log -n 1 --pretty=%d HEAD
+
+git show -s --pretty=%d HEAD
+```
+
+然后我在这里找到了关于 pretty 的一些格式化的参数。
+
+https://git-scm.com/docs/pretty-formats
+
+所以我最后采用了
+
+```
+git log -n 1 --pretty='%d %ai'
+```

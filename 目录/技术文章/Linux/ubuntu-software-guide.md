@@ -111,13 +111,12 @@ drwxr-xr-x 4 new_user new_user 4096 Aug 2 20:13 new_folder/
  
 ## 6. VIM
 
-vim 默认显示行号: 先安装好 vim, 然后建立文件:
+vim 配置:
 
-$vi ~/.vimrc
-
-往文件里面添加内容： set number , 保存退出。
-
-
+```bash
+echo "set number" >>  ~/.vimrc
+echo "set hlsearch" >>  ~/.vimrc
+```
 ## 7. 设置时区
 
 sudo tzselect
@@ -159,3 +158,27 @@ save then execute
 ```
 source ~/.bashrc
 ```
+
+## vmware
+
+How do I mount shared folders in Ubuntu using VMware tools?
+> https://askubuntu.com/questions/29284/how-do-i-mount-shared-folders-in-ubuntu-using-vmware-tools
+
+Most other answers are outdated. For Ubuntu 18.04 (or recent Debian distros), try:
+```
+sudo vmhgfs-fuse .host:/ /mnt/hgfs/ -o allow_other -o uid=1000
+```
+If the hgfs directory doesn't exist, try:
+```
+sudo vmhgfs-fuse .host:/ /mnt/ -o allow_other -o uid=1000
+```
+
+## intellij idea clion
+
+Icon not showing on dock
+
+> https://askubuntu.com/questions/741645/update-launcher-for-intellij-idea-in-ubuntu
+
+I am 100% sure you still have a local idea 15.01 launcher in ~/.local/share/applications/jetbrains-idea-ce.desktop.
+
+If you drag the global one (/usr/share/applications/jetbrains-idea-ce.desktop) on to the launcher, you temporarily "force" the Unity Launcher to work with the global one, but the local one overrules the global one on restart (log in).

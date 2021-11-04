@@ -167,3 +167,30 @@ linux在执行shell命令之前，就会确定好所有的输入输出位置，�
 修改时间（-mtime/天，-mmin/分钟）：文件最后一次修改时间。
 变化时间（-ctime/天，-cmin/分钟）：文件数据元（例如权限等）最后一次修改时间。
 
+# Proxy 代理
+
+Temporary proxy:
+```
+export HTTP_PROXY=http://127.0.0.1:1080
+export HTTPS_PROXY=https://127.0.0.1:1080
+export http_proxy=http://127.0.0.1:1080
+export https_proxy=https://127.0.0.1:1080
+echo $HTTP_PROXY
+echo $HTTPS_PROXY
+```
+
+If you want to set up a permanent proxy for a single user. You can do it by editing the file ~/.bashrc for a specific user:
+
+nano ~/.bashrc
+Add the following lines at the end of the file:
+
+export http_proxy=username:password@proxy-server-ip:8181
+export https_proxy=username:password@proxy-server-ip:8182
+Save and close the file then activate the new proxy setting with the following command:
+
+source ~/.bashrc
+
+test
+```
+curl -x http://127.0.0.1:1080 www.youbute.com
+```

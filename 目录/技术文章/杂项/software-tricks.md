@@ -18,3 +18,15 @@ editor.action.changeAll
 
 > http://jdev.tw/blog/4388/kindle-with-calibre-conversion
 
+### windows terminal
+
+透明效果
+
+```json
+    "profiles": {
+        "defaults": {
+            "useAcrylic": true,
+            "acrylicOpacity": 0.6
+        }
+    }
+```
