@@ -84,3 +84,23 @@ U盘启动遇到无法安装提示时，点击后退箭头，接着按下Shift+F
 方法四：开源批处理
 
 Aveyo在Github制作了跳过TPM验证的cmd批处理，还有用户下载免验证ISO或制作启动盘的纯净版媒体介质创建工具。
+
+# 自动显示任务栏状态栏所有图标
+
+> https://superuser.com/questions/1680130/windows-11-taskbar-corner-overflow-show-all-tray-icons
+> 
+My Checkbox for show all was unusable, here's what got it for me on a Windows 10 Home > 11 Home upgrade machine.
+
+Open Regedit, go here:
+```
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer]
+```
+Look for EnableAutoTray and set the value from 0 to 1
+
+Then run this cmd:
+
+```
+explorer shell:::{05d7b0f4-2121-4eff-bf6b-ed3f69b894d9}
+```
+The check box for showing all items should be interactable.
+

@@ -37,7 +37,8 @@ sudo apt-get install fish
 
 一些设置
 ```bash
-echo "fish_prompt_pwd_dir_length 0" >> ~/.config/fish/config.fish
+echo "set fish_prompt_pwd_dir_length 0" >> ~/.config/fish/config.fish
+echo "alias dockerf='docker-compose down ; docker-compose pull ; docker-compose up -d'" >> ~/.config/fish/config.fish
 alias ll="ls -alFh"
 ```
 
