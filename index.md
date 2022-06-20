@@ -31,6 +31,7 @@
 
 * **Git**
   * [##Git 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Git/git-config.md)
+  * [Git log](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Git/git-log.md)
   * [Git 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Git/git-notes.md)
   * [Git 工作区、暂存区和版本库](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Git/git-working-stage-repository.md)
 * **Java**
@@ -56,6 +57,7 @@
   * [Javascript 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/前端/javascript-notes.md)
 * **数据库**
   * [GraphQL](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/数据库/graphql.md)
+  * [JPA](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/数据库/jpa.md)
   * [Mysql 主从备份](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/数据库/mysql-master-slave.md)
   * [Mysql Workbench 使用笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/数据库/mysql-workbench.md)
   * [SQL指令](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/数据库/sql-command.md)

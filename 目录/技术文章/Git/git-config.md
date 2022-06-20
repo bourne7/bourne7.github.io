@@ -238,3 +238,17 @@ Host aa
     PreferredAuthentications publickey
     IdentityFile ~/.ssh/id_rsa
 ```
+
+#### unsafe repository 不安全目录问题
+
+Started from Git version: 2.35.3
+
+```
+git config --global --add safe.directory *
+```
+or config in ~/.gitconfig
+
+>https://git-scm.com/docs/git-config/#Documentation/git-config.txt-safedirectory
+```
+These config entries specify Git-tracked directories that are considered safe even if they are owned by someone other than the current user. By default, Git will refuse to even parse a Git config of a repository owned by someone else, let alone run its hooks, and this config setting allows users to specify exceptions, e.g. for intentionally shared repositories (see the --shared option in git-init[1]).
+```

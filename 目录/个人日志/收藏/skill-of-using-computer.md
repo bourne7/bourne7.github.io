@@ -20,7 +20,42 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\explorer\ShellIconO
 
 可以看出现在的软件为了让自己的状态不被别人覆盖，就在前面加了空格。。比如 Dropbox 就加了2个空格。这种取巧的方式真是太无语了。我的解决办法是在 SVN 的状态显示前面加了 4 个空格。
 
+### iTunes 禁止本地备份
 
+> https://www.technipages.com/disable-itunes-backup-process
 
+Command should only be executed once and in admin terminal
+
+```
+Windows
+Close out of the iTunes application.
+Hold the Windows Key and press “R” to bring up the Run dialog box.
+Type the following depending on whether you have 32 or 64 it Windows:
+64-bit:
+"C:\Program Files\iTunes\iTunes.exe" /setPrefInt DeviceBackupsDisabled 1
+32-bit:
+"C:\Program Files (x86)\iTunes\iTunes.exe" /setPrefInt DeviceBackupsDisabled 1
+Press “Enter” or select “OK“.
+When you launch iTunes again, backups for iPhone, iPad and iPod Touch devices will be disabled. If you wish to enable backups again, use the same command as above, but replace the “1” with a “0”.
+
+Note: If you copy and paste this command, you may need to retype the quotes.
+
+FYI, if you’re using the Windows Store version of iTunes, it will be at a different path but the command appears to work (at least it doesn’t kick back an error).
+
+cd "C:\Program Files\WindowsApps\AppleInc.iTunes_12123.5.56009.0_x64__nzyj5cx40ttqa\"
+.\iTunes.exe /setPrefInt DeviceBackupsDisabled 1
+
+-----
+MacOS
+Close iTunes.
+Open the “Utilities” folder and launch “Terminal“.
+Type:
+defaults write com.apple.iTunes DeviceBackupsDisabled -bool true
+Press “Enter“.
+If you wish to enable backups again, use the terminal command defaults write com.apple.iTunes DeviceBackupsDisabled -bool false to turn backups back on.
+
+Note: If you’re using Apple Music, replace “iTunes” with “Music” in the command.
+
+```
 
 
