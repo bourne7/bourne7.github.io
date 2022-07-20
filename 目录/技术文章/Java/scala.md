@@ -205,7 +205,7 @@ object GfG
 * In Java terms, Scala's Seq would be Java's List, and Scala's List would be Java's LinkedList.
   Note that Seq is a trait, which is equivalent to Java's interface, but with the equivalent of up-and-coming defender methods. Scala's List is an abstract class that is extended by Nil and ::, which are the concrete implementations of List.
 
-* 成员变量: 只有 trait 和 abstract 的 class 可以不用初始化成员变量, 其他都需要初始化, 这一点和 java 是不同的, 
+* 成员变量: 只有 trait 和 abstract 的 class 可以不用初始化成员变量, 其他都需要初始化, 这一点和 java 是不同的, 不过我觉得这一点其实还是可以像 java 那样好一些, 因为 对象就默认都是 null, 基本类型基本都是 0 就行了. java 这种做法唯一的问题在于 final 的又需要额外处理, 所以 scala 可能就是在这一点做到了统一吧.
 
 ## 源码阅读 scala.Option#orNull
 

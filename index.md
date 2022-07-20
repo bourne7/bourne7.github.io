@@ -35,11 +35,14 @@
   * [Git 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Git/git-notes.md)
   * [Git 工作区、暂存区和版本库](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Git/git-working-stage-repository.md)
 * **Java**
+  * [Actor](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/actor.md)
   * [Gradle 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/gradle-notes.md)
   * [Java 代码片段笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/java-dai-ma-pian-duan-bi-ji.md)
   * [Java 通用笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/java-general-notes.md)
   * [Java 随机数源码学习](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/java-jdk-random-nextint.md)
   * [Java Thread 线程](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/java-thread.md)
+  * [Java Tools 工具类](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/java-tools.md)
+  * [Scala](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/scala.md)
 * **Linux**
   * [Docker笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/docker.md)
   * [快速安装 Nginx 用于分享文件](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/install-nginx-guide.md)

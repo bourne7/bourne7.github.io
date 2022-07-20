@@ -23,7 +23,7 @@ def get_all_files(root_path, file_dict):
         # 判断该路径为文件还是路径
         if os.path.isfile(dir_file_path):
             file_ext = os.path.splitext(dir_file)[1][1:]
-            if not file_ext == 'md':
+            if file_ext != 'md':
                 continue
             if root_dir_key_name not in file_dict.keys():
                 file_dict[root_dir_key_name] = {}
