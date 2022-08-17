@@ -21,6 +21,12 @@ print(sys.path)
 
 ## brew
 
+install brew following https://brew.sh/ 
+```
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+Deafult location is /usr/local, which should include nothing in a new system.
+
 Finally, I find the right way to use homebrew. 1. Let http requests of git go through a socks5 proxy
 
 ```text
@@ -59,3 +65,6 @@ echo export ALL_PROXY=socks5://127.0.0.1:1080 >> ~/.zsh_profile
 ```
 sudo chflags -R arch /Volumes/SDCARD_NAME
 ```
+
+## Xcode
+xcode-select --install

@@ -196,3 +196,33 @@ https://git-scm.com/docs/pretty-formats
 ```
 git log -n 1 --pretty='%d %ai'
 ```
+
+## 双作者：作者后面的星号 asterisk after author
+
+> https://stackoverflow.com/questions/44625270/intellij-idea-asterisk-after-authors-name-in-git-log
+
+Every change in GIT (and in the most of modern VCS's) has an author and a committer. The Log shows an author because we respect authorship even if the author of changes doesn't have access to the repo or isn't able to commit code by himself.
+
+Asterisk on the author's name in the Log means that this commit was created by the described person, but was applied by someone else.
+
+There are some common cases when this happens:
+
+* you cherrypicked someone else's commit
+* you rebased branch with someone else's commits
+* you applied .patch file mailed to you by someone else
+* you merged the pull-request via GitHub UI - GitHub does it with its own user but leaves authorship to you.
+
+Use
+```
+git log your_hash --pretty=full
+```
+to show both author names
+
+## Oneline and pretty
+
+git log -a --pretty=format:"%h%x09%an%x09%ad%x09%s"
+
+
+## commit in branches
+
+The branches intellij shows indicate the current existing branches only. If you remove remote branches, then the branch will disapple in the whole history.

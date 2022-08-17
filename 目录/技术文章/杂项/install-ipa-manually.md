@@ -5,6 +5,10 @@
 这个版本的 iTunes 可以从 苹果的官网下载：
 > https://support.apple.com/en-us/HT208079
 
+苹果竟然将这个网页删除了，这个页面是给企业用户部署用的，这样都能删除。。。真实丧病。。。不过好在下面的链接还是能继续使用的。并且我还找到了一个新的网址用于下载历史版本的
+
+https://www.theiphonewiki.com/wiki/ITunes
+
 提取出来下载连接
 > https://secure-appldnld.apple.com/itunes12/091-87819-20180912-69177170-B085-11E8-B6AB-C1D03409AD2A6/iTunes64Setup.exe
 >

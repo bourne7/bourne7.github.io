@@ -263,3 +263,47 @@ https://www.jianshu.com/p/2347b1a9eacd
 https://www.opsdash.com/blog/mysql-replication-howto.html
 https://www.cnblogs.com/martinzhang/p/3454358.html
 https://www.cnblogs.com/phpstudy2015-6/p/6485819.html
+
+
+## MySQL 8.0 备份
+
+mysqldump是官方出的工具，当需要做全量备份的时候，也是一种很好的选择。我自己在 PowelShell 里面一般在我的自定义工作环境下，结合 VSC，使用下面面的备份语句
+
+```
+mysqldump --source-data -uroot -proot -h localhost -P 3306 table_country > "table_country_$(get-date -f yyyy-MM-dd_HH-mm-ss).sql"
+```
+
+备份出来的东西是这个样子的
+```
+WARNING: --master-data is deprecated and will be removed in a future version. Use --source-data instead.
+-- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
+--
+-- Host: localhost    Database: table_country
+-- ------------------------------------------------------
+-- Server version	8.0.26
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Position to start replication or point-in-time recovery from
+--
+
+CHANGE MASTER TO MASTER_LOG_FILE='AAA-bin.000055', MASTER_LOG_POS=171312;
+```
+这里就可以看出来是有了 MASTER_LOG_POS=171312 ，接下来就可以用 binlog 进行恢复了。
+
+注意：
+* --master-data 已经被 --source-data  取代了。
+* mysqldump 的数据备份，对于量稍微大一些的数据库来说，基本没啥用，因为恢复的时间会太长。之前我弄过一套工具，就是提取索引的sed脚本，但是过于复杂，使用起来不友好。并且我不想将其工具化，因为我觉得备份这种通用需求一定有更好用的开源工具，手动进行索引处理太傻了。
+* 备份的时候，可以考虑额外备份核心表，这样有利于即时恢复。
+* 一定要用相同的系列工具，比如你用了 mysqldump 导出，就要用 mysql 导入。用了 navicat 之类的工具，就要用对应的工具。
+* 目前我觉得更好的备份 mysql 的工具应该还是 mysqlbackup 这种真正意义上面的备份工具，毕竟这个东西收费。
