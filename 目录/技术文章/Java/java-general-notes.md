@@ -119,3 +119,24 @@ long MAX= ~(-1L << BIT);
 ```
 
 上面这2句是等效的，实际上第二行是idea的代码提醒让我改的，的确更加简洁了。-1的二进制标识就是 “1111111111111111”。
+
+## JMC
+
+JMC可以说是非常强大的 jvm 监控工具了，除了可以分析 jmap dump 出来的内存以外，也可以直接远程到 jvm 来监测。这里给出需要添加的参数：
+
+> https://stackoverflow.com/questions/31257968/how-to-access-jmx-interface-in-docker-from-outside
+
+```
+-Dcom.sun.management.jmxremote
+-Dcom.sun.management.jmxremote.authenticate=false
+-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote.port=<PORT>
+-Dcom.sun.management.jmxremote.rmi.port=<PORT>
+-Djava.rmi.server.hostname=<IP>
+
+where:
+
+<IP> is the IP address of the host that where you executed 'docker run' 如果是 docker 的话，这里的 IP 是宿主机的。
+<PORT> is the port that must be published from docker where the JVM's JMX port is configured (docker run --publish 7203:7203, for example where PORT is 7203). Both `port` and `rmi.port` can be the same.
+```
+

@@ -176,3 +176,15 @@ scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
 -r - This option tells scp to copy directories recursively.
 
 scp -r user1@192.168.110.8:/data /data
+
+## Htop showing multiple java processes with different pids
+
+> https://stackoverflow.com/questions/11017597/htop-showing-multiple-java-processes-with-different-pids
+> https://unix.stackexchange.com/questions/10362/why-does-htop-show-more-process-than-ps
+
+By default, htop lists each thread of a process separately, while ps doesn't. To turn off the display of threads, press H, or use the "Setup / Display options" menu, "Hide userland threads". This puts the following line in your ~/.htoprc or ~/.config/htop/htoprc (you can alternatively put it there manually):
+
+hide_userland_threads=1
+(Also hide_kernel_threads=1, toggled by pressing K, but it's 1 by default.)
+
+Another useful option is “Display threads in a different color” in the same menu (highlight_threads=1 in .htoprc), which causes threads to be shown in a different color (green in the default theme).

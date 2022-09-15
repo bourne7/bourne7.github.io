@@ -1,4 +1,4 @@
-# GraphQL
+# Other DBs
 
 2020-11-28
 
@@ -16,3 +16,10 @@
 第二，并不是所有场景都适用于 GraphQL 的，有些很简单的事情就应该用 RESTful API 来实现。Facebook 内部用户增长部门的很多 API 都还不是 GraphQL，因为没必要迁移到 GraphQL。用户增长部门的 API 处理新用户注册、填写短信验证码之类的事情，这些事情都是围绕着一个用户的具体某项或多项信息发生的，根本没有任何图的概念。可以强行写作 GraphQL，但得不到显著的好处。既然老的 API 早就写好了，需要的时候做一些小改动，但没必要重写。
 
 第三，GraphQL 尽管查询的数据是图状数据结构，但实际获得的数据视图是树状数据结构。每一个 GraphQL 查询或更新都有自己的根节点，然后所有的数据都是从根结点展开出去的。查询后获得的数据如果要在前端重新变回图的状态，那前端就不能简单地缓存查询得到的数据，必须用对用的 GraphQL 存储库，然后通过顶点的 ID 把不同节点之间的某些边重新连接起来。
+
+## mongodb
+
+要注意新版的mongo客户端已经不是 mongo 而是 mongosh 了，安装方法在这里
+
+> https://www.mongodb.com/docs/mongodb-shell/install/#std-label-mdb-shell-install
+

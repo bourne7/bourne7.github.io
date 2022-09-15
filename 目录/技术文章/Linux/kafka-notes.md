@@ -90,3 +90,28 @@ docker exec -it kafka bash -c "/opt/bitnami/kafka/bin/kafka-consumer-groups.sh -
 10. receive.buffer.bytes 和 send.buffer.bytes
 
 socket 在读写数据时用到的 TCP 缓冲区也可以设置大小。如果它们被设为-1，就使用操作系统的默认值。如果生产者或消费者与 broker处于不同的数据中心内，可以适当增大这些值，因为跨数据中心的网络一般都有 比较高的延迟和比较低的带宽 。
+
+
+
+## Kafdrop
+
+```yml
+version: '3'
+services:
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    container_name: kafdrop
+    network_mode: bridge
+    restart: always
+    tty: true
+    ports:
+      - 9000:9000
+    volumes:
+      - /etc/localtime:/etc/localtime      
+    extra_hosts:
+      - "kafka:$HOST_IP"
+    environment:
+      KAFKA_BROKERCONNECT: "kafka:9092"
+      JVM_OPTS: "-Xms48M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify"
+
+```
