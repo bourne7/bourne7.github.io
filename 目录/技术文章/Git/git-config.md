@@ -239,6 +239,25 @@ Host aa
     IdentityFile ~/.ssh/id_rsa
 ```
 
+下面是另外一种配置
+```yml
+# ProxyCommand "C:\Program Files\Git\mingw64\bin\connect" -S 127.0.0.1:1080 -a none %h %p
+
+Host github.com
+  User git
+  Port 22
+  Hostname github.com
+  IdentityFile ~/.ssh/github
+  TCPKeepAlive yes
+
+Host ssh.github.com
+  User git
+  Port 443
+  Hostname ssh.github.com
+  IdentityFile ~/.ssh/github
+  TCPKeepAlive yes
+```
+
 #### unsafe repository 不安全目录问题
 
 Started from Git version: 2.35.3

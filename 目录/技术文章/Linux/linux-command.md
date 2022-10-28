@@ -188,3 +188,39 @@ hide_userland_threads=1
 (Also hide_kernel_threads=1, toggled by pressing K, but it's 1 by default.)
 
 Another useful option is “Display threads in a different color” in the same menu (highlight_threads=1 in .htoprc), which causes threads to be shown in a different color (green in the default theme).
+
+
+## ls 的改进
+
+可以用下面的命令显示完整的，按照修改日期升序排列的文件夹
+
+```
+ls -alFhtr --time-style=long-iso
+```
+
+## neofetch
+
+通常我会用 lsb_release -a 看系统发行版，但是看到的信息不够多，这个命令的好处是默认都有。 但是 neofetch 这个就华丽多了，可以看到如下的内容
+
+```
+            .-/+oossssoo+/-.               aac@aaa
+        `:+ssssssssssssssssss+:`           ----------------
+      -+ssssssssssssssssssyyssss+-         OS: Ubuntu 22.04.1 LTS on Windows 10 x86_64
+    .ossssssssssssssssssdMMMNysssso.       Kernel: 5.10.102.1-microsoft-standard-WSL2
+   /ssssssssssshdmmNNmmyNMMMMhssssss/      Uptime: 7 secs
+  +ssssssssshmydMMMMMMMNddddyssssssss+     Packages: 773 (dpkg)
+ /sssssssshNMMMyhhyyyyhmNMMMNhssssssss/    Shell: bash 5.1.16
+.ssssssssdMMMNhsssssssssshNMMMdssssssss.   Terminal: Windows Terminal
++sssshhhyNMMNyssssssssssssyNMMMysssssss+   CPU: Intel i7-8700 (12) @ 3.192GHz
+ossyNMMMNyMMhsssssssssssssshmmmhssssssso   GPU: c658:00:00.0 Microsoft Corporation Device 008e
+ossyNMMMNyMMhsssssssssssssshmmmhssssssso   Memory: 266MiB / 15920MiB
++sssshhhyNMMNyssssssssssssyNMMMysssssss+
+.ssssssssdMMMNhsssssssssshNMMMdssssssss.
+ /sssssssshNMMMyhhyyyyhdNMMMNhssssssss/
+  +sssssssssdmydMMMMMMMMddddyssssssss+
+   /ssssssssssshdmNNNNmyNMMMMhssssss/
+    .ossssssssssssssssssdMMMNysssso.
+      -+sssssssssssssssssyyyssss+-
+        `:+ssssssssssssssssss+:`
+            .-/+oossssoo+/-.
+```
