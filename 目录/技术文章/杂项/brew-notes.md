@@ -54,11 +54,3 @@ echo export ALL_PROXY=socks5://127.0.0.1:1080 >> ~/.zsh_profile
 - `~/.ShadowsocksX-NG/` 是pac位置,适用于`ss-ng`.
 
 
-## Switch SD card
-
-```
-sudo chflags -R arch /Volumes/SDCARD_NAME
-```
-
-## Xcode
-xcode-select --install
