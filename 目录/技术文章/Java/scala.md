@@ -67,138 +67,25 @@ object Hello {
 
 > https://www.baeldung.com/scala/nil-null-nothing-unit-none
 > https://www.runoob.com/scala/scala-data-types.html
-* Null - 是个类型, 这个java 里面没有类似的概念, scala 的 null 等于 java 的 null, 但是多了一个形容 null 的类型的类 Null, 这一点是和 java 不同的
-* Nil - 空的 List
-* None - None is a subtype of Option type
-* Unit – the Empty Return Type, 等于 java 的 void
-* Nothing - Nothing is the absolute “no value” type in Scala. It doesn’t have any methods or values. Therefore, we can use Nothing in place of any Scala type both reference types and value types. Nothing类型在Scala的类层级的最底端；它是任何其他类型的子类型。一个是任何类子类的类, 注定无法被实例化.
-* Any - Any type is the root of the entire Scala type system, and Nothing extends the Any type. Any 是所有类的父类
-* AnyRef - AnyRef类是Scala里所有引用类(reference class)的基类
-
-
-
 > https://www.geeksforgeeks.org/scala-null-null-nil-nothing-none-and-unit/
 
-* null:
 
-The reference types such as Objects, and Strings can be nulland the value types such as Int, Double, Long, etc, cannot be null, the null in Scala is analogous to the null in Java.
+Null - Trait，同时也是所有普通对象的子类（不包括基础类型），null 的类型，同时也是所有普通对象的子类（不包括基础类型）
 
-* Null:
+None - Option 的一个子类，用于避免赋值一个 null
 
-It is a Trait, which is a subset of each of the reference types but is not at all a sub-type of value types and a single instance of Null is null. The reference types can be assigned null but the value types cannot be assigned null.
+Nothing - Trait，同时也是任何其他类型的子类型，所以注定无法被实例化。（用于返回一个对象，但是该方法注定会抛出异常？）
 
-```scala
-// Scala program using Null and null
-  
-// Creating object
-object GfG
-{
-  
-    // Main method
-    def main(args: Array[String]) 
-    {
-        // Method that takes a parameter of type Null
-        def usingnull(thing: Null): Unit = 
-        { 
-            println("GeeksForGeeks"); 
-        }
-  
-        /*error: type mismatch;
-  
-        found   : java.lang.String("hey")
-  
-        required: Null*/
-        //usingnull("hey")
-  
-        // passing null itself
-        usingnull(null)
-    }
-}
-```
+Nil - 空的 List，The type of Nil is List[Nothing]
+
+Unit – the Empty Return Type, 等于 java 的 void
+
+Any - 所有类的父类
+
+AnyRef - AnyRef类是Scala里所有引用类(reference class)的基类
 
 
-* Nothing:
-
-Nothing is also a Trait, which has no instances. It is a subset of each of the distinct types. The major motive of this Trait is to supply a return type for the methods which consistently throws an exception i.e, not even a single time returns generally. It is also helpful in providing a type for Nil.
-
-* Unit:
-
-The Unit is Scala is analogous to the void in Java, which is utilized as a return type of a functions that is used with a function when the stated function does not returns anything.
-
-```scala
-// Scala program using Unit type
-  
-// Creating object
-object GfG
-{
-  
-    // Main method
-    def main(args: Array[String]) 
-    {
-        // Method return type is unit
-        def printNumber(num: (Int) => Unit) = 
-        {
-  
-            num(1); 
-            num(2); 
-            num(3);
-        }
-          
-        printNumber(println)
-    }
-}
-```
-Here, method printNumber takes a parameter called num, which has a type of (Int) => Unit. This means that num is a method that consists a single parameter of type Int. method printNumber return type of Unit, which means num isn’t supposed to return a value.
-
-
-
-* Nil:
-
-Nil is Considered as a List which has zero elements in it. The type of Nil is List[Nothing] and as stated above, that Nothing has no instances, we can have a List which is confirmed to be desolated.
-
-```scala
-// Scala program to show that
-// Nil is an empty list
-  
-// Creating object
-object GfG
-{
-  
-    // Main method
-    def main(args: Array[String]) 
-    {
-  
-        // Displays empty list
-        println(Nil)
-    }
-}
-```
-
-
-* None:
-
-It is one of the children of Scala’s Option class which is utilized to avoid assignment of null to the reference types. lets see some examples.
-
-```scala
-// Scala program to convert
-// None to empty list
-  
-// Creating object
-object GfG
-{
-  
-    // Main method
-    def main(args: Array[String]) 
-    {
-  
-        // Displays empty list
-        println(None.toList)
-    }
-}
-```
-
-
-## 一些总结
+## 杂项
 
 * apply 约等于 c++ 里面对于 () 的重载, 可以取代构建方法
 
@@ -207,19 +94,63 @@ object GfG
 
 * 成员变量: 只有 trait 和 abstract 的 class 可以不用初始化成员变量, 其他都需要初始化, 这一点和 java 是不同的, 不过我觉得这一点其实还是可以像 java 那样好一些, 因为 对象就默认都是 null, 基本类型基本都是 0 就行了. java 这种做法唯一的问题在于 final 的又需要额外处理, 所以 scala 可能就是在这一点做到了统一吧.
 
+* 目前处于 2 和 3 的替换期，还有很多东西不明朗，其实对这门语言来说很不利。比如这里 https://docs.scala-lang.org/cheatsheets/index.html 有说到 Define function. def f(x: Int)   { x * x } Hidden error: without = it’s a procedure returning Unit; causes havoc. Deprecated in Scala 2.13.
+
+* zip 顾名思义，能合并2个迭代对象
+
 ## 源码阅读 scala.Option#orNull
 
 ```scala
 scala.Option#orNull
 
+@inline final def orNull[A1 >: A](implicit ev: Null <:< A1): A1 = this.getOrElse(ev(null))
+
 @inline final def orNull[A1 >: A](implicit ev: Null <:< A1): A1 = this getOrElse ev(null)
+
 ```
 
 ### 1. implicit
 
-有3种使用方式, 类, 方法, 参数. 效果差不多: 当缺省的时候, 编译器会寻找到最符合的 implicit 的对象来调用, 所以这里也不允许相同类型的隐式方式存在2份. 
+有3种使用方式: 类, 方法, 参数. 效果差不多: 当缺省的时候, 编译器会寻找到最符合的 implicit 的对象来调用, 所以这里也不允许相同类型的隐式方式存在2份. 
 
 我认为这个是一个语法糖, 有点类似于 inline 的意思. 在这个地方意思就是说 ev 这个方法的默认实现已经有了.
+
+>https://blog.bruchez.name/posts/generalized-type-constraints-in-scala/#question-3-how-does-this-whole-thing-even-work
+
+这个解释更加详细，这个的解释也是我认为目前最好的。
+
+### => 参数传递：值传递或者名字传递
+
+>https://stackoverflow.com/questions/13337338/call-by-name-vs-call-by-value-in-scala-clarification-needed
+
+call-by-value functions compute the passed-in expression's value before calling the function, thus the same value is accessed every time. Instead, call-by-name functions recompute the passed-in expression's value every time it is accessed.
+
+这个实在是有点隐晦。。。可以认为变量替换：provider 每次都会重新计算。
+
+### <- 生成器，for 的新用法
+
+>https://www.baeldung.com/scala/for-comprehension
+>https://docs.scala-lang.org/tour/for-comprehensions.html
+
+The statement result <- results represent a generator. It introduces a new variable, result, that loops over each value of the variable results. So, the type of result is TestResult.
+
+注意这种写法是需要配合 yield 使用的
+
+```scala
+case class User(name: String, age: Int)
+
+val userBase = List(
+  User("Travis", 28),
+  User("Kelly", 33),
+  User("Jennifer", 44),
+  User("Dennis", 23))
+
+val twentySomethings =
+  for (user <- userBase if user.age >=20 && user.age < 30)
+  yield user.name  // i.e. add this to a list
+
+twentySomethings.foreach(println)  // prints Travis Dennis
+```
 
 ### 2. <:<
 
@@ -246,5 +177,92 @@ sealed abstract class <:<[-From, +To] extends (From => To) with Serializable {
 从这里还可以看出是一个 sealed 的类, 不过用起来的时候就感觉是个关键词了, 聪明的 idea 仍然将其染色成为了 class 的颜色
 ```
 
+泛型约束 关于 =:= 这些。 These are called generalized type constraints. 
+
+```scala
+case class Foo[A](a:A) { // 'A' can be substituted with any type
+    // getStringLength can only be used if this is a Foo[String]
+    def getStringLength(implicit evidence: A =:= String) = a.length
+}
+```
+
+
+
+
+### 3. +A
+
+> https://stackoverflow.com/questions/4531455/whats-the-difference-between-ab-and-b-in-scala
+
+Q[A <: B] means that class Q can take any class A that is a subclass of B.
+
+Q[+B] means that Q can take any class, but if A is a subclass of B, then Q[A] is considered to be a subclass of Q[B].
+
+Q[+A <: B] means that class Q can only take subclasses of B as well as propagating the subclass relationship.
+
+The first is useful when you want to do something generic, but you need to rely upon a certain set of methods in B. For example, if you have an Output class with a toFile method, you could use that method in any class that could be passed into Q.
+
+The second is useful when you want to make collections that behave the same way as the original classes. If you take B and you make a subclass A, then you can pass A in anywhere where B is expected. But if you take a collection of B, Q[B], is it true that you can always pass in Q[A] instead? In general, no; there are cases when this would be the wrong thing to do. But you can say that this is the right thing to do by using +B (covariance; Q covaries--follows along with--B's subclasses' inheritance relationship).
+
+"+" 的作用可以解决 Java 里面，泛型擦除的问题。
+
+> https://stackoverflow.com/questions/29412857/what-does-a-mean-in-scala-class-declaration
+```scala
+val x: Option[String] = Some("a")
+val y: Option[Object] = x
+```
+
+
+
+### 协变和逆变 covariance and contravariance
+
+```scala
+trait Function1[-P, +R] {
+  def apply(p: P): R
+}
+```
+
+Notice the "-" variance annotation on the P type parameter. This declaration as a whole means that Function1 is contravariant in P and covariant in R. Thus, we can derive the following axioms:
+
+
+```scala
+T1' <: T1 (父类)
+T2 <: T2' (父类)
+---------------------------------------- S-Fun
+Function1[T1, T2] <: Function1[T1', T2']
+```
+
+可以这么记忆： -P 表示比P小； 如果要找到一个另外一个泛型类，可以被视为 Function1[T1, T2] 的父类（找个爹），那么这个父类需要起码这样的条件: [-P, +R]。
+
+所以这里 Function1[T1', T2'] 可以被视为是 Function1[T1, T2] 的父类，一个 Function1[T1', T2'] 的引用也能吃一个 Function1[T1, T2]
+
+Notice that T1' must be a subtype (or the same type) of T1, whereas it is the opposite for T2 and T2'. In English, this can be read as the following:
+
+A function A is a subtype of another function B if the parameter type of A is a supertype of the parameter type of B while the return type of A is a subtype of the return type of B.
+
+
+另外一个例子
+
+>https://stackoverflow.com/questions/27627782/signs-in-generic-declaration-in-scala
+
+It's covariance and contravariance. https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science)
+
+Basically it says for Generic types how inheritance will work. Easy sample from Scala is - trait Seq[+A] Because of the + , the code
+```scala
+val s: Seq[Person] = Seq[Student]()
+```
+will compile because Student extends Person. Without the + it won't work
+
+A bit more complex sample -
+```scala
+class C[-A, +B] {
+  def foo(param: A): B = ???
+}
+
+class Person(val name: String)
+
+class Student(name: String, val university: String) extends Person(name)
+
+val sample: C[Student, Person] = new C[Person, Student]
+```
 
 
