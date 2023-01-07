@@ -194,3 +194,8 @@ test
 ```
 curl -x http://127.0.0.1:1080 www.youbute.com
 ```
+
+## 创建连接/命令别名 
+
+unlink /usr/local/bin/python
+ln -s /usr/local/bin/python3.3 /usr/local/bin/python
