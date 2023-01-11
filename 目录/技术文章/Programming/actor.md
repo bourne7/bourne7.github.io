@@ -48,3 +48,14 @@ Worse is Better 也能解释别的语言或技术的崛起。你不用很优秀�
 如果 Worse is Better 作为一个定律是正确的，这听起来很可悲，我们就活该没有好东西用了。我感觉可以稍微修正一下：对于开发技术这种存在网络效应的东西，除非一个方案有革命性的优势，否则都会服从 worse is better 定律。
 
 在电信行业，Erlang 可能真的拥有革命性的优势，我不熟悉的领域不评论，可惜电信行业本身相对狭窄封闭再加上爱立信作死，没网络效应可言。而在其他地方，革命性的优势，它没有。
+
+
+## 几个关键名词的解释
+
+* Reactor 官网 https://projectreactor.io/ 这个是和 Spring 有整合的，在这里 https://spring.io/reactive
+* Reactive Streams： Reactive Streams started as an initiative in late 2013 between engineers at Netflix, Pivotal and Lightbend. 可以看出这个和 akka 是很接近的。后来得到了 Doug Lea 的支持，在 Java9 里面已经被添加进来了。
+  
+评论：
+Reactive Streams 被整合进 JDK 以后，对于 Stream 的处理肯定是有好处的，我认为现在的 FrokJoin 并非最好的方案，应该只是临时方案。
+Spring Reactor 则是另外一条分支，是Spring 社区对于响应式编程的支持。相当于 Akka 全家桶。
+Akka 则是和 Spring 是平行的，等于是 “原生 Actor 模型版本” 的 Spring 全家桶

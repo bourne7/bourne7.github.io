@@ -215,29 +215,14 @@ val y: Option[Object] = x
 
 ### 协变和逆变 covariance and contravariance
 
-```scala
-trait Function1[-P, +R] {
-  def apply(p: P): R
-}
-```
-
-Notice the "-" variance annotation on the P type parameter. This declaration as a whole means that Function1 is contravariant in P and covariant in R. Thus, we can derive the following axioms:
-
+Consider a Scala immutable Seq. It is defined as trait Seq[+A]. The little + says that if I require a Seq[Fruit], I can pass a Seq[Banana] just fine:
 
 ```scala
-T1' <: T1 (父类)
-T2 <: T2' (父类)
----------------------------------------- S-Fun
-Function1[T1, T2] <: Function1[T1', T2']
+def takeFruits(fruits: Seq[Fruit]) = ...
+takeFruits(Seq(new Banana))
 ```
 
-可以这么记忆： -P 表示比P小； 如果要找到一个另外一个泛型类，可以被视为 Function1[T1, T2] 的父类（找个爹），那么这个父类需要起码这样的条件: [-P, +R]。
-
-所以这里 Function1[T1', T2'] 可以被视为是 Function1[T1, T2] 的父类，一个 Function1[T1', T2'] 的引用也能吃一个 Function1[T1, T2]
-
-Notice that T1' must be a subtype (or the same type) of T1, whereas it is the opposite for T2 and T2'. In English, this can be read as the following:
-
-A function A is a subtype of another function B if the parameter type of A is a supertype of the parameter type of B while the return type of A is a subtype of the return type of B.
+可以记忆为： + 就是 extends
 
 
 另外一个例子
@@ -266,3 +251,43 @@ val sample: C[Student, Person] = new C[Person, Student]
 ```
 
 
+### 对于 => 的解释
+
+> https://stackoverflow.com/questions/6951895/what-does-and-mean-in-scala
+
+=> has several meanings in Scala, all related to its mathematical meaning as implication.
+
+In a value, it introduces a function literal, or lambda. e.g. the bit inside the curly braces in List(1,2,3).map { (x: Int) => x * 2 }
+
+In a type, with symbols on both sides of the arrow (e.g. A => T, (A,B) => T, (A,B,C) => T, etc.) it's sugar for Function<n>[A[,B,...],T], that is, a function that takes parameters of type A[,B...], and returns a value of type T.
+
+Empty parens on the left hand side (e.g. () => T) indicate that the function takes no parameters (also sometimes called a "thunk");
+
+Empty parens on the right hand side denote that it returns ()—the sole value of type Unit, whose name can also be written ()—confused yet? :)
+
+A function that returns Unit is also known as a procedure, normally a method that's called only for its side effect.
+
+In the type declaration for a method or function parameter, with no symbol on the left hand side (e.g. def f(param: => T)) it's a "by-name parameter", meaning that is evaluated every time it's used within the body of the function, and not before. Ordinary "by-value" parameters are evaluated before entry into the function/method.
+
+In a case clause, they separate the pattern (and optional guard) from the result expression, e.g. case x => y.
+
+
+
+### Play Framework
+
+```scala
+305 final def apply(block: R[B] => Result): Action[B] = async(block.andThen(Future.successful))
+321 final def apply(block: => Result): Action[AnyContent] =
+    apply(BodyParsers.utils.ignore(AnyContentAsEmpty: AnyContent))(_ => block)
+```
+
+block: => Result 为 by-name paramaters, 作用是延时调用。
+
+一个普通的接口来说，这里的调用顺序为从左到右，最后的 (_ => block) 调用的实际上是 
+
+final def apply(block: R[B] => Result): Action[B] = async(block.andThen(Future.successful))
+
+从 ActionBuilder 过来的。要注意，第一次进入 321 的时候，入参是一个普通类型。第二次从 (_ => block) 进入 305 行的时候，入参时机上是一个 Function1 .
+
+
+> 这里似乎隐含着 object 可以直接当对象来引用？
