@@ -23,19 +23,6 @@
 * **旧版博客备份**
 ### 技术文章
 
-* **Git**
-  * [##Git 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Git/git-config.md)
-  * [Git log](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Git/git-log.md)
-  * [Git 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Git/git-notes.md)
-  * [Git 工作区、暂存区和版本库](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Git/git-working-stage-repository.md)
-* **Java**
-  * [Actor](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/actor.md)
-  * [Gradle 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/gradle-notes.md)
-  * [Java 通用笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/java-general-notes.md)
-  * [Java 随机数源码学习](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/java-jdk-random-nextint.md)
-  * [Java 思考](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/java-think.md)
-  * [Java Thread 线程](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/java-thread.md)
-  * [Scala](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Java/scala.md)
 * **Linux**
   * [Docker笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/docker.md)
   * [快速安装 Nginx 用于分享文件](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/install-nginx-guide.md)
@@ -46,9 +33,23 @@
   * [Shell](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/shell.md)
   * [Ubuntu 安装常用软件](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/ubuntu-software-guide.md)
   * [Vim 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/vim-guide.md)
+* **Programming**
+  * [Actor](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Programming/actor.md)
+  * [Gradle 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Programming/gradle-notes.md)
+  * [Java 通用笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Programming/java-general-notes.md)
+  * [Java 随机数源码学习](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Programming/java-jdk-random-nextint.md)
+  * [Java 思考](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Programming/java-think.md)
+  * [Java Thread 线程](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Programming/java-thread.md)
+  * [Proto Buffer](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Programming/protobuffer.md)
+  * [Scala](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Programming/scala.md)
 * **Python**
   * [Pip代理笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Python/pip-proxy.md)
   * [Python random choice](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Python/python-random-choice.md)
+* **Tools**
+  * [##Git 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Tools/git-config.md)
+  * [Git log](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Tools/git-log.md)
+  * [Git 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Tools/git-notes.md)
+  * [Git 工作区、暂存区和版本库](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Tools/git-working-stage-repository.md)
 * **前端**
   * [Javascript 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/前端/javascript-notes.md)
 * **数据库**

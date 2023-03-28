@@ -66,8 +66,8 @@ object Hello {
 ## 数据类型
 
 > https://www.baeldung.com/scala/nil-null-nothing-unit-none
-> https://www.runoob.com/scala/scala-data-types.html
 > https://www.geeksforgeeks.org/scala-null-null-nil-nothing-none-and-unit/
+> https://www.runoob.com/scala/scala-data-types.html
 
 
 Null - Trait，同时也是所有普通对象的子类（不包括基础类型），null 的类型，同时也是所有普通对象的子类（不包括基础类型）
@@ -291,3 +291,15 @@ final def apply(block: R[B] => Result): Action[B] = async(block.andThen(Future.s
 
 
 > 这里似乎隐含着 object 可以直接当对象来引用？
+
+
+
+### case class
+
+> https://docs.scala-lang.org/tour/case-classes.html
+
+相当于所有成员变量都是 final 的普通类。所有的参数是 val。和 Java 最大的不同在于 == 的运算是会被判断等于的。也就是按照官网的例子，2次调用 apply 方法返回的对象，概念上是2个对象，实际上可能是2个对象？
+
+这里的思考是：即使返回的是2个对象，也没有意义了，因为外界已经无法分辨出这2个对象的区别了。
+
+从 Java 14 开始，多了个 record class 预览版, 作用和这个一样。这个特性从 Java 16开始，正式可以用了。
