@@ -303,3 +303,67 @@ final def apply(block: R[B] => Result): Action[B] = async(block.andThen(Future.s
 这里的思考是：即使返回的是2个对象，也没有意义了，因为外界已经无法分辨出这2个对象的区别了。
 
 从 Java 14 开始，多了个 record class 预览版, 作用和这个一样。这个特性从 Java 16开始，正式可以用了。
+
+
+### difference between scala extension and implicit [from GPT-4]
+
+
+Scala has two main mechanisms to extend existing types or provide additional functionality: extension methods and implicit conversions. Although they have similar goals, they have different ways of achieving them.
+
+Extension methods (Scala 3):
+Extension methods allow you to add new methods to existing types without modifying their source code. In Scala 3, extension methods are defined using the extension keyword. They enable you to call the new method as if it were a member of the original type. This is sometimes called "ad-hoc polymorphism."
+
+Example:
+
+```scala
+implicit class RichString(val s: String) extends AnyVal {
+  def isPalindrome: Boolean = s == s.reverse
+}
+
+val palindrome = "racecar"
+val isPalindrome = palindrome.isPalindrome // true
+```
+
+In this example, an isPalindrome method is added to the String type using an extension method.
+
+Implicit conversions (Scala 2):
+Implicit conversions allow you to automatically convert one type to another using an implicit function. This is often used to extend existing types with new functionality or to provide a more natural interface between different types. Implicit conversions have been used in Scala 2, but they are discouraged in Scala 3 due to their potential for creating confusing and hard-to-understand code.
+
+Example:
+
+```scala
+implicit class RichString(val s: String) extends AnyVal {
+  def isPalindrome: Boolean = s == s.reverse
+}
+
+val palindrome = "racecar"
+val isPalindrome = palindrome.isPalindrome // true
+```
+
+In this example, an isPalindrome method is added to the String type using an implicit conversion from String to a new RichString class.
+
+Summary:
+
+Extension methods (Scala 3) provide a more straightforward and less error-prone way to extend existing types with new methods. They make it easier to understand which methods are being added to a type and avoid the need for implicit conversions.
+Implicit conversions (Scala 2) can be powerful but can lead to confusing and hard-to-understand code. They are being replaced by extension methods in Scala 3 to provide a more intuitive mechanism for extending types.
+
+总结：截至 2023-03-30， GPT-4 的语法解释，已经比较完善了。比大部分的搜索结果完善。本来 Scala 的社区就不太活跃，语法又多变，与其自己查阅大量资料，不如一开始就问 GPT 【手动狗头】。
+
+
+### force cast object
+
+Like java casting, scala also has a force cast method. But it's not a method, it's a function.
+
+| Scala               | Java             |
+| ------------------- | ---------------- |
+| obj.isInstanceOf[C] | obj instanceof C |
+| obj.asInstanceOf[C] | (C)obj           |
+| classOf[C]          | C.class          |
+
+In Map.scala
+
+```scala
+def empty[K, V]: Map[K, V] = EmptyMap.asInstanceOf[Map[K, V]]
+```
+
+shows that an object could be cast as a instance. I have tested that an instance could not be cast to an object.

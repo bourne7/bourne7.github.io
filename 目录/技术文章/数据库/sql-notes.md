@@ -45,3 +45,18 @@ ANY_VALUE()	Suppress ONLY_FULL_GROUP_BY value rejection
 
 * 我不认为里面说的一定要加表别名，也就是 “SQL 语句中表的别名前加 as，并且以 t1、t2、t3、...的顺序依次命名。”是必须的，原生表明只要取名适当的话，加上格式化，是很好读的。只有衍生表才需要加别名。
 * “TRUNCATE TABLE 在功能上与不带 WHERE 子句的 DELETE 语句相同。” 这句话不准确。实际上官方也只是说了类似。因为 truncate 还会重置 AI 的位置。实际上可以认为是将表以及表的元数据还原了。delete只会操作表的数据。
+
+
+## utf8 utf8mb3 utf8mb4
+
+这个其实还是很诡异的，我找到了一些有意思的资料：
+
+https://github.com/mysql/mysql-server/commit/43a506c0ced0e6ea101d3ab8b4b423ce3fa327d0
+
+https://www.zhihu.com/question/347040967/answer/832021621
+
+https://adamhooper.medium.com/in-mysql-never-use-utf8-use-utf8mb4-11761243e434
+
+8.0以后的 utf8 会默认变为 4 bytes。所以以后为了兼容，我们要用 utf8mb4
+
+

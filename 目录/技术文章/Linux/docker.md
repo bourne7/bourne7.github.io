@@ -157,3 +157,50 @@ sudo service docker start
 可以用于寻找 容器 对应的系统 PID
 
 docker top container_name
+
+## docker mount 和 docker volume
+
+Differences between -v and --mount behavior
+Because the -v and --volume flags have been a part of Docker for a long time, their behavior cannot be changed. This means that there is one behavior that is different between -v and --mount.
+
+If you use -v or --volume to bind-mount a file or directory that does not yet exist on the Docker host, -v creates the endpoint for you. It is always created as a directory.
+
+If you use --mount to bind-mount a file or directory that does not yet exist on the Docker host, Docker does not automatically create it for you, but generates an error.
+
+You cannot mount root in container to host. 
+
+经过测试：无法将容器的根目录映射到外面。
+
+猜测原因：
+* 在创建容器的时候，目录映射会将容器内部的某个目录映射到外部，并且采用外部的值。
+* 如果映射文件的话，则是会单向的在创建容器的时候，将外面的文件映射到容器里面。
+
+我认为为了容器的映射方便，最好将所有的非基础镜像的内容，都放到非根目录里面，比如可以放到 /data 里面去，然后映射出来，这样就方便许多了。
+
+> https://forums.docker.com/t/mount-container-volume-root-folder/38265/3
+If you could successfully run docker run -v /host/path:/ image then it would cause the contents of /host/path to be the only thing visible in the container; it would be the container’s root. That is, you can mount things into the container but not out.
+
+## ports and volumes
+
+内外映射问题。 都是由外到内，即左外右内。
+
+The following command will create a directory called nginxlogs in your current user’s home directory and bindmount it to /var/log/nginx in the container:
+
+docker run --name=nginx -d -v ~/nginxlogs:/var/log/nginx -p 5000:80 nginx
+
+端口也是一样的：外-内
+
+```
+services:
+  myapp1:
+    ...
+    ports:
+    - "3000"                             # container port (3000), assigned to random host port
+    - "3001-3005"                        # container port range (3001-3005), assigned to random host ports
+    - "8000:8000"                        # container port (8000), assigned to given host port (8000)
+    - "9090-9091:8080-8081"              # container port range (8080-8081), assigned to given host port range (9090-9091)
+    - "127.0.0.1:8002:8002"              # container port (8002), assigned to given host port (8002) and bind to 127.0.0.1
+    - "6060:6060/udp"                    # container port (6060) restricted to UDP protocol, assigned to given host (6060)
+```
+
+

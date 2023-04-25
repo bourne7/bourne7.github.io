@@ -152,12 +152,12 @@ du -sh *
 ssh 产生公钥密钥对，建议不要老是用同一对公钥密钥，还是稍微分类一下比较好。
 注意，如果是本地电脑A想要执行 SCP 指令，copy 电脑B的内容到本地电脑的话，需要在A电脑里面执行 ssh-copy-id
 ```
-ssh-keygen
+ssh-keygen [-f identity_file]
 ```
 
 部署公钥
 ```
-ssh-copy-id -i [identity_file] user@host
+ssh-copy-id -i [identity_file.pub] user@host
 ```
 
 如果不指明 identity_file 的话，就是默认的 id_rsa
