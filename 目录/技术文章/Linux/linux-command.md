@@ -225,3 +225,20 @@ ossyNMMMNyMMhsssssssssssssshmmmhssssssso   Memory: 266MiB / 15920MiB
         `:+ssssssssssssssssss+:`
             .-/+oossssoo+/-.
 ```
+
+
+## nmap
+
+可以代替 telnet 来检查端口是否开放
+
+```
+aac@myhost:/mnt/c/Users/aac$ nmap -p 80 127.0.0.1
+Starting Nmap 7.80 ( https://nmap.org ) at 2023-05-05 11:09 CST
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.000041s latency).
+
+PORT   STATE  SERVICE
+80/tcp closed http
+
+Nmap done: 1 IP address (1 host up) scanned in 0.02 seconds
+```

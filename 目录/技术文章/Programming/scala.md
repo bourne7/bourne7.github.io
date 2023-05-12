@@ -67,23 +67,30 @@ object Hello {
 
 > https://www.baeldung.com/scala/nil-null-nothing-unit-none
 > https://www.geeksforgeeks.org/scala-null-null-nil-nothing-none-and-unit/
-> https://www.runoob.com/scala/scala-data-types.html
 
 
-Null - Trait，同时也是所有普通对象的子类（不包括基础类型），null 的类型，同时也是所有普通对象的子类（不包括基础类型）
+--------------------------------------------------------------------------------
 
-None - Option 的一个子类，用于避免赋值一个 null
+null - The null reference is used to represent an absent value, and Null with a capital ‘N’ is its type.
 
-Nothing - Trait，同时也是任何其他类型的子类型，所以注定无法被实例化。（用于返回一个对象，但是该方法注定会抛出异常？）
+Null - Null is the type of the null reference. It extends all reference types including the custom classes and traits we define. This allows us to use the null value in place of any reference type.
 
 Nil - 空的 List，The type of Nil is List[Nothing]
 
+None - Option 的一个子类，用于避免赋值一个 null
+
 Unit – the Empty Return Type, 等于 java 的 void
+
+Nothing - Nothing is the absolute “no value” type in Scala. It doesn’t have any methods or values. Any type is the root of the entire Scala type system, and Nothing extends the Any type. Therefore, we can use Nothing in place of any Scala type both reference types and value types. 也就是说， Nothing 可以被视为一切东西，是所有人的子类。 而 Any 是所有人的父类。
+
+Nothing together with the Null type sits at the bottom of the type hierarchy. 
+--------------------------------------------------------------------------------
 
 Any - 所有类的父类
 
-AnyRef - AnyRef类是Scala里所有引用类(reference class)的基类
+AnyRef - 所有引用类(reference class)的基类
 
+AnyVal - 所有9种基础类(value class)的类型。AnyVal represents value types. There are nine predefined value types and they are non-nullable: Double, Float, Long, Int, Short, Byte, Char, Unit, and Boolean.
 
 ## 杂项
 
@@ -109,11 +116,18 @@ scala.Option#orNull
 
 ```
 
-### 1. implicit
+### @inline
+
+和 C++ 的差不多
+
+In Scala, @inline is an annotation that can be used to suggest to the compiler that a method should be inlined at the call site, rather than being called as a separate function. 
+
+
+### implicit
 
 有3种使用方式: 类, 方法, 参数. 效果差不多: 当缺省的时候, 编译器会寻找到最符合的 implicit 的对象来调用, 所以这里也不允许相同类型的隐式方式存在2份. 
 
-我认为这个是一个语法糖, 有点类似于 inline 的意思. 在这个地方意思就是说 ev 这个方法的默认实现已经有了.
+我认为这个是一个语法糖, 在这个地方意思就是说 ev 这个方法的默认实现已经有了.
 
 >https://blog.bruchez.name/posts/generalized-type-constraints-in-scala/#question-3-how-does-this-whole-thing-even-work
 
@@ -126,6 +140,27 @@ scala.Option#orNull
 call-by-value functions compute the passed-in expression's value before calling the function, thus the same value is accessed every time. Instead, call-by-name functions recompute the passed-in expression's value every time it is accessed.
 
 这个实在是有点隐晦。。。可以认为变量替换：provider 每次都会重新计算。
+
+
+```scala
+def something() = {
+  println("calling something")
+  1 // return value
+}
+
+def callByValue(x: Int) = {
+  println("x1=" + x)
+  println("x2=" + x)
+}
+
+def callByName(x: => Int) = {
+  println("x1=" + x)
+  println("x2=" + x)
+}
+```
+
+我认为这个地方应该还是不用这个语法糖好一些，不然调用者不小心就忘记这里是重计算的。
+
 
 ### <- 生成器，for 的新用法
 
@@ -152,7 +187,7 @@ val twentySomethings =
 twentySomethings.foreach(println)  // prints Travis Dennis
 ```
 
-### 2. <:<
+### <:<
 
 有点像泛型的上下界限的合体, 能指定一个范围
 
@@ -186,10 +221,11 @@ case class Foo[A](a:A) { // 'A' can be substituted with any type
 }
 ```
 
+我的感觉，和 <: 区别在于， <: 只能在泛型里面用，而 <:< 是一个类，能在任何地方使用。
 
 
 
-### 3. +A
+### +A
 
 > https://stackoverflow.com/questions/4531455/whats-the-difference-between-ab-and-b-in-scala
 
