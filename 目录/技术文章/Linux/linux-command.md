@@ -162,12 +162,6 @@ ssh-copy-id -i [identity_file.pub] user@host
 
 如果不指明 identity_file 的话，就是默认的 id_rsa
 
-如果是放到 git 上面，可以通过下面的语句检测
-```
-ssh -T git@github.com
-```
-
-
 scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
 
 -P - Specifies the remote host ssh port.
