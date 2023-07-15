@@ -120,6 +120,7 @@ git config --global --list
 git config --local --list
 设置参数:(也可以直接通过修改config文件来达到一样的效果.)
 git config --global user.name "myname"
+git config --global user.email "aaa@aaa.com"
 ```
 
 global 是在用户目录下面，一般建议改这个。System 和 Local 的不建议修改。
