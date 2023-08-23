@@ -27,14 +27,13 @@
   * [Docker笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/docker.md)
   * [快速安装 Nginx 用于分享文件](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/install-nginx-guide.md)
   * [Kafka 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/kafka-notes.md)
-  * [Kubernetes 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/kubernetes.md)
   * [Linux 指令笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/linux-command.md)
   * [Linux 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/linux-notes.md)
-  * [Shell](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/shell.md)
   * [Ubuntu 安装常用软件](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/ubuntu-software-guide.md)
   * [Vim 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/vim-guide.md)
 * **Programming**
   * [Actor](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Programming/actor.md)
+  * [Git 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Programming/git-notes.md)
   * [Gradle 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Programming/gradle-notes.md)
   * [Java 通用笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Programming/java-general-notes.md)
   * [Java 随机数源码学习](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Programming/java-jdk-random-nextint.md)
@@ -45,11 +44,6 @@
 * **Python**
   * [Pip代理笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Python/pip-proxy.md)
   * [Python random choice](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Python/python-random-choice.md)
-* **Tools**
-  * [##Git 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Tools/git-config.md)
-  * [Git log](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Tools/git-log.md)
-  * [Git 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Tools/git-notes.md)
-  * [Git 工作区、暂存区和版本库](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Tools/git-working-stage-repository.md)
 * **前端**
   * [Javascript 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/前端/javascript-notes.md)
 * **数据库**
@@ -60,7 +54,6 @@
   * [SQL指令](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/数据库/sql-command.md)
   * [SQL笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/数据库/sql-notes.md)
 * **杂项**
-  * [Mac使用笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/brew-notes.md)
   * [ffmpeg notes](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/ffmpeg.md)
   * [手动下载和安装 iOS app](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/install-ipa-manually.md)
   * [Mac使用笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/杂项/mac-notes.md)

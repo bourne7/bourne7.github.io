@@ -16,7 +16,12 @@ ps -ef \| grep java ps aux \| grep java
 
 ## 2.查看文件
 
-这里建议添加一个 alias，将ll加强一点，比如添加 -h 指令。
+```
+ls -alFh
+
+可以用下面的命令显示完整的，按照修改日期升序排列的文件夹
+ls -alFhtr --time-style=long-iso
+```
 
 ## 3.查询端口
 
@@ -63,16 +68,6 @@ j 代表用bzip2算法来压缩/解压。生成 “.tar.bz2”
 7z a file.7z file
 7z x file.7z
 ```
-
-
-
-## 5.禁止开机启动
-
-```text
-sudo update-rc.d mysql disable
-```
-
-要去掉这条的话，就用 remove。
 
 ## 6.VIM 快捷键
 
@@ -127,13 +122,11 @@ service --status-all
 
 ## 9. 通过 python 快速分享文件
 
-可以使用
 ```
 server.py [-h] [--cgi] [--bind ADDRESS] [--directory DIRECTORY] [port]
 sudo python3 -m http.server 80
 python -m http.server --bind 192.168.10.6 81
 ```
-来快速建立一个http服务器，这样别人可以方便的获取本目录下面的文件。有时候如果IP地址不唯一的话，需要指明绑定的 IP。
 
 ## 查看文件夹下面的所有文件个数
 
@@ -183,15 +176,6 @@ hide_userland_threads=1
 (Also hide_kernel_threads=1, toggled by pressing K, but it's 1 by default.)
 
 Another useful option is “Display threads in a different color” in the same menu (highlight_threads=1 in .htoprc), which causes threads to be shown in a different color (green in the default theme).
-
-
-## ls 的改进
-
-可以用下面的命令显示完整的，按照修改日期升序排列的文件夹
-
-```
-ls -alFhtr --time-style=long-iso
-```
 
 ## neofetch
 

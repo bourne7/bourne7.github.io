@@ -199,3 +199,27 @@ curl -x http://127.0.0.1:1080 www.youbute.com
 
 unlink /usr/local/bin/python
 ln -s /usr/local/bin/python3.3 /usr/local/bin/python
+
+
+## fish
+
+```
+sudo apt-get install fish
+```
+
+发现一点，fish 使用 and 来连接2个指令的。所以fish最好还是自己登录的时候用一下，默认的shell还是使用 bash 吧，避免一些命令用不了。
+
+一些设置
+```conf
+~/.config/fish> cat config.fish
+
+set fish_prompt_pwd_dir_length 0
+alias dockerf='docker-compose down ; docker-compose pull ; docker-compose up -d'
+alias ll='ls -alFhtr --time-style=long-iso'
+alias dps='docker ps --format "table {{.ID}} \t {{.Names}} \t {{.State}} \t {{.Status}} \t {{.Ports}}"'
+```
+
+浏览器设置
+```
+fish_config
+```
