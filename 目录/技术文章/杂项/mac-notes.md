@@ -125,6 +125,8 @@ xcode-select --install
 
 ## java jdk
 
+
+1. brew 安装（这个主要用于环境变量）
 M系列芯片可以原生安装 open jdk 17，可以使用 brew 安装，安装好了以后，可以看到下面的提示
 
 ```
@@ -149,6 +151,15 @@ Matching Java Virtual Machines (2):
     17.0.7 (arm64) "Homebrew" - "OpenJDK 17.0.7" /opt/homebrew/Cellar/openjdk@17/17.0.7/libexec/openjdk.jdk/Contents/Home
 /Users/aac/Library/Java/JavaVirtualMachines/jbr-21/Contents/Home
 ```
+
+
+2. intellij 安装（这个主要用于开发）
+
+直接使用 ide 来下载，默认路径是
+
+/Users/aac/Library/Java/JavaVirtualMachines/
+
+3. 手动下载（不建议）
 
 如果需要手动安装的话，可以下载 zip 包，然后解压到
 
