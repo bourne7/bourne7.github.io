@@ -140,3 +140,18 @@ where:
 <PORT> is the port that must be published from docker where the JVM's JMX port is configured (docker run --publish 7203:7203, for example where PORT is 7203). Both `port` and `rmi.port` can be the same.
 ```
 
+## 快速切换 JDK
+
+Windows
+
+可以将本地一个目录添加到 Path，然后编写2个 bat: java8.bat 和 java21.bat
+
+```bat
+@echo off
+set JAVA_HOME=C:\Users\aac\.jdks\temurin-1.8.0_392
+set PATH=%JAVA_HOME%\bin;%PATH%
+echo.
+echo "%JAVA_HOME%" is now set as the default JDK.
+```
+
+以后就可以通过 java8 和 java21 来切换了。

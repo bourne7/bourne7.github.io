@@ -223,3 +223,15 @@ alias dps='docker ps --format "table {{.ID}} \t {{.Names}} \t {{.State}} \t {{.S
 ```
 fish_config
 ```
+
+## 快捷指令
+
+可以在fish里面配置好这个
+
+```
+set fish_prompt_pwd_dir_length 0
+alias dockerf='docker-compose down ; docker-compose pull ; docker-compose up -d'
+alias lll='ls -alFhtr --time-style=long-iso'
+alias ll='ls -alFh'
+alias dps='docker ps --format "table {{.ID}} \t {{.Names}} \t {{.State}} \t {{.Status}} \t {{.Ports}}"'
+```
