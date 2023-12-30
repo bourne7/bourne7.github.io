@@ -203,4 +203,18 @@ services:
     - "6060:6060/udp"                    # container port (6060) restricted to UDP protocol, assigned to given host (6060)
 ```
 
+## Ubuntu docker
 
+如果是通过 ubuntu server 自带的 snap 安装的 docker，有几个主意的点：
+
+* sevice name
+
+sudo systemctl restart snap.docker.dockerd.service
+
+* add permission
+
+sudo chmod 666 /var/run/docker.sock
+
+* check all service
+
+sudo systemctl list-units --type=service
