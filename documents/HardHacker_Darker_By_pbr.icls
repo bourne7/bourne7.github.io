@@ -1,0 +1,154 @@
+<scheme name="HardHacker Darker By pbr" version="142" parent_scheme="Darcula">
+  <option name="FONT_SCALE" value="1.0" />
+  <metaInfo>
+    <property name="created">2024-01-04T17:51:59</property>
+    <property name="ide">Idea</property>
+    <property name="ideVersion">2023.3.2.0.0</property>
+    <property name="modified">2024-01-04T17:52:06</property>
+    <property name="originalScheme">HardHacker Darker By pbr</property>
+  </metaInfo>
+  <option name="CONSOLE_FONT_NAME" value="Consolas" />
+  <option name="CONSOLE_FONT_SIZE" value="16" />
+  <option name="CONSOLE_LINE_SPACING" value="1.0" />
+  <colors>
+    <option name="CARET_ROW_COLOR" value="27222d" />
+    <option name="CONSOLE_BACKGROUND_KEY" value="" />
+    <option name="DOCUMENTATION_COLOR" value="282c34" />
+    <option name="GUTTER_BACKGROUND" value="2c323b" />
+    <option name="INDENT_GUIDE" value="5a5e7d" />
+    <option name="INFORMATION_HINT" value="282c34" />
+    <option name="LINE_NUMBERS_COLOR" value="ffffff" />
+    <option name="SELECTED_INDENT_GUIDE" value="3a4255" />
+  </colors>
+  <attributes>
+    <option name="BREADCRUMBS_CURRENT">
+      <value>
+        <option name="FOREGROUND" value="bbbbbb" />
+        <option name="BACKGROUND" value="282c34" />
+      </value>
+    </option>
+    <option name="BREADCRUMBS_HOVERED">
+      <value>
+        <option name="FOREGROUND" value="bbbbbb" />
+        <option name="BACKGROUND" value="282c34" />
+      </value>
+    </option>
+    <option name="DEFAULT_CLASS_NAME">
+      <value>
+        <option name="FOREGROUND" value="52e3f6" />
+      </value>
+    </option>
+    <option name="DEFAULT_FUNCTION_CALL">
+      <value>
+        <option name="FOREGROUND" value="a7d6ff" />
+        <option name="FONT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="DEFAULT_FUNCTION_DECLARATION">
+      <value>
+        <option name="FOREGROUND" value="ffff00" />
+      </value>
+    </option>
+    <option name="DEFAULT_IDENTIFIER">
+      <value>
+        <option name="FOREGROUND" value="ffffff" />
+      </value>
+    </option>
+    <option name="DEFAULT_INSTANCE_METHOD">
+      <value>
+        <option name="FOREGROUND" value="ff00" />
+      </value>
+    </option>
+    <option name="DEFAULT_INTERFACE_NAME">
+      <value>
+        <option name="FOREGROUND" value="ffc2" />
+      </value>
+    </option>
+    <option name="DEFAULT_STATIC_FIELD">
+      <value>
+        <option name="FOREGROUND" value="ffffff" />
+        <option name="FONT_TYPE" value="3" />
+      </value>
+    </option>
+    <option name="DEFAULT_STATIC_METHOD">
+      <value>
+        <option name="FOREGROUND" value="ff00" />
+      </value>
+    </option>
+    <option name="DEFAULT_STRING">
+      <value>
+        <option name="FOREGROUND" value="ece461" />
+      </value>
+    </option>
+    <option name="HTML_CODE">
+      <value />
+    </option>
+    <option name="Implicit conversion">
+      <value>
+        <option name="EFFECT_COLOR" value="a0f6a0" />
+        <option name="EFFECT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="JAVA_KEYWORD">
+      <value>
+        <option name="FOREGROUND" value="de007f" />
+      </value>
+    </option>
+    <option name="JAVA_OPERATION_SIGN">
+      <value>
+        <option name="FOREGROUND" value="9668ff" />
+        <option name="FONT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="KOTLIN_LABEL">
+      <value />
+    </option>
+    <option name="MATCHED_BRACE_ATTRIBUTES">
+      <value>
+        <option name="BACKGROUND" value="3b514d" />
+        <option name="FONT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="STATIC_FIELD_ATTRIBUTES">
+      <value>
+        <option name="FOREGROUND" value="7be27d" />
+        <option name="FONT_TYPE" value="3" />
+      </value>
+    </option>
+    <option name="STATIC_METHOD_ATTRIBUTES">
+      <value>
+        <option name="FOREGROUND" value="a7ec21" />
+        <option name="FONT_TYPE" value="2" />
+      </value>
+    </option>
+    <option name="Scala Immutable Collection">
+      <value>
+        <option name="FOREGROUND" value="52e3f6" />
+        <option name="EFFECT_COLOR" value="accb79" />
+        <option name="EFFECT_TYPE" value="5" />
+      </value>
+    </option>
+    <option name="Scala Mutable Collection">
+      <value>
+        <option name="FOREGROUND" value="52e3f6" />
+        <option name="EFFECT_COLOR" value="e29ec2" />
+        <option name="EFFECT_TYPE" value="5" />
+      </value>
+    </option>
+    <option name="StandardF Java Collection">
+      <value>
+        <option name="FOREGROUND" value="52e3f6" />
+      </value>
+    </option>
+    <option name="TERMINAL_COMMAND_TO_RUN_USING_IDE">
+      <value />
+    </option>
+    <option name="TEXT">
+      <value>
+        <option name="FOREGROUND" value="ffffff" />
+        <option name="BACKGROUND" value="1a1821" />
+        <option name="EFFECT_TYPE" value="5" />
+      </value>
+    </option>
+  </attributes>
+</scheme>
