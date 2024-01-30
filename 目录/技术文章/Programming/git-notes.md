@@ -35,19 +35,33 @@
 
 当执行 "git checkout HEAD ." 或者 "git checkout HEAD \" 命令时，会用 HEAD 指向的 master 分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。
 
-
-
-## 配置 SSH
-
-下面是配置多个账号的方法：
+## Http 协议（建议使用）
 
 ```bash
-ssh-keygen -t rsa -C "aaa@gmail.com"
+设置
+git config --global http.proxy "socks5://127.0.0.1:7777"
 
-这里需要输入生成 的 RSA 公钥密钥对，名称叫做
-aaa_id_rsa
-aaa_id_rsa.pub
+取消设置
+git config --global --unset http.proxy
+
+只针对 github
+git config --global http.https://github.com.proxy socks5://127.0.0.1:7777
+取消
+git config --global --unset http.https://github.com.proxy
 ```
+
+针对 Http 协议，建议使用 access token 来获取访问权限，比如可以用 intellij 来生成一个 classic token，然后共享给全局用。
+
+* Window：登录信息会储存在 Control Panel\All Control Panel Items\Credential Manager 里面。
+* Intellij：储存在 ide 内部
+
+用 token 的好处就是可以方便的管理权限，比 ssh 要灵活很多。
+
+此外，可以在 https://api.github.com/users/bourne7 看到自己的信息，里面的 id 是真实的账号 id。
+
+## SSH 协议（不建议使用）
+
+修改 `~/.ssh/config` 文件
 
 在 ~/.ssh 文件夹里面新建一个 config 文件，内容如下：
 ```bash
@@ -61,65 +75,45 @@ Host aaa
     TCPKeepAlive yes
     IdentityFile ~/.ssh/aaa_id_rsa
 
-Host ssh.github.com
-    User git
-    Port 443
-    Hostname ssh.github.com
-    IdentityFile ~/.ssh/github
-    TCPKeepAlive yes
- 
-Host bbb
-    User git
-    Port 2022
-    HostName my.github.com
-    PreferredAuthentications publickey
-    TCPKeepAlive yes
-    IdentityFile ~/.ssh/bbb_id_rsa
+# Host github.com
+#   User git
+#   Port 22
+#   HostName github.com
+#   IdentityFile ~/.ssh/github
+#   TCPKeepAlive yes
+#   ProxyCommand "C:\Program Files\Git\mingw64\bin\connect" -S 127.0.0.1:7777 -a none %h %p
+
+# Host ssh.github.com
+#   User git
+#   Port 443
+#   Hostname ssh.github.com
+#   IdentityFile ~/.ssh/github
+#   TCPKeepAlive yes
+#   ProxyCommand "C:\Program Files\Git\mingw64\bin\connect" -S 127.0.0.1:7777 -a none %h %p
 ```
 
-## Git代理
+## 全局配置样例 .gitconfig
 
-Http 协议
-
-```bash
-git config --global http.proxy "http://127.0.0.1:8080"
-git config --global https.proxy "http://127.0.0.1:8080"
-
-或者
-git config --global http.proxy "socks5://127.0.0.1:1080"
-git config --global https.proxy "socks5://127.0.0.1:1080"
-
-取消设置
-
-git config --global --unset http.proxy
-git config --global --unset https.proxy
-
-只针对 github
-git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
-git config --global --unset http.https://github.com.proxy
+```conf
+[user]
+	name = bourne7
+	email = xxx
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = master
+[safe]
+	directory = *
+[http "https://github.com"]
+	proxy = socks5://127.0.0.1:7777
 ```
-
-SSH 协议
-
-修改 `~/.ssh/config` 文件，可以参考顶部的 config 文件
-
-**结论**
-
-一般情况下，用ssh 形式，如果网络实在不好，就用 ssh over https，最后再用普通的 https
-
 
 ## git remote
 
-目前有3种 clone 的方式，分别是 http, ssh, git。个人认为最好的应该是 ssh。gh还需要安装客户端，我认为不太方便。
-
-其中 ssh 又分为普通的和 基于 https 的 ssh。如果你没法正常访问 22 端口，那么建议用 https
-```
-git clone git@github.com:bourne7/bourne7.github.io.git
-git clone git@ssh.github.com:bourne7/bourne7.github.io.git
-根据官方文档，下面这句的完整格式是：
-git clone ssh://git@ssh.github.com:443/YOUR-USERNAME/YOUR-REPOSITORY.git
-```
-
+目前有3种 clone 的方式，分别是 http, ssh, git。比较方便的还是 https。
 
 ```
 //查看当前的仓库连接方式
@@ -179,10 +173,6 @@ reset 命令后面有几种参数如下：
 
 注意使用 reset 的时候，要确认好当前的HEAD指向哪里，当前是否有未commit的内容。
 
-**关于消失的commit**
-
-reset 到之前的某一个 commit A 以后, 如果在 commit A 这里又重新commit了其他的内容, 那么原有的 commit A 以后的那些 commit 就都会在 git log 里面消失, 但是会在 ref log 里面保留. 所以在push 到远端以后, 别人如果下载下来以后, 会见不到这部分的内容了. 如果需要做到将所有的内容都放到git里面去的话, 建议在 commit A 这里新拉出来一个分支来改动会好很多, 这样会保留所有的操作痕迹.
-
 ## config
 
 global 是在用户目录下面，一般建议改这个。System 和 Local 的不建议修改。
@@ -213,14 +203,6 @@ git add . 提交新文件(new)和被修改(modified)文件,不包括被删除(de
 git status 可以时刻看见仓库状态,有什么文件被修改被删除等等...
 ```
 
-## git log
-
-```bash
-git log -5
-```
-
-查看最近3次的提交
-
 ## git rm
 
 ```bash
@@ -235,7 +217,7 @@ git rm --cached file_name
 
 从暂存区删除，但是工作区还是存在的，这时候还可以再用add添加回去暂存区。
 
-## 7. git bisect
+## git bisect
 
 好用的二分法来查找某个特定的 commit ，比如当代码被人弄坏了以后，想找到最后一个能用的commit。
 
@@ -311,6 +293,10 @@ https://git-scm.com/docs/pretty-formats
 git log -n 1 --pretty='%d %ai'
 ```
 
+## Oneline and pretty
+
+git log -a --pretty=format:"%h%x09%an%x09%ad%x09%s"
+
 ## 双作者：作者后面的星号 asterisk after author
 
 > https://stackoverflow.com/questions/44625270/intellij-idea-asterisk-after-authors-name-in-git-log
@@ -332,15 +318,6 @@ git log your_hash --pretty=full
 ```
 to show both author names
 
-## Oneline and pretty
-
-git log -a --pretty=format:"%h%x09%an%x09%ad%x09%s"
-
-
-## commit in branches
-
-The branches intellij shows indicate the current existing branches only. If you remove remote branches, then the branch will disapple in the whole history.
-
 
 ## unsafe repository 不安全目录问题
 
@@ -355,11 +332,6 @@ git config --global --add safe.directory *
 These config entries specify Git-tracked directories that are considered safe even if they are owned by someone other than the current user. By default, Git will refuse to even parse a Git config of a repository owned by someone else, let alone run its hooks, and this config setting allows users to specify exceptions, e.g. for intentionally shared repositories (see the --shared option in git-init[1]).
 ```
 
-
-
-# Git log
-
-2022-06-05
 
 ## Git history simplification
 
