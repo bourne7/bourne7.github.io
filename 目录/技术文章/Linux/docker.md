@@ -99,6 +99,16 @@ docker rm $(docker ps --all -q -f status=exited)
 
 ```
 
+快捷查看 docker ps 信息
+
+```bash
+# 查看 docker ps 允许的字段
+docker ps --format "{{json .}}" | jq
+
+# 选择需要的字段进行显示
+alias dps='docker ps --format "table {{.ID}} \t {{.Names}} \t {{.State}} \t {{.Status}} \t {{.Ports}}"'
+```
+
 # 运行时如何输入命令
 
 ```
