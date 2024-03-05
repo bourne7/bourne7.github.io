@@ -27,10 +27,7 @@
   * [Docker笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/docker.md)
   * [快速安装 Nginx 用于分享文件](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/install-nginx-guide.md)
   * [Kafka 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/kafka-notes.md)
-  * [Linux 指令笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/linux-command.md)
-  * [Linux 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/linux-notes.md)
-  * [Ubuntu 安装常用软件](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/ubuntu-software-guide.md)
-  * [Vim 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/vim-guide.md)
+  * [Linux 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Linux/linux-note.md)
 * **Programming**
   * [Actor](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Programming/actor.md)
   * [Git 笔记](https://github.com/bourne7/bourne7.github.io/blob/master/目录/技术文章/Programming/git-notes.md)
