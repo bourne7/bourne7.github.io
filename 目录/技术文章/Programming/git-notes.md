@@ -98,6 +98,9 @@ Host aaa
 [user]
 	name = bourne7
 	email = xxx
+# 上面的配置会作为默认配置，下面的配置会只针对包含该路径的子文件夹。可以方便的配置出2套不同的用户名，而不用去修改每一个 git 目录。
+[includeIf "gitdir/i:my-projects/"]
+	path = .gitconfig-my-projects
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
