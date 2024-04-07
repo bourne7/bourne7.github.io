@@ -362,7 +362,7 @@ sudo apt-get install fish
 
 一些设置
 ```conf
-~/.config/fish> cat config.fish
+vim ~/.config/fish/config.fish
 
 set fish_prompt_pwd_dir_length 0
 alias dockerf='docker-compose down ; docker-compose pull ; docker-compose up -d'
