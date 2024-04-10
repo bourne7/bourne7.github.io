@@ -61,3 +61,10 @@ https://www.freecodecamp.org/news/windows-terminal-themes-color-schemes-powershe
     ]
 }
 ```
+
+
+## Chrome
+
+开启额外的分身浏览器
+
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --user-data-dir="d:\_chrome_user_data"

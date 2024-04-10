@@ -143,7 +143,9 @@ du -sh *
 
 ## SSH SCP
 ssh 产生公钥密钥对，建议不要老是用同一对公钥密钥，还是稍微分类一下比较好。
+
 注意，如果是本地电脑A想要执行 SCP 指令，copy 电脑B的内容到本地电脑的话，需要在A电脑里面执行 ssh-copy-id
+
 ```
 ssh-keygen [-f identity_file]
 ```
@@ -152,6 +154,9 @@ ssh-keygen [-f identity_file]
 ```
 ssh-copy-id -i [identity_file.pub] user@host
 ```
+
+有个更方便的方式是直接去被 ssh 的主机上面的 authorized_keys 里面粘贴 pub
+
 
 如果不指明 identity_file 的话，就是默认的 id_rsa
 
@@ -369,6 +374,19 @@ alias dockerf='docker-compose down ; docker-compose pull ; docker-compose up -d'
 alias ll='ls -alFhtr --time-style=long-iso'
 alias dps='docker ps --format "table {{.ID}} \t {{.Names}} \t {{.State}} \t {{.Status}} \t {{.Ports}}"'
 ```
+
+## ssh config
+
+这样可以做到在登陆 ssh 之后，预执行一些命令。
+
+Host aaa
+    User your_linux_user_name
+    HostName 172.18.81.111
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/personal_server
+    Port 22
+    RemoteCommand neofetch;fish
+    RequestTTY yes
 
 
 ## apt 源配置
