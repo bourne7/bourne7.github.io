@@ -68,3 +68,18 @@ https://www.freecodecamp.org/news/windows-terminal-themes-color-schemes-powershe
 开启额外的分身浏览器
 
 "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --user-data-dir="d:\_chrome_user_data"
+
+
+## Altas OS
+
+https://github.com/Atlas-OS/atlas-releases/releases/download/20H2-v0.5.2/Atlas_v0.5.2_21H2.iso
+
+```
+Name: Atlas_v0.5.2.iso
+Size: 1595277312 bytes (1521 MiB)
+CRC32: 0B5937A3
+CRC64: C4FEAC7A971F75EB
+SHA256: c0c90fb4ff7c4122d03658fa42a1367fce99f81cfdaa7637360b94a7bf661d9f
+SHA1: 5de11d95ec67b6c080b80e161a43a52d5064ced3
+BLAKE2sp: 48fa88d4f7108eb3d81a50658cb8fca0b81f10f316d1c15e966fc42b308e6c53
+```

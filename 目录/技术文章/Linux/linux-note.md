@@ -437,3 +437,15 @@ If the hgfs directory doesn't exist, try:
 ```
 sudo vmhgfs-fuse .host:/ /mnt/ -o allow_other -o uid=1000
 ```
+
+## 统计代码行数
+
+需要在干净的 git 仓库里面执行：
+
+```bash
+# https://stackoverflow.com/questions/3435581/how-to-count-lines-of-java-code-using-intellij-idea
+find . -type f -name '*.java' | xargs cat | wc -l
+
+# ignore blank lines: 
+find . -type f -name '*.java' | xargs cat | grep -ve '^\s*$' | wc -l
+```
