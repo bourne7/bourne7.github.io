@@ -18,7 +18,7 @@ export PATH=/opt/homebrew/bin:$PATH
 
 如果需要养 curl 走代理，可以用这个：
 
-```text
+```bash
 proxy=socks5://127.0.0.1:1080 to ~/.curlrc
 ```
 
@@ -57,7 +57,7 @@ Brew安装的在 /usr/local/Cellar/
 
 查看python路径的两种方法：
 
-```text
+```bash
 whereis python3
 python3: /usr/bin/python3
 

@@ -2,7 +2,7 @@
 
 ## 1.查看数据库的一些设置:
 
-```text
+```bash
 SHOW VARIABLES WHERE Variable_Name LIKE "%dir"
 ```
 

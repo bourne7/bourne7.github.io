@@ -2,7 +2,7 @@
 
 2019-02-02
 
-## 1.查看进程
+## 查看进程
 
 ps -ef 是用标准的格式显示进程的，ps aux 是用BSD的格式来显示。
 
@@ -14,20 +14,12 @@ ps -ef \| head -1
 
 ps -ef \| grep java ps aux \| grep java
 
-## 2.查看文件
 
-```
-ls -alFh
-
-可以用下面的命令显示完整的，按照修改日期升序排列的文件夹
-ls -alFhtr --time-style=long-iso
-```
-
-## 3.查询端口
+## 查询端口
 
 netstat命令各个参数说明如下：
 
-```text
+```bash
 -n 拒绝显示别名，能显示数字的全部转化成数字。
 -p 显示建立相关链接的程序名
 -l 仅列出有在 Listen (监听) 的服務状态
@@ -48,7 +40,23 @@ netstat -ntulp | grep 80   //查看所有80端口使用情况·
 netstat -an | grep 3306   //查看所有3306端口使用情况·
 ```
 
-## 4.格式压缩与解压
+## nmap 代替 telnet
+
+可以代替 telnet 来检查端口是否开放
+
+```
+aac@myhost:/mnt/c/Users/aac$ nmap -p 80 127.0.0.1
+Starting Nmap 7.80 ( https://nmap.org ) at 2023-05-05 11:09 CST
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.000041s latency).
+
+PORT   STATE  SERVICE
+80/tcp closed http
+
+Nmap done: 1 IP address (1 host up) scanned in 0.02 seconds
+```
+
+## 格式压缩与解压
 
 使用 tar
 ```
@@ -69,9 +77,9 @@ j 代表用bzip2算法来压缩/解压。生成 “.tar.bz2”
 7z x file.7z
 ```
 
-## 6.VIM 快捷键
+## VIM 快捷键
 
-```text
+```bash
 ctrl+f           在文件中前移一页（相当于pagedown）；
 ctrl+b           在文件中后移一页（相当于pageup）；
 gg               将光标定位到文件第一行起始位置；
@@ -108,67 +116,66 @@ u                撤消前一条命令的结果；
 .                重复最后一条修改正文的命令；
 ```
 
-## 7.删除文件指令
 
-如文件夹下有a、b、c三个文件，如何一行命令删除b和c,不删除a。
+## 常用命令
 
-其中rm -f !\(a\) 最为方便。如果保留a和b,可以运行rm -f !\(a\|b\)来实现。
+```bash
 
-## 8.查看Ubuntu所有系统服务
+# 文件夹下有a、b、c三个文件，删除b和c,不删除a
+rm -f !\(a\) 
 
-```text
+# 保留a和b
+rm -f !\(a\|b\)
+
+# 查看Ubuntu所有系统服务
 service --status-all
-```
 
-## 9. 通过 python 快速分享文件
 
-```
+## 通过 python 快速分享文件
 server.py [-h] [--cgi] [--bind ADDRESS] [--directory DIRECTORY] [port]
 sudo python3 -m http.server 80
 python -m http.server --bind 192.168.10.6 81
-```
 
-## 查看文件夹下面的所有文件个数
-
-```
+# 查看文件夹下面的所有文件个数
+# 其中 R 代表递归；用正则代表筛选出来文件；wc表示统计数量，按照行。
 ls -lR| grep "^-"| wc -l
-```
-其中 R 代表递归；用正则代表筛选出来文件；wc表示统计数量，按照行。
 
-## 查看文件夹大小
-
-```
+# 查看文件夹大小
 du -sh *
+
+## 创建连接/命令别名 
+unlink /usr/local/bin/python
+ln -s /usr/local/bin/python3.3 /usr/local/bin/python
 ```
 
 ## SSH SCP
-ssh 产生公钥密钥对，建议不要老是用同一对公钥密钥，还是稍微分类一下比较好。
 
-注意，如果是本地电脑A想要执行 SCP 指令，copy 电脑B的内容到本地电脑的话，需要在A电脑里面执行 ssh-copy-id
 
-```
+从 主机A 里面执行 SCP 指令，copy 主机B 的文件到 A，需要在A电脑里面执行 ssh-copy-id
+
+```bash
+# 在 A 里面生成文件
 ssh-keygen [-f identity_file]
-```
 
-部署公钥
-```
+# Copy 到 B
 ssh-copy-id -i [identity_file.pub] user@host
 ```
 
 有个更方便的方式是直接去被 ssh 的主机上面的 authorized_keys 里面粘贴 pub
 
-
-如果不指明 identity_file 的话，就是默认的 id_rsa
-
+```bash
 scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
 
+# OPTION
 -P - Specifies the remote host ssh port.
 -p - Preserves files modification and access times.
 -q - Use this option if you want to suppress the progress meter and non-error messages.
 -C - This option forces scp to compresses the data as it is sent to the destination machine.
 -r - This option tells scp to copy directories recursively.
 
+# 复制目录要加 -r
 scp -r user1@192.168.110.8:/data /data
+```
 
 ## Htop showing multiple java processes with different pids
 
@@ -209,22 +216,6 @@ ossyNMMMNyMMhsssssssssssssshmmmhssssssso   Memory: 266MiB / 15920MiB
             .-/+oossssoo+/-.
 ```
 
-
-## nmap
-
-可以代替 telnet 来检查端口是否开放
-
-```
-aac@myhost:/mnt/c/Users/aac$ nmap -p 80 127.0.0.1
-Starting Nmap 7.80 ( https://nmap.org ) at 2023-05-05 11:09 CST
-Nmap scan report for localhost (127.0.0.1)
-Host is up (0.000041s latency).
-
-PORT   STATE  SERVICE
-80/tcp closed http
-
-Nmap done: 1 IP address (1 host up) scanned in 0.02 seconds
-```
 
 ## 当指令的以 sudo 开头的时候，&& 后面的指令仍然是 sudo 权限吗？
 
@@ -351,34 +342,50 @@ linux在执行shell命令之前，就会确定好所有的输入输出位置，�
 变化时间（-ctime/天，-cmin/分钟）：文件数据元（例如权限等）最后一次修改时间。
 
 
-## 创建连接/命令别名 
-
-unlink /usr/local/bin/python
-ln -s /usr/local/bin/python3.3 /usr/local/bin/python
-
 
 ## fish
 
 ```
-sudo apt-get install fish
+sudo apt install fish
 ```
 
 发现一点，fish 使用 and 来连接2个指令的。所以fish最好还是自己登录的时候用一下，默认的shell还是使用 bash 吧，避免一些命令用不了。
 
-一些设置
-```conf
+```bash
 vim ~/.config/fish/config.fish
 
 set fish_prompt_pwd_dir_length 0
-alias dockerf='docker-compose down ; docker-compose pull ; docker-compose up -d'
+
+alias dockerf='docker compose down ; docker compose pull ; docker compose up -d'
 alias ll='ls -alFhtr --time-style=long-iso'
+
+# {{.State}} 在老版本是没有的 这个能兼容老版本 Docker
+# alias dps='docker ps --format "table {{.ID}} \t {{.Names}} \t {{.Status}} \t {{.Ports}}"'
 alias dps='docker ps --format "table {{.ID}} \t {{.Names}} \t {{.State}} \t {{.Status}} \t {{.Ports}}"'
+
+alias proxy='export http_proxy=http://127.0.0.1:7777 ; export https_proxy=http://127.0.0.1:7777'
+alias unproxy='set -e http_proxy ; set -e https_proxy'
+```
+
+## bash 代理 proxy and unproxy
+
+```bash
+vim ~/.bashrc
+
+alias proxy="
+ export http_proxy=http://127.0.0.1:7777;
+ export https_proxy=http://127.0.0.1:7777;"
+
+alias unproxy="
+ unset http_proxy;
+ unset https_proxy;"
 ```
 
 ## ssh config
 
 这样可以做到在登陆 ssh 之后，预执行一些命令。
 
+```
 Host aaa
     User your_linux_user_name
     HostName 172.18.81.111
@@ -387,26 +394,48 @@ Host aaa
     Port 22
     RemoteCommand neofetch;fish
     RequestTTY yes
+```
 
 
 ## apt 源配置
 
 Ubuntu 的软件源配置文件是 /etc/apt/sources.list, 打开这个文件并且添加一下清华大学源:
 ```
+# https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/
+
 # 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
-#deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
-#deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
-#deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
-#deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-updates main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-backports main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-backports main restricted universe multiverse
+
+# 以下安全更新软件源包含了官方源与镜像站配置，如有需要可自行修改注释切换
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-security main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-security main restricted universe multiverse
+
 # 预发布软件源，不建议启用
-# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-proposed main restricted universe multiverse
+# # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-proposed main restricted universe multiverse
 ```
 
+## apt 代理
+
+/etc/apt/apt.conf.d/proxy.conf
+```
+Acquire::http::Proxy "http://127.0.0.1:7777";
+Acquire::https::Proxy "http://127.0.0.1:7777";
+Acquire::socks::Proxy "socks5h://127.0.0.1:1080";
+```
+
+
+## 快速设置桌面背景
+
+```bash
+gsettings set org.gnome.desktop.background picture-options 'none'
+gsettings set org.gnome.desktop.background primary-color '#000000'
+```
 
 ## 给控制台加上颜色
 > https://askubuntu.com/questions/517677/how-do-i-get-a-colored-bash
@@ -426,17 +455,39 @@ source ~/.bashrc
 
 ## vmware
 
-How do I mount shared folders in Ubuntu using VMware tools?
+1. How do I mount shared folders in Ubuntu using VMware tools?
 > https://askubuntu.com/questions/29284/how-do-i-mount-shared-folders-in-ubuntu-using-vmware-tools
 
 Most other answers are outdated. For Ubuntu 18.04 (or recent Debian distros), try:
 ```
 sudo vmhgfs-fuse .host:/ /mnt/hgfs/ -o allow_other -o uid=1000
 ```
-If the hgfs directory doesn't exist, try:
+If you use ubuntu 24+
 ```
 sudo vmhgfs-fuse .host:/ /mnt/ -o allow_other -o uid=1000
 ```
+
+2. 安装 vm tools
+```
+sudo apt install open-vm-tools-desktop
+
+or
+
+sudo apt install open-vm-tools
+```
+
+3. Enable drag and drop
+
+> https://docs.vmware.com/en/VMware-Workstation-Player-for-Linux/17.0/com.vmware.player.linux.using.doc/GUID-5FC42BAD-0AAC-4EAF-8AD9-A41408ECF9BC.html
+The drag-and-drop feature requires Linux hosts and guests to run X Windows and Solaris 10 guests to run an Xorg X server and JDS/Gnome.
+
+```
+sudo vim /etc/gdm3/custom.conf
+
+# Uncomment the line below to force the login screen to use Xorg
+WaylandEnable=false
+```
+
 
 ## 统计代码行数
 
@@ -449,3 +500,4 @@ find . -type f -name '*.java' | xargs cat | wc -l
 # ignore blank lines: 
 find . -type f -name '*.java' | xargs cat | grep -ve '^\s*$' | wc -l
 ```
+

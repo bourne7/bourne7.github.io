@@ -4,26 +4,81 @@
 
 ![Docker-Command-Diagram.png](Docker-Command-Diagram.png)
 
-### 拉取镜像
+### Docker 安装
 
-先试一下拉取一个很小的 docker：
-```
-docker pull hello-world
+https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+
+1. Add Docker's official GPG key:
+```bash
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
 ```
 
-如果出现了 
->docker: Error response from daemon: Get https://registry-1.docker.io/v2/: dial tcp: lookup registry-1.docker.io: Temporary failure in name resolution.
+注意这个步骤需要加代理 
+```bash
+sudo curl -x http://192.168.197.1:7777 -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 
-那么证明域名解析有问题。可以通过：
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
 ```
-curl https://registry-1.docker.io/v2/ && echo Works || echo Problem
-```
-来判断具体的问题。
 
-修改docker默认仓库镜像路径： 
+2. Add the repository to Apt sources:
+```bash
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get update
 ```
-sudo vi /etc/docker/daemon.json
+
+3. 正式安装组件
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
+
+4. 测试运行
+```bash
+sudo docker run hello-world
+```
+
+
+### Docker 拉取镜像设置代理
+
+> 版权声明：本文为 neucrack 的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+> 原文链接：https://neucrack.com/p/286
+
+docker pull 和 docker build/run 的方式不一样
+
+docker pull 的代理被 systemd 接管，所以需要设置 systemd
+
+```bash
+sudo mkdir /etc/systemd/system/docker.service.d
+sudo vim /etc/systemd/system/docker.service.d/http-proxy.conf
+
+[Service]
+Environment="HTTP_PROXY=http://127.0.0.1:7777"
+Environment="HTTPS_PROXY=http://127.0.0.1:7777"
+```
+这里的127.0.0.1是直接用了本机的 http 代理，然后重启服务才能生效
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+可以通过sudo systemctl show --property=Environment docker看到设置的环境变量。
+
+
+### Docker 容器内部代理
+
+建议使用
+
+```
+docker run -p 1080:1080 .....
+export ALL_PROXY='socks5://127.0.0.1:1080'
+```
+
+
 ### Image操作
 
 * 停止所有的container并且删除所有镜像：
