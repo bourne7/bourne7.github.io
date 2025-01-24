@@ -55,6 +55,8 @@ git config --global --unset http.https://github.com.proxy
 * Window：登录信息会储存在 Control Panel\All Control Panel Items\Credential Manager 里面。
 * Intellij：储存在 ide 内部
 
+如果在intellij 里面使用了网页登陆 github，那么保存的不是 token，而是密码。这个密码也可以选择保存的地方。不过不建议使用这种方式，以为要撤销的话，只能通过改密码来解决。
+
 用 token 的好处就是可以方便的管理权限，比 ssh 要灵活很多。
 
 此外，可以在 https://api.github.com/users/bourne7 看到自己的信息，里面的 id 是真实的账号 id。
