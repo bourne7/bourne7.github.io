@@ -37,7 +37,7 @@
 
 ## Http 协议（建议使用）
 
-```bash
+```sh
 设置
 git config --global http.proxy "socks5://127.0.0.1:7777"
 
@@ -66,7 +66,7 @@ git config --global --unset http.https://github.com.proxy
 修改 `~/.ssh/config` 文件
 
 在 ~/.ssh 文件夹里面新建一个 config 文件，内容如下：
-```bash
+```sh
 # 这里只是个 alias，用于命令行
 Host aaa
     User git
@@ -138,24 +138,24 @@ git remote add origin git@github.com:myaccount/cocos2d-x.git
 git中存在upstream和downstream, 简言之,当我们把仓库A中某分支x的代码push到仓库B分支y, 此时仓库B的这个分支y就叫做A中x分支的upstream, 而x则被称作y的downstream, 这是一个相对关系, 每一个本地分支都相对地可以有一个远程的upstream分支（注意这个upstream分支可以不同名, 但通常我们都会使用同名分支作为upstream）.
 
 初次提交本地分支,例如 
-```bash
+```sh
 git push origin develop 
 ```
 
 操作, 并不会定义当前本地分支的upstream分支, 我们可以通过
-```bash
+```sh
 git branch --set-upstream-to=origin/<branch> develop
 或者
 git push --set-upstream origin develop
 ```
 
 关联本地develop分支的upstream分支,另一个更为简洁的方式是初次push时,加入-u参数,例如
-```bash
+```sh
 git push -u origin develop
 ```
 
 这个操作在push的同时会指定当前分支的upstream。注意：
-```bash
+```sh
 push.default = current
 ```
 可以在远程同名分支不存在的情况下自动创建同名分支,有些时候这也是个极其方便的模式,比如初次push你可以直接输入 git push 而不必显示指定远程分支.
@@ -164,7 +164,7 @@ push.default = current
 
 当前分支下, 如果编辑了文件, 但是需要撤销自己的所有编辑, 回到当前分支的状态的时候, 可以使用以下2种都可以:
 
-```bash
+```sh
 git reset --hard HEAD 1.txt
 git reset --hard HEAD~1
 git checkout 1.txt
@@ -182,7 +182,7 @@ reset 命令后面有几种参数如下：
 
 global 是在用户目录下面，一般建议改这个。System 和 Local 的不建议修改。
 
-```bash
+```sh
 git config --list
 git config --list --system
 git config --list --global
@@ -200,7 +200,7 @@ git config --global user.email "aaa@aaa.com"
 
 下面这3个命令在不同的Git里面有不同的意思，这里选用新的2.X的作为说明。
 
-```bash
+```sh
 git add <path> 把<path>添加到索引库（<path>可以是文件也可以是目录）
 git add -A 提交所有变化
 git add -u 提交被修改(modified)和被删除(deleted)文件,不包括新文件(new)
@@ -210,13 +210,13 @@ git status 可以时刻看见仓库状态,有什么文件被修改被删除等�
 
 ## git rm
 
-```bash
+```sh
 git rm file_name
 ```
 
 从工作区和暂存区删除，这样提交以后，会彻底删除这个文件。
 
-```bash
+```sh
 git rm --cached file_name
 ```
 
@@ -226,7 +226,7 @@ git rm --cached file_name
 
 好用的二分法来查找某个特定的 commit ，比如当代码被人弄坏了以后，想找到最后一个能用的commit。
 
-```bash
+```sh
 git bisect start
 git bisect good xxxxxx
 git bisect bad xxxxxx
@@ -356,7 +356,7 @@ The --full-history flag will give you a more comprehensive file history
 ## Other optional method to view modified parts
 
 full command:
-```bash
+```sh
 git log -p -m file.txt
 ```
 

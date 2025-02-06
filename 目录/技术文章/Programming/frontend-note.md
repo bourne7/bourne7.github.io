@@ -6,7 +6,7 @@
 
 npm 的配置在 `~/.npmrc`
 
-```bash
+```sh
 npm config set proxy http://127.0.0.1:7777
 npm config set https-proxy http://127.0.0.1:7777
 ```

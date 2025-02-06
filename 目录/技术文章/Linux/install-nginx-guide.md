@@ -4,7 +4,7 @@
 
 首先在 Ubuntu 18.04 上面安装好 Nginx，我这里装好后的版本是 1.14.0。 默认的配置在 /etc/nginx/nginx.conf，可以看到里面包含了
 
-```
+```txt
 include /etc/nginx/conf.d/*.conf
 include /etc/nginx/sites-enabled/*
 ```
@@ -13,7 +13,7 @@ include /etc/nginx/sites-enabled/*
 
 这个目录里面只有一个 default 文件，这个就是我们要改的了，下面我要改这个文件了，不过修改前先备份好，复制一份叫做 default.bak 的文件。 default 里面有指明 root 是 root /var/www/html，并且默认的 index 是 index.nginx-debian.html，我们在这个目录里面也的确找到了这文件，然后将 default 改为下面的样子:
 
-```
+```conf
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
@@ -31,7 +31,7 @@ server {
 
 改完以后要重启 nginx，这个时候我们的默认页面还是能够打开，但是我们能用这个 download 做一个文件目录了. 加上下面这段，然后在 /var/www 下面建立一个 download 文件夹。
 
-```
+```conf
 location /download {
     include mime.types;
     default_type application/octet-stream;
@@ -55,7 +55,7 @@ location /download {
 
 创建 downloader 用户，并指定目录，允许使用bash登录。要注意的是，这个用户是一个普通用户，但是仍然能看到其他的文件。只是没有权限读取或者修改而已。
 
-```bash
+```sh
 sudo useradd -d "/home/downloader" -m -s "/bin/bash" downloader
 passwd nginx
 ```

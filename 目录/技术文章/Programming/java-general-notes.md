@@ -113,7 +113,7 @@ Panama 的目的就是为了取代 JNI。看了一下使用方法，新的方式
 
 ## 取一个指定位数的最大整数
 
-```bash
+```sh
 long MAX = -1L ^ (-1L << BIT);
 long MAX= ~(-1L << BIT);
 ```

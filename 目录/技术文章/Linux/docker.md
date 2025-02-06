@@ -9,14 +9,14 @@
 https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
 
 1. Add Docker's official GPG key:
-```bash
+```sh
 sudo apt-get update
 sudo apt-get install ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
 ```
 
 注意这个步骤需要加代理 
-```bash
+```sh
 sudo curl -x http://192.168.197.1:7777 -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
@@ -24,7 +24,7 @@ sudo chmod a+r /etc/apt/keyrings/docker.asc
 ```
 
 2. Add the repository to Apt sources:
-```bash
+```sh
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
@@ -34,12 +34,12 @@ sudo apt-get update
 ```
 
 3. 正式安装组件
-```bash
+```sh
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
 4. 测试运行
-```bash
+```sh
 sudo docker run hello-world
 ```
 
@@ -53,7 +53,7 @@ docker pull 和 docker build/run 的方式不一样
 
 docker pull 的代理被 systemd 接管，所以需要设置 systemd
 
-```bash
+```sh
 sudo mkdir /etc/systemd/system/docker.service.d
 sudo vim /etc/systemd/system/docker.service.d/http-proxy.conf
 
@@ -62,7 +62,7 @@ Environment="HTTP_PROXY=http://127.0.0.1:7777"
 Environment="HTTPS_PROXY=http://127.0.0.1:7777"
 ```
 这里的127.0.0.1是直接用了本机的 http 代理，然后重启服务才能生效
-```bash
+```sh
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
@@ -78,6 +78,45 @@ docker run -p 1080:1080 .....
 export ALL_PROXY='socks5://127.0.0.1:1080'
 ```
 
+如果遇到了基础镜像引入的外部的一些找不到来源的环境变量，就可以手动覆盖
+
+```yml
+version: '3'
+
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    restart: always
+    ports:
+      - "3000:8080"
+    environment:
+      - HF_HUB_OFFLINE=1
+      - OLLAMA_BASE_URL=http://127.0.0.1:11434
+      - http_proxy=
+      - HTTP_PROXY=
+      - https_proxy=
+      - HTTPS_PROXY=
+      - no_proxy=
+      - NO_PROXY=
+    volumes:
+      - ./data:/app/backend/data
+```
+
+后来找到了是这个引起的。这个是在每次容器被构建的时候被注入的。不建议使用这个设定，比较隐蔽。
+
+```json
+// cat ~/.docker/config.json
+{
+    "proxies": {
+        "default": {
+            "httpProxy": "http://127.0.0.1:7777",
+            "httpsProxy": "http://127.0.0.1:7777",
+            "noProxy": "*.test.example.com,.example.org,127.0.0.0/8"
+        }
+    }
+}
+```
 
 ### Image操作
 

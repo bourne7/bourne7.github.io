@@ -19,7 +19,7 @@ ps -ef \| grep java ps aux \| grep java
 
 netstat命令各个参数说明如下：
 
-```bash
+```sh
 -n 拒绝显示别名，能显示数字的全部转化成数字。
 -p 显示建立相关链接的程序名
 -l 仅列出有在 Listen (监听) 的服務状态
@@ -44,7 +44,7 @@ netstat -an | grep 3306   //查看所有3306端口使用情况·
 
 可以代替 telnet 来检查端口是否开放
 
-```
+```sh
 aac@myhost:/mnt/c/Users/aac$ nmap -p 80 127.0.0.1
 Starting Nmap 7.80 ( https://nmap.org ) at 2023-05-05 11:09 CST
 Nmap scan report for localhost (127.0.0.1)
@@ -59,7 +59,8 @@ Nmap done: 1 IP address (1 host up) scanned in 0.02 seconds
 ## 格式压缩与解压
 
 使用 tar
-```
+
+```sh
 打包：tar -jcvf file_name target_name.tar.gz
 解包：tar -jxvf target_name.tar.gz
 
@@ -72,14 +73,25 @@ j 代表用bzip2算法来压缩/解压。生成 “.tar.bz2”
 ```
 
 7z压缩。压缩比例更高，命令更简单。
-```
+
+```plain
 7z a file.7z file
 7z x file.7z
 ```
 
-## VIM 快捷键
+## VIM
 
-```bash
+设置全局可以在 /etc/vim/vimrc 里面配置
+```sh
+sudo vim /etc/vim/vimrc
+
+set nu
+```
+
+
+快捷键
+
+```sh
 ctrl+f           在文件中前移一页（相当于pagedown）；
 ctrl+b           在文件中后移一页（相当于pageup）；
 gg               将光标定位到文件第一行起始位置；
@@ -116,10 +128,9 @@ u                撤消前一条命令的结果；
 .                重复最后一条修改正文的命令；
 ```
 
-
 ## 常用命令
 
-```bash
+```sh
 
 # 文件夹下有a、b、c三个文件，删除b和c,不删除a
 rm -f !\(a\) 
@@ -129,7 +140,6 @@ rm -f !\(a\|b\)
 
 # 查看Ubuntu所有系统服务
 service --status-all
-
 
 ## 通过 python 快速分享文件
 server.py [-h] [--cgi] [--bind ADDRESS] [--directory DIRECTORY] [port]
@@ -153,7 +163,7 @@ ln -s /usr/local/bin/python3.3 /usr/local/bin/python
 
 从 主机A 里面执行 SCP 指令，copy 主机B 的文件到 A，需要在A电脑里面执行 ssh-copy-id
 
-```bash
+```sh
 # 在 A 里面生成文件
 ssh-keygen [-f identity_file]
 
@@ -163,7 +173,7 @@ ssh-copy-id -i [identity_file.pub] user@host
 
 有个更方便的方式是直接去被 ssh 的主机上面的 authorized_keys 里面粘贴 pub
 
-```bash
+```sh
 scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
 
 # OPTION
@@ -223,7 +233,7 @@ ossyNMMMNyMMhsssssssssssssshmmmhssssssso   Memory: 266MiB / 15920MiB
 
 答案是后面的指令不是 sudo
 
-```bash
+```sh
 $ sudo whoami && whoami
 root
 username
@@ -281,9 +291,11 @@ shell重定向介绍
 
 高级用法
 重定向绑定
-```
+
+```plain
 command >/dev/null
 ```
+
 这条命令的作用是将标准输出1重定向到/dev/null中。/dev/null代表linux的空设备文件，所有往这个文件里面写入的内容都会丢失，俗称“黑洞”。那么执行了>/dev/null之后，标准输出就会不再存在，没有任何地方能够找到输出的内容。
 ```
 command 2>&1
@@ -351,8 +363,10 @@ sudo apt install fish
 
 发现一点，fish 使用 and 来连接2个指令的。所以fish最好还是自己登录的时候用一下，默认的shell还是使用 bash 吧，避免一些命令用不了。
 
-```bash
+```sh
 vim ~/.config/fish/config.fish
+# or set global config
+sudo vim /etc/fish/config.fish
 
 set fish_prompt_pwd_dir_length 0
 
@@ -369,7 +383,7 @@ alias unproxy='set -e http_proxy ; set -e https_proxy'
 
 ## bash 代理 proxy and unproxy
 
-```bash
+```sh
 vim ~/.bashrc
 
 alias proxy="
@@ -385,7 +399,7 @@ alias unproxy="
 
 这样可以做到在登陆 ssh 之后，预执行一些命令。
 
-```
+```sh
 Host aaa
     User your_linux_user_name
     HostName 172.18.81.111
@@ -396,11 +410,11 @@ Host aaa
     RequestTTY yes
 ```
 
-
 ## apt 源配置
 
 Ubuntu 的软件源配置文件是 /etc/apt/sources.list, 打开这个文件并且添加一下清华大学源:
-```
+
+```sh
 # https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/
 
 # 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
@@ -423,16 +437,16 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-security main restricted 
 ## apt 代理
 
 /etc/apt/apt.conf.d/proxy.conf
-```
+
+```sh
 Acquire::http::Proxy "http://127.0.0.1:7777";
 Acquire::https::Proxy "http://127.0.0.1:7777";
 Acquire::socks::Proxy "socks5h://127.0.0.1:1080";
 ```
 
-
 ## 快速设置桌面背景
 
-```bash
+```sh
 gsettings set org.gnome.desktop.background picture-options 'none'
 gsettings set org.gnome.desktop.background primary-color '#000000'
 ```
@@ -493,7 +507,7 @@ WaylandEnable=false
 
 需要在干净的 git 仓库里面执行：
 
-```bash
+```sh
 # https://stackoverflow.com/questions/3435581/how-to-count-lines-of-java-code-using-intellij-idea
 find . -type f -name '*.java' | xargs cat | wc -l
 
