@@ -68,6 +68,14 @@ sudo systemctl restart docker
 ```
 可以通过sudo systemctl show --property=Environment docker看到设置的环境变量。
 
+临时拉取镜像，可以使用
+
+```
+export HTTP_PROXY=http://127.0.0.1:7777 
+export HTTPS_PROXY=http://127.0.0.1:7777
+export http_proxy=http://127.0.0.1:7777 
+export https_proxy=http://127.0.0.1:7777
+```
 
 ### Docker 容器内部代理
 
