@@ -62,10 +62,18 @@ def markdown_line_formatter(content_string) -> str:
         # 这里是一级目录，比如 技术 和 生活 分类
         content_string = '### ' + content_string.split(os.sep)[1] + '\n'
     elif sep_count == 2:
-        # 这里是二级目录，比如 java，git 等等
-        original_name = content_string.split(os.sep)[2].capitalize()
-        content_string = '* **' + \
-            uppercase_by_marker('_', original_name).replace('_', '') + '**'
+        # 这里是二级目录，比如 2025-10-29DenoNodeRyanDahl.md
+        # 判断是否是md文件
+        if content_string.lower().endswith('.md'):
+            base_url = 'https://github.com/bourne7/bourne7.github.io/blob/master/'
+            content_string = '* [' + get_info_from_markdown(
+                content_string) + '](' + base_url + content_string + ')'
+            content_string = content_string.replace('\\', '/')
+        else:
+            # 目录名
+            original_name = content_string.split(os.sep)[2].capitalize()
+            content_string = '* **' + \
+                uppercase_by_marker('_', original_name).replace('_', '') + '**'
     elif sep_count == 3:
         # 内容文章需要提供一个基础连接。
         base_url = 'https://github.com/bourne7/bourne7.github.io/blob/master/'
