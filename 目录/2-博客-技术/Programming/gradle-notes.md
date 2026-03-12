@@ -13,3 +13,9 @@ task myDeleteFiles(type: Delete) {
     }
 }
 ```
+
+## 升级项目里面的 wrapper
+
+```bash
+gradlew.bat wrapper --gradle-version latest
+```
