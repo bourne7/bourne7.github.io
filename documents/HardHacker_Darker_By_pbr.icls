@@ -1,24 +1,23 @@
 <scheme name="HardHacker Darker By pbr" version="142" parent_scheme="Darcula">
   <option name="FONT_SCALE" value="1.0" />
   <metaInfo>
-    <property name="created">2024-01-04T17:51:59</property>
-    <property name="ide">Idea</property>
-    <property name="ideVersion">2023.3.2.0.0</property>
-    <property name="modified">2024-01-04T17:52:06</property>
+    <property name="ide">idea</property>
+    <property name="ideVersion">2025.3.4.0.0</property>
     <property name="originalScheme">HardHacker Darker By pbr</property>
   </metaInfo>
   <option name="CONSOLE_FONT_NAME" value="Consolas" />
   <option name="CONSOLE_FONT_SIZE" value="16" />
   <option name="CONSOLE_LINE_SPACING" value="1.0" />
   <colors>
-    <option name="CARET_ROW_COLOR" value="27222d" />
+    <option name="CARET_ROW_COLOR" value="27222D" />
     <option name="CONSOLE_BACKGROUND_KEY" value="" />
-    <option name="DOCUMENTATION_COLOR" value="282c34" />
-    <option name="GUTTER_BACKGROUND" value="2c323b" />
-    <option name="INDENT_GUIDE" value="5a5e7d" />
-    <option name="INFORMATION_HINT" value="282c34" />
-    <option name="LINE_NUMBERS_COLOR" value="ffffff" />
-    <option name="SELECTED_INDENT_GUIDE" value="3a4255" />
+    <option name="DOCUMENTATION_COLOR" value="282C34" />
+    <option name="GUTTER_BACKGROUND" value="2C323B" />
+    <option name="INDENT_GUIDE" value="5A5E7D" />
+    <option name="INFORMATION_HINT" value="282C34" />
+    <option name="LINE_NUMBERS_COLOR" value="FFFFFF" />
+    <option name="SELECTED_INDENT_GUIDE" value="3A4255" />
+    <option name="SELECTION_BACKGROUND" value="10292F" />
   </colors>
   <attributes>
     <option name="BREADCRUMBS_CURRENT">
@@ -97,6 +96,11 @@
     <option name="JAVA_OPERATION_SIGN">
       <value>
         <option name="FOREGROUND" value="9668ff" />
+        <option name="FONT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="KOTLIN_FUNCTION_LITERAL_BRACES_AND_ARROW">
+      <value>
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
