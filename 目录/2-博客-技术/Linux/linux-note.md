@@ -165,7 +165,7 @@ ln -s /usr/local/bin/python3.3 /usr/local/bin/python
 
 ```sh
 # 在 A 里面生成文件
-ssh-keygen [-f identity_file]
+ssh-keygen -t rsa [-f identity_file]
 
 # Copy 到 B
 ssh-copy-id -i [identity_file.pub] user@host
