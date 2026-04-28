@@ -383,19 +383,129 @@ alias proxy='export http_proxy=http://127.0.0.1:7777 ; export https_proxy=http:/
 alias unproxy='set -e http_proxy ; set -e https_proxy'
 ```
 
-## bash 代理 proxy and unproxy
+## proxy and unproxy 命令
 
-```sh
-vim ~/.bashrc
 
-alias proxy="
- export http_proxy=http://127.0.0.1:7777;
- export https_proxy=http://127.0.0.1:7777;"
+zsh 和 bash 的切换
+```conf
+# =================================================================
+# WSL2 代理自动化配置 (兼容镜像模式与网桥模式)
+# =================================================================
 
-alias unproxy="
- unset http_proxy;
- unset https_proxy;"
+proxy() {
+    # 1. 自动获取宿主机 IP
+    # 优先从 ip route 获取默认网关，这是 WSL2 最准确的宿主机地址
+    local host_ip=$(ip route show | grep default | awk '{print $3}' | head -n 1)
+
+    # 2. 健壮性检查：如果获取的 IP 包含虚拟地址 (如 10.255.x.x)，则回退尝试
+    if [[ -z "$host_ip" || "$host_ip" == "10.255.255.254" ]]; then
+        # 尝试从 resolv.conf 获取，但排除掉虚拟 DNS 地址
+        host_ip=$(grep nameserver /etc/resolv.conf | awk '{print $2}' | grep -v '10.255.255.254' | head -n 1)
+    fi
+
+    # 3. 最终确认
+    if [ -z "$host_ip" ]; then
+        echo "❌ 错误: 无法自动获取宿主机 IP，请检查网络设置。"
+        return 1
+    fi
+
+    # 4. 设置环境变量 (端口 7777)
+    export http_proxy="http://${host_ip}:7777"
+    export https_proxy="http://${host_ip}:7777"
+    export all_proxy="socks5://${host_ip}:7777"
+
+    # 5. 同时配置 Git 代理 (如果你需要 Git 也走代理)
+    git config --global http.proxy "http://${host_ip}:7777"
+    git config --global https.proxy "http://${host_ip}:7777"
+
+    # 6. 设置 NPM 代理配置 (持久化到 .npmrc)
+    npm config set proxy "http://${host_ip}:7777"
+    npm config set https-proxy "http://${host_ip}:7777"
+
+    echo "✅ 代理已开启"
+    echo "地址: ${host_ip}:7777"
+}
+
+unproxy() {
+    # 1. 清除环境变量
+    unset http_proxy
+    unset https_proxy
+    unset all_proxy
+
+    # 2. 清除 Git 代理
+    git config --global --unset http.proxy
+    git config --global --unset https.proxy
+
+    echo "❌ 代理已关闭"
+}
+
+# 测试代理状态的便捷命令
+testproxy() {
+    echo "正在测试连接 Google..."
+    curl -I -L --connect-timeout 5 https://www.google.com
+}
 ```
+
+# fish shell 版本（将下面内容粘到 ~/.config/fish/config.fish 或单独的脚本中）
+
+```shell
+function proxy
+    # 1. 自动获取宿主机 IP（与 Bash 版本相同的策略）
+    set -l host_ip (ip route show | grep default | awk '{print $3}' | head -n 1)
+
+    # 2. 健壮性检查：如果获取的 IP 为空或为虚拟地址，则回退尝试
+    if test -z "$host_ip" -o "$host_ip" = "10.255.255.254"
+        set host_ip (grep nameserver /etc/resolv.conf | awk '{print $2}' | grep -v '10.255.255.254' | head -n 1)
+    end
+
+    # 3. 最终确认
+    if test -z "$host_ip"
+        echo "❌ 错误: 无法自动获取宿主机 IP，请检查网络设置。"
+        return 1
+    end
+
+    # 4. 设置环境变量（端口 7777）
+    set -gx http_proxy "http://$host_ip:7777"
+    set -gx https_proxy "http://$host_ip:7777"
+    set -gx all_proxy "socks5://$host_ip:7777"
+
+    # 5. 同时配置 Git 代理
+    git config --global http.proxy "http://$host_ip:7777"
+    git config --global https.proxy "http://$host_ip:7777"
+
+    # 6. NPM 代理配置
+    npm config set proxy "http://$host_ip:7777"
+    npm config set https-proxy "http://$host_ip:7777"
+
+    echo "✅ 代理已开启"
+    echo "地址: $host_ip:7777"
+end
+
+function unproxy
+    # 清除环境变量
+    set -e http_proxy
+    set -e https_proxy
+    set -e all_proxy
+
+    # 清除 Git 代理（忽略错误并静默输出）
+    git config --global --unset http.proxy >/dev/null 2>&1; or true
+    git config --global --unset https.proxy >/dev/null 2>&1; or true
+
+    # 清除 NPM 代理（如果需要）
+    npm config delete proxy 2>/dev/null; or true
+    npm config delete https-proxy 2>/dev/null; or true
+
+    echo "❌ 代理已关闭"
+end
+
+function testproxy
+    echo "正在测试连接 Google..."
+    curl -I -L --connect-timeout 5 https://www.google.com
+end
+```
+
+
+
 
 ## ssh config
 

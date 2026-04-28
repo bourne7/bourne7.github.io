@@ -1,0 +1,175 @@
+<scheme name="Island pbr" version="142" parent_scheme="Darcula">
+  <metaInfo>
+    <property name="ide">idea</property>
+    <property name="ideVersion">2026.1.0.0</property>
+    <property name="originalScheme">Island pbr</property>
+  </metaInfo>
+  <colors>
+    <option name="BLOCK_TERMINAL_SELECTED_BLOCK_BACKGROUND" value="191A1C" />
+    <option name="CARET_ROW_COLOR" value="27222D" />
+    <option name="CONSOLE_BACKGROUND_KEY" value="" />
+    <option name="DOCUMENTATION_COLOR" value="282C34" />
+    <option name="FILESTATUS_ADDED" value="C3E887" />
+    <option name="FILESTATUS_DELETED" value="F77669" />
+    <option name="FILESTATUS_HIJACKED" value="FFCB6B" />
+    <option name="FILESTATUS_MODIFIED" value="80CBC4" />
+    <option name="FILESTATUS_NOT_CHANGED_IMMEDIATE" value="80CBC4" />
+    <option name="FILESTATUS_NOT_CHANGED_RECURSIVE" value="80CBC4" />
+    <option name="FILESTATUS_OBSOLETE" value="FFCB6B" />
+    <option name="FILESTATUS_SUPPRESSED" value="546E7A" />
+    <option name="FILESTATUS_SWITCHED" value="F77669" />
+    <option name="FILESTATUS_UNKNOWN" value="F77669" />
+    <option name="GUTTER_BACKGROUND" value="2C323B" />
+    <option name="INDENT_GUIDE" value="5A5E7D" />
+    <option name="INFORMATION_HINT" value="282C34" />
+    <option name="LINE_NUMBERS_COLOR" value="FFFFFF" />
+    <option name="NOTIFICATION_BACKGROUND" value="" />
+    <option name="SELECTED_INDENT_GUIDE" value="3A4255" />
+    <option name="SELECTION_BACKGROUND" value="10292F" />
+  </colors>
+  <attributes>
+    <option name="BREADCRUMBS_CURRENT">
+      <value>
+        <option name="FOREGROUND" value="bbbbbb" />
+        <option name="BACKGROUND" value="282c34" />
+      </value>
+    </option>
+    <option name="BREADCRUMBS_HOVERED">
+      <value>
+        <option name="FOREGROUND" value="bbbbbb" />
+        <option name="BACKGROUND" value="282c34" />
+      </value>
+    </option>
+    <option name="DEFAULT_CLASS_NAME">
+      <value>
+        <option name="FOREGROUND" value="52e3f6" />
+      </value>
+    </option>
+    <option name="DEFAULT_FUNCTION_CALL">
+      <value>
+        <option name="FOREGROUND" value="a7d6ff" />
+        <option name="FONT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="DEFAULT_FUNCTION_DECLARATION">
+      <value>
+        <option name="FOREGROUND" value="ffff00" />
+      </value>
+    </option>
+    <option name="DEFAULT_IDENTIFIER">
+      <value>
+        <option name="FOREGROUND" value="ffffff" />
+      </value>
+    </option>
+    <option name="DEFAULT_INSTANCE_METHOD">
+      <value>
+        <option name="FOREGROUND" value="ff00" />
+      </value>
+    </option>
+    <option name="DEFAULT_INTERFACE_NAME">
+      <value>
+        <option name="FOREGROUND" value="ffc2" />
+      </value>
+    </option>
+    <option name="DEFAULT_STATIC_FIELD">
+      <value>
+        <option name="FOREGROUND" value="ffffff" />
+        <option name="FONT_TYPE" value="3" />
+      </value>
+    </option>
+    <option name="DEFAULT_STATIC_METHOD">
+      <value>
+        <option name="FOREGROUND" value="ff00" />
+      </value>
+    </option>
+    <option name="DEFAULT_STRING">
+      <value>
+        <option name="FOREGROUND" value="ece461" />
+      </value>
+    </option>
+    <option name="HTML_CODE">
+      <value />
+    </option>
+    <option name="INLAY_TEXT_WITHOUT_BACKGROUND">
+      <value>
+        <option name="FOREGROUND" value="787878" />
+        <option name="BACKGROUND" value="191a1c" />
+      </value>
+    </option>
+    <option name="Implicit conversion">
+      <value>
+        <option name="EFFECT_COLOR" value="a0f6a0" />
+        <option name="EFFECT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="JAVA_KEYWORD">
+      <value>
+        <option name="FOREGROUND" value="de007f" />
+      </value>
+    </option>
+    <option name="JAVA_OPERATION_SIGN">
+      <value>
+        <option name="FOREGROUND" value="9668ff" />
+        <option name="FONT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="KOTLIN_FUNCTION_LITERAL_BRACES_AND_ARROW">
+      <value>
+        <option name="FONT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="KOTLIN_LABEL">
+      <value />
+    </option>
+    <option name="MATCHED_BRACE_ATTRIBUTES">
+      <value>
+        <option name="BACKGROUND" value="3b514d" />
+        <option name="FONT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="STATIC_FIELD_ATTRIBUTES">
+      <value>
+        <option name="FOREGROUND" value="7be27d" />
+        <option name="FONT_TYPE" value="3" />
+      </value>
+    </option>
+    <option name="STATIC_METHOD_ATTRIBUTES">
+      <value>
+        <option name="FOREGROUND" value="a7ec21" />
+        <option name="FONT_TYPE" value="2" />
+      </value>
+    </option>
+    <option name="Scala Immutable Collection">
+      <value>
+        <option name="FOREGROUND" value="52e3f6" />
+        <option name="EFFECT_COLOR" value="accb79" />
+        <option name="EFFECT_TYPE" value="5" />
+      </value>
+    </option>
+    <option name="Scala Mutable Collection">
+      <value>
+        <option name="FOREGROUND" value="52e3f6" />
+        <option name="EFFECT_COLOR" value="e29ec2" />
+        <option name="EFFECT_TYPE" value="5" />
+      </value>
+    </option>
+    <option name="StandardF Java Collection">
+      <value>
+        <option name="FOREGROUND" value="52e3f6" />
+      </value>
+    </option>
+    <option name="TAB_SELECTED">
+      <value />
+    </option>
+    <option name="TERMINAL_COMMAND_TO_RUN_USING_IDE">
+      <value />
+    </option>
+    <option name="TEXT">
+      <value>
+        <option name="FOREGROUND" value="ffffff" />
+        <option name="BACKGROUND" value="1a191c" />
+        <option name="EFFECT_TYPE" value="5" />
+      </value>
+    </option>
+  </attributes>
+</scheme>

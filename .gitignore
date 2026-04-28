@@ -1,6 +1,16 @@
+# MacOS
 .DS_Store
 Thumbs.db
-db.json
+
+# Others
 ignore
+db.json
+
+# idea
 .idea
+
+# Obsidian
 .obsidian
+
+# python
+.venv
