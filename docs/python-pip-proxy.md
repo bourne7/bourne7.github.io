@@ -7,17 +7,6 @@
 * Linux 配置路径 `~/.pip/pip.conf`
 * Windows 配置路径 `~\pip\pip.ini`
 
-## Python pip配置国内源
-
-```
-清华大学：https://pypi.tuna.tsinghua.edu.cn/simple 
-阿里云：http://mirrors.aliyun.com/pypi/simple/
-
-[global] 
-index-url = https://pypi.tuna.tsinghua.edu.cn/simple
-[install]
-trusted-host = https://pypi.tuna.tsinghua.edu.cn
-```
 
 ## 代理
 

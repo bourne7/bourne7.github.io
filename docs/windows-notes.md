@@ -2,15 +2,6 @@
 
 2019-02-12
 
-## 网络指令
-
-```
-netsh winsock reset
-netsh int ip reset
-ipconfig /release
-ipconfig /renew
-ipconfig /flushdns
-```
 
 ## Terminal 配置
 
@@ -72,3 +63,20 @@ https://www.freecodecamp.org/news/windows-terminal-themes-color-schemes-powershe
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 ```
+
+
+## 快速切换 JDK
+
+Windows
+
+可以将本地一个目录添加到 Path，然后编写2个 bat: java8.bat 和 java21.bat
+
+```bat
+@echo off
+set JAVA_HOME=C:\Users\aac\.jdks\temurin-1.8.0_392
+set PATH=%JAVA_HOME%\bin;%PATH%
+echo.
+echo "%JAVA_HOME%" is now set as the default JDK.
+```
+
+以后就可以通过 java8 和 java21 来切换了。

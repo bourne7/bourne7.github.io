@@ -1,88 +1,63 @@
-import json
 import os
 import re
+from pathlib import Path
 
 
-# 深度优先遍历所有的文件
-# root_path 文章的根目录
-def get_all_files(root_path, file_dict):
-    for dir_file in os.listdir(root_path):
-        # 这里要处理一下路径，原因是传到下一级的时候也需要只保持最右边的目录级别。
-        path_elements = root_path.split(os.sep)
-        root_dir_key_name = path_elements[path_elements.__len__() - 1]
-
-        # 获取目录或者文件的路径
-        dir_file_path = os.path.join(root_path, dir_file)
-
-        # 判断该路径为文件还是路径
-        if os.path.isdir(dir_file_path):
-            if root_dir_key_name not in file_dict.keys():
-                file_dict[root_dir_key_name] = {}
-            file_dict[root_dir_key_name][dir_file] = {}
-            get_all_files(dir_file_path, file_dict[root_dir_key_name])
-
-        # 判断该路径为文件还是路径
-        if os.path.isfile(dir_file_path):
-            file_ext = os.path.splitext(dir_file)[1][1:]
-            if file_ext != 'md':
-                continue
-            if root_dir_key_name not in file_dict.keys():
-                file_dict[root_dir_key_name] = {}
-            file_dict[root_dir_key_name][dir_file] = file_ext
+REPO_ROOT = Path(__file__).resolve().parent
+BASE_URL = 'https://github.com/bourne7/bourne7.github.io/blob/master/'
+DEFAULT_CONTENT_DIRS = ('docs', '目录')
+INDEX_MARKER = '<!-- 以上内容都是固定编辑的，下面的内容才会被python脚本替换 -->'
 
 
-# 扁平化一棵树，将内容输出到文本
-def flat_tree(root_path, file_dict, flat_content) -> str:
-    for key in file_dict:
-        # 获取目录或者文件的路径
-        dir_file_path = os.path.join(root_path, key)
-        # 将文件添加到扁平化的数据里面去
-        each_md_line = markdown_line_formatter(dir_file_path)
-        if each_md_line and flat_content:
-            flat_content = flat_content + each_md_line + os.linesep
-        elif each_md_line:
-            flat_content = each_md_line + os.linesep
+def resolve_content_root() -> Path:
+    for candidate in DEFAULT_CONTENT_DIRS:
+        path = REPO_ROOT / candidate
+        if path.is_dir():
+            return path
+    raise FileNotFoundError(
+        'No content directory found. Expected one of: ' + ', '.join(DEFAULT_CONTENT_DIRS)
+    )
+
+
+def format_display_name(name: str) -> str:
+    original_name = name.capitalize()
+    return uppercase_by_marker('_', original_name).replace('_', '')
+
+
+def format_markdown_file(file_path: Path, content_root: Path) -> str:
+    relative_path = file_path.relative_to(content_root.parent).as_posix()
+    depth = len(file_path.relative_to(content_root).parts)
+    indent = '  ' * max(depth - 1, 0)
+    return f'{indent}* [{get_info_from_markdown(file_path)}]({BASE_URL}{relative_path})'
+
+
+def render_directory(root_path: Path, content_root: Path) -> str:
+    lines = []
+    entries = sorted(root_path.iterdir(), key=lambda item: (item.is_file(), item.name.lower()))
+    relative_parts = root_path.relative_to(content_root).parts
+
+    if relative_parts:
+        depth = len(relative_parts)
+        directory_name = format_display_name(relative_parts[-1])
+        if depth == 1:
+            lines.append(f'### {directory_name}')
+            lines.append('')
         else:
-            print('first line')
-        # 如果是个目录，就递归里面的内容
-        if os.path.isdir(dir_file_path):
-            flat_content = flat_tree(
-                dir_file_path, file_dict[key], flat_content)
-    return flat_content
+            indent = '  ' * (depth - 2)
+            lines.append(f'{indent}* **{directory_name}**')
+            lines.append('')
 
+    for entry in entries:
+        if entry.is_dir():
+            rendered = render_directory(entry, content_root)
+            if rendered:
+                lines.append(rendered)
+        elif entry.suffix.lower() == '.md':
+            lines.append(format_markdown_file(entry, content_root))
 
-# 根据层级的不同，将不同的内容格式化成为不同的内容。
-def markdown_line_formatter(content_string) -> str:
-    sep_count = content_string.count(os.sep)
-    if sep_count == 0:
-        # 这里是包含了所有文章的根目录
-        # content_string = '## ' + content_string
-        return ''
-    elif sep_count == 1:
-        # 这里是一级目录，比如 技术 和 生活 分类
-        content_string = '### ' + content_string.split(os.sep)[1] + '\n'
-    elif sep_count == 2:
-        # 这里是二级目录，比如 2025-10-29DenoNodeRyanDahl.md
-        # 判断是否是md文件
-        if content_string.lower().endswith('.md'):
-            base_url = 'https://github.com/bourne7/bourne7.github.io/blob/master/'
-            content_string = '* [' + get_info_from_markdown(
-                content_string) + '](' + base_url + content_string + ')'
-            content_string = content_string.replace('\\', '/')
-        else:
-            # 目录名
-            original_name = content_string.split(os.sep)[2].capitalize()
-            content_string = '* **' + \
-                uppercase_by_marker('_', original_name).replace('_', '') + '**'
-    elif sep_count == 3:
-        # 内容文章需要提供一个基础连接。
-        base_url = 'https://github.com/bourne7/bourne7.github.io/blob/master/'
-        # 文章的连接
-        content_string = '  * [' + get_info_from_markdown(
-            content_string) + '](' + base_url + content_string + ')'
-        # 替换 反斜杠到正斜杠
-        content_string = content_string.replace('\\', '/')
-    return content_string
+    while lines and lines[-1] == '':
+        lines.pop()
+    return '\n'.join(lines)
 
 
 # 根据标记将标记符号后面的字母变成大写。比如 Front_end_aaa -> Front_End_Aaa
@@ -95,10 +70,10 @@ def uppercase_by_marker(marker, original_string) -> str:
     return original_string
 
 
-def get_info_from_markdown(file_path: str) -> str:
-    with open(file_path, 'r', encoding='utf-8') as f:
+def get_info_from_markdown(file_path: Path) -> str:
+    with file_path.open('r', encoding='utf-8') as f:
         title = f.readline().replace('# ', '')
-        date = f.readline()
+        date = f.readline().strip()
     # 如果匹配不上就给一个默认的显示
     if not re.search(r'^\d{4}-\d{2}-\d{2}$', date):
         date = ''
@@ -109,8 +84,10 @@ def get_info_from_markdown(file_path: str) -> str:
 
 
 if __name__ == '__main__':
+    index_path = REPO_ROOT / 'index.md'
+
     # 读取已有的文件
-    with open('index.md', 'r', encoding='utf-8') as f:
+    with index_path.open('r', encoding='utf-8') as f:
         old_index = f.readlines()
     # file_index = open('index.md', 'r', encoding='utf-8')
     # old_index = file_index.readlines()
@@ -118,20 +95,21 @@ if __name__ == '__main__':
     # 将已有的index里面的前半部分内容挖出来
     new_index = ''
     for line in old_index:
-        # 这里需要一个分隔符，来区分不用改变的部分。
-        if line.count('###') != 0:
-            break
         new_index += line
+        # 这里需要一个分隔符，来区分不用改变的部分。
+        if line.strip() == INDEX_MARKER:
+            break
 
-    # 读取所有的 markdown 目录
-    file_dict = {}
-    get_all_files('目录', file_dict)
-    content = json.dumps(file_dict, indent=2, ensure_ascii=False)
+    if INDEX_MARKER not in ''.join(old_index):
+        new_index = ''
+        for line in old_index:
+            if line.count('###') != 0:
+                break
+            new_index += line
 
-    # 深度优先遍历一下所有的 markdown
-    flat_content = ''
-    new_index += flat_tree(r'', file_dict, flat_content)
+    content_root = resolve_content_root()
+    new_index += render_directory(content_root, content_root) + '\n'
 
     # 重新写入文件
-    with open('index.md', 'w', encoding='utf-8') as f:
+    with index_path.open('w', encoding='utf-8') as f:
         f.write(new_index)
