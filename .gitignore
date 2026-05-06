@@ -14,3 +14,7 @@ db.json
 
 # python
 .venv
+
+# VS Code
+.vscode
+
