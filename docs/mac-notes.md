@@ -24,6 +24,107 @@ proxy=socks5://127.0.0.1:1080 to ~/.curlrc
 
 > [https://lencerf.github.io/post/2015-10-03-brew-with-a-socks5-proxy/]
 
+
+## proxy and unproxy 命令
+
+zsh 和 bash 的切换
+```conf
+# =================================================================
+# Mac 代理自动化配置
+# =================================================================
+
+proxy() {
+    # 1. 直接使用本机回环地址
+    local host_ip="127.0.0.1"
+
+    # 2. 设置环境变量 (端口 7777)
+    export http_proxy="http://${host_ip}:7777"
+    export https_proxy="http://${host_ip}:7777"
+    export all_proxy="socks5://${host_ip}:7777"
+
+    # 3. 同时配置 Git 代理 (如果你需要 Git 也走代理)
+    git config --global http.proxy "http://${host_ip}:7777"
+    git config --global https.proxy "http://${host_ip}:7777"
+
+    # 4. 设置 NPM 代理配置 (持久化到 .npmrc)
+    npm config set proxy "http://${host_ip}:7777"
+    npm config set https-proxy "http://${host_ip}:7777"
+
+    echo "✅ 代理已开启"
+    echo "地址: ${host_ip}:7777"
+}
+
+unproxy() {
+    # 1. 清除环境变量
+    unset http_proxy
+    unset https_proxy
+    unset all_proxy
+
+    # 2. 清除 Git 代理
+    git config --global --unset http.proxy
+    git config --global --unset https.proxy
+
+    echo "❌ 代理已关闭"
+}
+
+# 测试代理状态的便捷命令
+testproxy() {
+    echo "正在测试连接 Google..."
+    curl -I -L --connect-timeout 5 https://www.google.com
+}
+```
+
+# fish shell 版本（将下面内容粘到 ~/.config/fish/config.fish 或单独的脚本中）
+
+```shell
+# =================================================================
+# Mac 代理自动化配置
+# =================================================================
+function proxy
+    # 1. 直接使用本机回环地址
+    set -l host_ip "127.0.0.1"
+
+    # 2. 设置环境变量（端口 7777）
+    set -gx http_proxy "http://$host_ip:7777"
+    set -gx https_proxy "http://$host_ip:7777"
+    set -gx all_proxy "socks5://$host_ip:7777"
+
+    # 3. 同时配置 Git 代理
+    git config --global http.proxy "http://$host_ip:7777"
+    git config --global https.proxy "http://$host_ip:7777"
+
+    # 4. NPM 代理配置
+    npm config set proxy "http://$host_ip:7777"
+    npm config set https-proxy "http://$host_ip:7777"
+
+    echo "✅ 代理已开启"
+    echo "地址: $host_ip:7777"
+end
+
+function unproxy
+    # 清除环境变量
+    set -e http_proxy
+    set -e https_proxy
+    set -e all_proxy
+
+    # 清除 Git 代理（忽略错误并静默输出）
+    git config --global --unset http.proxy >/dev/null 2>&1; or true
+    git config --global --unset https.proxy >/dev/null 2>&1; or true
+
+    # 清除 NPM 代理（如果需要）
+    npm config delete proxy 2>/dev/null; or true
+    npm config delete https-proxy 2>/dev/null; or true
+
+    echo "❌ 代理已关闭"
+end
+
+function testproxy
+    echo "正在测试连接 Google..."
+    curl -I -L --connect-timeout 5 https://www.google.com
+end
+```
+
+
 ## Brew 笔记
 
 https://cloud.tencent.com/developer/article/1867824
