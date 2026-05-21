@@ -18,3 +18,4 @@ db.json
 # VS Code
 .vscode
 
+.claude/settings.local.json
