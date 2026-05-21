@@ -2,18 +2,6 @@
 
 2019-02-02
 
-## 查看进程
-
-ps -ef 是用标准的格式显示进程的，ps aux 是用BSD的格式来显示。
-
-为了在前面加上头部，可以加上
-
-ps -ef \| head -1
-
-然后在加上需要查询条件。这里要注意，aux前面的横线可加可不加，不加就是BSD风格，建议不加。详情这里不多说，可以man ps 看到。
-
-ps -ef \| grep java ps aux \| grep java
-
 ## nmap 代替 telnet
 
 可以代替 telnet 来检查端口是否开放

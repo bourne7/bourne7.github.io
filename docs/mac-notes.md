@@ -150,41 +150,6 @@ brew search /text/        使用正则表达式搜软件
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-## Python
-
-Mac自带的 Python3 路径在 /usr/bin/python3
-
-Brew安装的在 /usr/local/Cellar/
-
-查看python路径的两种方法：
-
-```sh
-whereis python3
-python3: /usr/bin/python3
-
-where python3
-/usr/bin/python3
-
-which -a python3 
-/usr/bin/python3
-
-which python3
-/usr/bin/python3
-
-import sys
-print(sys.path)
-```
-
-
-## Switch SD card
-
-```
-sudo chflags -R arch /Volumes/SDCARD_NAME
-```
-
-## Xcode
-xcode-select --install
-
 
 ## java jdk
 
@@ -192,7 +157,7 @@ xcode-select --install
 1. brew 安装（这个主要用于环境变量）
 M系列芯片可以原生安装 open jdk 17，可以使用 brew 安装，安装好了以后，可以看到下面的提示
 
-```
+```bash
 For the system Java wrappers to find this JDK, symlink it with
   sudo ln -sfn /opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-17.jdk
 
@@ -207,7 +172,7 @@ For compilers to find openjdk@17 you may need to set:
 ```
 
 然后可以在系统里面找到多个JDK
-```
+```bash
 aac@MacBook-Pro ~/L/J/JavaVirtualMachines> /usr/libexec/java_home -V
 Matching Java Virtual Machines (4):
     21.0.3 (arm64) "Amazon.com Inc." - "Amazon Corretto 21" /Users/aac/Library/Java/JavaVirtualMachines/21/Contents/Home
@@ -223,14 +188,6 @@ Matching Java Virtual Machines (4):
 直接使用 ide 来下载，默认路径是
 
 /Users/aac/Library/Java/JavaVirtualMachines/
-
-3. 手动下载（不建议）
-
-如果需要手动安装的话，可以下载 zip 包，然后解压到
-
-/Library/Java/JavaVirtualMachines
-
-就可以被 ide 自动识别了。PATH 也可以设置一下 alias
 
 
 ## 手动下载和安装 iOS app

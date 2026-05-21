@@ -1,0 +1,199 @@
+/*
+ * Workspace Markdown preview theme
+ *
+ * 设计目标：
+ * 1) 提升 Markdown 预览的“信息分层”（标题、正文、代码、引用、表格一眼可分）。
+ * 2) 保持长文阅读舒适度（适中的对比度、行高、留白）。
+ * 3) 通过 CSS 变量集中管理配色，后续换主题只改 :root 即可。
+ * 
+ * 默认（浅色）变量：当系统/VS Code 处于浅色主题时使用。
+ * 如果你主要用浅色主题，优先在这里调色。
+ */
+:root {
+    /* 主文字颜色：正文、列表默认使用，偏深灰而非纯黑，减少视觉疲劳。 */
+    --md-fg: #1f2937;
+    /* 次级文字颜色：引用块等弱化信息使用。 */
+    --md-muted: #475569;
+    /* 柔和背景色：用于引用块等“提示型容器”。 */
+    --md-bg-soft: #f8fafc;
+    /* 通用边框色：表格边框、分隔线等。 */
+    --md-border: #e2e8f0;
+
+    /* 标题分级色：H1/H2/H3 用不同色相拉开层次。 */
+    --md-h1: #0f766e;
+    --md-h2: #0b5ed7;
+    --md-h3: #7c3aed;
+    --md-h1-border: #99f6e4;
+    --md-h2-border: #93c5fd;
+
+    /* 链接和代码（行内）配色。 */
+    --md-link: #2563eb;
+    --md-inline-code-fg: #b91c1c;
+    --md-inline-code-bg: #f3f4f6;
+
+    /* 代码块与表格表头、引用强调线配色。 */
+    --md-block-code-bg: #111827;
+    --md-block-code-fg: #e5e7eb;
+    --md-quote-border: #60a5fa;
+    --md-table-head-bg: #eef2ff;
+    --md-table-head-fg: #3730a3;
+}
+
+/*
+ * 深色变量覆盖：
+ * - 当系统或 VS Code 预览环境报告 dark scheme 时自动生效
+ * - 目标是“所有文字改为浅色系”，避免与深背景混在一起
+ */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* 正文与次级正文都提升亮度，确保长文可读。 */
+        --md-fg: #e5e7eb;
+        --md-muted: #cbd5e1;
+
+        /* 容器背景和边框换成深色系。 */
+        --md-bg-soft: #0f172a;
+        --md-border: #334155;
+
+        /* 标题在深色背景下用更高亮的色值。 */
+        --md-h1: #5eead4;
+        --md-h2: #93c5fd;
+        --md-h3: #c4b5fd;
+        --md-h1-border: #2dd4bf;
+        --md-h2-border: #60a5fa;
+
+        /* 链接和行内代码颜色改为深色主题友好版本。 */
+        --md-link: #60a5fa;
+        --md-inline-code-fg: #fca5a5;
+        --md-inline-code-bg: #1f2937;
+
+        /* 代码块和表格表头在深色模式下保持清晰对比。 */
+        --md-block-code-bg: #020617;
+        --md-block-code-fg: #e2e8f0;
+        --md-quote-border: #38bdf8;
+        --md-table-head-bg: #1e293b;
+        --md-table-head-fg: #e0e7ff;
+    }
+}
+
+body {
+    /*
+   * 字体按 Windows + 中文环境优先级设置：
+   * - Segoe UI: 英文 UI 字体显示稳定
+   * - PingFang SC / Microsoft YaHei: 中文阅读更清晰
+   */
+    font-family: "Maple Mono NF", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    /* 长文阅读建议 1.6~1.8，这里取 1.75。 */
+    line-height: 1.75;
+    /* 默认前景色从变量读取，便于整体换肤。 */
+    color: var(--md-fg);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    /* 统一加粗，保证在不同主题字体下标题可辨识。 */
+    font-weight: 700;
+    /* 轻微字间距，提升标题观感。 */
+    letter-spacing: 0.01em;
+}
+
+h1 {
+    /* H1 用青绿色，语义上对应“主章节起始”。 */
+    color: var(--md-h1);
+    /* 底部分隔线帮助区分章节。 */
+    border-bottom: 2px solid var(--md-h1-border);
+    padding-bottom: 6px;
+}
+
+h2 {
+    /* H2 使用蓝色，与 H1 区分层级。 */
+    color: var(--md-h2);
+    /* 左侧强调线让二级标题更醒目，尤其在滚动浏览时。 */
+    border-left: 4px solid var(--md-h2-border);
+    padding-left: 10px;
+}
+
+h3 {
+    /* H3 进一步换色，强化三级标题辨识。 */
+    color: var(--md-h3);
+}
+
+a {
+    /* 链接默认无下划线，减少视觉噪点。 */
+    color: var(--md-link);
+    text-decoration: none;
+}
+
+a:hover {
+    /* 悬停时恢复下划线，明确可点击状态。 */
+    text-decoration: underline;
+}
+
+p,
+li {
+    /* 段落和列表统一走正文色，保证一致性。 */
+    color: var(--md-fg);
+}
+
+code {
+    /* 行内代码：浅底 + 暖色文字，便于在正文中快速定位术语。 */
+    background: var(--md-inline-code-bg);
+    color: var(--md-inline-code-fg);
+    padding: 2px 6px;
+    /* 轻圆角让“代码胶囊”视觉更柔和。 */
+    border-radius: 6px;
+}
+
+pre code {
+    /*
+   * 代码块：
+   * - 深底浅字提高代码区域识别度
+   * - display:block + padding 提供阅读留白
+   */
+    display: block;
+    background: var(--md-block-code-bg);
+    color: var(--md-block-code-fg);
+    padding: 14px;
+    border-radius: 10px;
+    /* 超宽代码允许横向滚动，避免破坏整体版式。 */
+    overflow-x: auto;
+}
+
+blockquote {
+    /* 引用块用浅底和左侧强调线，体现“补充信息”语义。 */
+    margin: 1rem 0;
+    padding: 0.6rem 1rem;
+    background: var(--md-bg-soft);
+    border-left: 4px solid var(--md-quote-border);
+    /* 引用文字弱化一档，避免与正文争抢注意力。 */
+    color: var(--md-muted);
+}
+
+table {
+    /* 合并边框避免双线，视觉更干净。 */
+    border-collapse: collapse;
+    /* 占满内容宽度，避免小表格显得零散。 */
+    width: 100%;
+}
+
+th,
+td {
+    /* 表格单元格统一边框和内边距，提升可读性。 */
+    border: 1px solid var(--md-border);
+    padding: 8px 10px;
+}
+
+th {
+    /* 表头用浅色底 + 深色字，强调字段名。 */
+    background: var(--md-table-head-bg);
+    color: var(--md-table-head-fg);
+}
+
+hr {
+    /* 水平分割线使用柔和边框色，不喧宾夺主。 */
+    border: 0;
+    border-top: 1px solid var(--md-border);
+}
