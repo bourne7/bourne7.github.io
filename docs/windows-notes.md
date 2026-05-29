@@ -244,3 +244,20 @@ unproxy
 - `proxy` / `unproxy` 会设置或清理当前 shell 的环境变量。
 - 同时会设置或清理 Git / npm 的全局代理。
 - 如果你要改端口（例如 `7890`），只需要改 `config.psd1`。
+
+
+
+## 列出目录下占用空间最大的文件夹
+
+```powershell
+Get-ChildItem -Directory | ForEach-Object {
+  $size = (Get-ChildItem -LiteralPath $_.FullName -Recurse -File -Force -ErrorAction SilentlyContinue | Measure-Object -Property Length -Sum).Sum
+  if ($null -eq $size) { $size = 0 }
+  [PSCustomObject]@{
+    Folder = $_.Name
+    SizeGB = [math]::Round($size / 1GB, 2)
+    SizeMB = [math]::Round($size / 1MB, 2)
+    Bytes  = $size
+  }
+} | Sort-Object -Property Bytes -Descending | Format-Table -AutoSize
+```

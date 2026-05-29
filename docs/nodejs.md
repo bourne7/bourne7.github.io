@@ -38,6 +38,11 @@ npm outdated                    # 检查过期依赖
 npm cache clean --force         # 清除缓存
 ```
 
+
+npm config set allow-scripts true -g
+
+
+
 ## npx
 
 npx 是 npm 5.2+ 自带的命令执行工具，用于执行 npm 包中的命令，无需全局安装。
