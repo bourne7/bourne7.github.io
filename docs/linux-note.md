@@ -54,7 +54,39 @@ alias unproxy='set -e http_proxy ; set -e https_proxy'
 
 ## 普通情况下的 proxy and unproxy 快捷指令
 
+适用于直接在 Linux 物理机/虚拟机/容器中使用，代理地址固定为 `127.0.0.1:7777`。
 
+### zsh 和 bash
+
+```conf
+proxy() {
+    export http_proxy=http://127.0.0.1:7777
+    export https_proxy=http://127.0.0.1:7777
+    export all_proxy=socks5://127.0.0.1:7777
+    echo "✅ 代理已开启 (127.0.0.1:7777)"
+}
+
+unproxy() {
+    unset http_proxy https_proxy all_proxy
+    echo "❌ 代理已关闭"
+}
+```
+
+### fish
+
+```shell
+function proxy
+    set -gx http_proxy http://127.0.0.1:7777
+    set -gx https_proxy http://127.0.0.1:7777
+    set -gx all_proxy socks5://127.0.0.1:7777
+    echo "✅ 代理已开启 (127.0.0.1:7777)"
+end
+
+function unproxy
+    set -e http_proxy https_proxy all_proxy
+    echo "❌ 代理已关闭"
+end
+```
 
 ## WSL 情况下的 proxy and unproxy 快捷指令
 
