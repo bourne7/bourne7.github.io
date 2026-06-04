@@ -32,13 +32,12 @@ scp -r user1@192.168.110.8:/data /data
 ```
 
 
-## fish
+## fish 配置
+
+> vim ~/.config/fish/config.fish
 
 
 ```sh
-vim ~/.config/fish/config.fish
-# or set global config
-sudo vim /etc/fish/config.fish
 
 set fish_prompt_pwd_dir_length 0
 
@@ -53,10 +52,15 @@ alias proxy='export http_proxy=http://127.0.0.1:7777 ; export https_proxy=http:/
 alias unproxy='set -e http_proxy ; set -e https_proxy'
 ```
 
-## proxy and unproxy 命令
+## 普通情况下的 proxy and unproxy 快捷指令
 
 
-zsh 和 bash 的切换
+
+## WSL 情况下的 proxy and unproxy 快捷指令
+
+
+### zsh 和 bash
+
 ```conf
 # =================================================================
 # WSL2 代理自动化配置 (兼容镜像模式与网桥模式)
@@ -116,7 +120,9 @@ testproxy() {
 }
 ```
 
-# fish shell 版本（将下面内容粘到 ~/.config/fish/config.fish 或单独的脚本中）
+### fish
+
+将下面内容粘到 ~/.config/fish/config.fish 或单独的脚本中
 
 ```shell
 function proxy
