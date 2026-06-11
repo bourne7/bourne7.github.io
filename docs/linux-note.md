@@ -70,22 +70,12 @@ unproxy() {
     unset http_proxy https_proxy all_proxy
     echo "❌ 代理已关闭"
 }
-```
 
-### fish
-
-```shell
-function proxy
-    set -gx http_proxy http://127.0.0.1:7777
-    set -gx https_proxy http://127.0.0.1:7777
-    set -gx all_proxy socks5://127.0.0.1:7777
-    echo "✅ 代理已开启 (127.0.0.1:7777)"
-end
-
-function unproxy
-    set -e http_proxy https_proxy all_proxy
-    echo "❌ 代理已关闭"
-end
+# 测试代理状态的便捷命令
+testproxy() {
+    echo "正在测试连接 Google..."
+    curl -I -L --connect-timeout 5 https://www.google.com
+}
 ```
 
 ## WSL 情况下的 proxy and unproxy 快捷指令

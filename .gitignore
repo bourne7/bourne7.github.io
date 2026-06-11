@@ -16,6 +16,6 @@ db.json
 .venv
 
 # VS Code
-.vscode
+# .vscode
 
 .claude/settings.local.json
