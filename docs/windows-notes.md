@@ -59,106 +59,53 @@ https://www.freecodecamp.org/news/windows-terminal-themes-color-schemes-powershe
 
 ## Scoop
 
-```
+```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 ```
 
 
-## 快速切换 JDK
+## PowerShell 支持 ll
 
-Windows
-
-可以将本地一个目录添加到 Path，然后编写2个 bat: java8.bat 和 java21.bat
-
-```bat
-@echo off
-set JAVA_HOME=C:\Users\aac\.jdks\temurin-1.8.0_392
-set PATH=%JAVA_HOME%\bin;%PATH%
-echo.
-echo "%JAVA_HOME%" is now set as the default JDK.
+```powershell
+New-Alias -Name ll -Value Get-ChildItem
+New-Alias -Name l -Value Get-ChildItem
 ```
 
-以后就可以通过 java8 和 java21 来切换了。
 
 
 ## PowerShell 代理（可迁移配置）
 
-目标：在新电脑上快速恢复 `proxy` / `unproxy` / `testproxy` 命令。
-
-### 文件位置
-
-建议把代理配置放在用户目录：
-
-```
-$HOME\.config\proxy\config.psd1
-$HOME\.config\powershell\proxy.ps1
-```
-
-PowerShell 启动入口（按你实际环境）：
-
-```
-Windows PowerShell 5.1: $HOME\OneDrive\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
-Windows PowerShell 5.1: $HOME\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
-PowerShell 7:           $HOME\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
-PowerShell 7:           $HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
-```
-
-查看当前 shell 的 profile 路径：
+建议把代理配置放在用户目录，查看当前 shell 的 profile 路径：
 
 ```powershell
 $PROFILE
+
+可能上面的返回的地址是 OneDrive，但是本地版本的也会被识别。
+
 ```
 
-### 一次性快速初始化
-
-在 PowerShell 里执行下面整段命令（可直接复制）：
+配置地址 C:\Users\your_name\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
 
 ```powershell
-# 1) 创建目录
-$proxyDir = Join-Path $HOME '.config\proxy'
-$psDir = Join-Path $HOME '.config\powershell'
-New-Item -ItemType Directory -Path $proxyDir -Force | Out-Null
-New-Item -ItemType Directory -Path $psDir -Force | Out-Null
-
-# 2) 写入代理配置
-@"
-@{
-    HttpProxy  = 'http://127.0.0.1:7777'
-    HttpsProxy = 'http://127.0.0.1:7777'
-    AllProxy   = 'socks5://127.0.0.1:7777'
-}
-"@ | Set-Content -Encoding UTF8 (Join-Path $proxyDir 'config.psd1')
-
-# 3) 写入函数脚本
-@"
-$ProxyConfigPath = Join-Path $HOME '.config\proxy\config.psd1'
-
-function Get-ProxyConfig {
-    if (-not (Test-Path $ProxyConfigPath)) {
-        throw "Proxy config not found: $ProxyConfigPath"
-    }
-
-    Import-PowerShellDataFile $ProxyConfigPath
-}
-
 function proxy {
-    $cfg = Get-ProxyConfig
+    $proxyHttp = 'http://127.0.0.1:7777'
+    $proxySocks = 'socks5://127.0.0.1:7777'
 
-    $env:http_proxy = $cfg.HttpProxy
-    $env:https_proxy = $cfg.HttpsProxy
-    $env:all_proxy = $cfg.AllProxy
-    $env:HTTP_PROXY = $cfg.HttpProxy
-    $env:HTTPS_PROXY = $cfg.HttpsProxy
-    $env:ALL_PROXY = $cfg.AllProxy
+    $env:http_proxy = $proxyHttp
+    $env:https_proxy = $proxyHttp
+    $env:all_proxy = $proxySocks
+    $env:HTTP_PROXY = $proxyHttp
+    $env:HTTPS_PROXY = $proxyHttp
+    $env:ALL_PROXY = $proxySocks
 
-    git config --global http.proxy $cfg.HttpProxy | Out-Null
-    git config --global https.proxy $cfg.HttpsProxy | Out-Null
+    git config --global http.proxy $proxyHttp | Out-Null
+    git config --global https.proxy $proxyHttp | Out-Null
 
-    npm config set proxy $cfg.HttpProxy | Out-Null
-    npm config set https-proxy $cfg.HttpsProxy | Out-Null
+    npm config set proxy $proxyHttp | Out-Null
+    npm config set https-proxy $proxyHttp | Out-Null
 
-    Write-Host "proxy on: $($cfg.HttpProxy)"
+    Write-Host '✅ 代理已开启 (127.0.0.1:7777)'
 }
 
 function unproxy {
@@ -169,82 +116,34 @@ function unproxy {
     Remove-Item Env:HTTPS_PROXY -ErrorAction SilentlyContinue
     Remove-Item Env:ALL_PROXY -ErrorAction SilentlyContinue
 
-    git config --global --unset http.proxy 2>`$null
-    git config --global --unset https.proxy 2>`$null
+    git config --global --unset http.proxy 2>$null
+    git config --global --unset https.proxy 2>$null
 
-    npm config delete proxy 2>`$null
-    npm config delete https-proxy 2>`$null
+    npm config delete proxy 2>$null
+    npm config delete https-proxy 2>$null
 
-    Write-Host 'proxy off'
+    Write-Host '❌ 代理已关闭'
 }
 
 function testproxy {
     $curl = Get-Command curl.exe -ErrorAction SilentlyContinue
 
-    try {
-        if ($null -ne $curl) {
-            & $curl.Source -I -L --connect-timeout 5 https://www.google.com | Out-Null
-            Write-Host 'proxy test ok'
-            return
-        }
+    Write-Host '正在测试连接 Google...'
 
-        $cfg = Get-ProxyConfig
-        Invoke-WebRequest 'https://www.google.com' -Method Head -TimeoutSec 5 -Proxy $cfg.HttpProxy | Out-Null
-        Write-Host 'proxy test ok'
+    if ($null -ne $curl) {
+        & $curl.Source -I -L --connect-timeout 5 https://www.google.com
+        return
     }
-    catch {
-        Write-Host $_.Exception.Message
-    }
+
+    Invoke-WebRequest 'https://www.google.com' -Method Head -TimeoutSec 5
 }
-"@ | Set-Content -Encoding UTF8 (Join-Path $psDir 'proxy.ps1')
-
-# 4) 把加载逻辑写入 PowerShell 5.1 和 PowerShell 7（兼容 OneDrive / 本地 Documents）
-$profileCandidates = @(
-    (Join-Path $HOME 'OneDrive\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'),
-    (Join-Path $HOME 'Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'),
-    (Join-Path $HOME 'OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1'),
-    (Join-Path $HOME 'Documents\PowerShell\Microsoft.PowerShell_profile.ps1')
-) | Select-Object -Unique
-
-$loader = @"
-$proxyScript = Join-Path $HOME '.config\powershell\proxy.ps1'
-if (Test-Path $proxyScript) {
-    . $proxyScript
-}
-"@
-
-foreach ($profilePath in $profileCandidates) {
-    $profileDir = Split-Path -Parent $profilePath
-    New-Item -ItemType Directory -Path $profileDir -Force | Out-Null
-
-    if (-not (Test-Path $profilePath)) {
-        New-Item -ItemType File -Path $profilePath -Force | Out-Null
-    }
-
-    $current = Get-Content $profilePath -Raw
-    if ($current -notmatch [regex]::Escape("Join-Path `$HOME '.config\\powershell\\proxy.ps1'")) {
-        Add-Content -Path $profilePath -Value "`r`n$loader"
-    }
-}
-
-# 5) 当前会话立即生效
-. $PROFILE
 ```
 
-### 日常使用
+当前会话立即生效：
 
 ```powershell
-proxy
-testproxy
-unproxy
+. $PROFILE
 ```
-
-### 说明
-
-- `proxy` / `unproxy` 会设置或清理当前 shell 的环境变量。
-- 同时会设置或清理 Git / npm 的全局代理。
-- 如果你要改端口（例如 `7890`），只需要改 `config.psd1`。
-
 
 
 ## 列出目录下占用空间最大的文件夹
