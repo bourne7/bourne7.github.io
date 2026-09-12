@@ -62,6 +62,9 @@ https://www.freecodecamp.org/news/windows-terminal-themes-color-schemes-powershe
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+
+scoop bucket add extras
+scoop bucket add nerd-fonts
 ```
 
 
@@ -160,3 +163,17 @@ Get-ChildItem -Directory | ForEach-Object {
   }
 } | Sort-Object -Property Bytes -Descending | Format-Table -AutoSize
 ```
+
+
+## Eudic 欧路字典
+
+可以直接修改配置来更改欧路字典的主题和字体。原本这里需要开会员才能做到。
+
+> C:\Users\aac\AppData\Roaming\Francochinois\eudic\config.ini
+
+```ini
+ColorStyle=black
+ColorStyle2=sepia 这里填写 Black 或者 Night 就行了
+FontFamily=Maple Mono NF CN
+```
+
