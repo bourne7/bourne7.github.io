@@ -7,18 +7,20 @@
 
 https://www.freecodecamp.org/news/windows-terminal-themes-color-schemes-powershell-customize/
 
+`font` 在新版中改为嵌套的 `face` / `size`（旧版的 `fontFace` / `fontSize` 已废弃）：
+
 ```json
 {
     "profiles": {
         "defaults": {
-            "opacity": 60,
+            "opacity": 80,
             "useAcrylic": true,
             "useAtlasEngine": true,
             "font": {
-                "fontFace": "PxPlus IBM VGA8",
-                "fontSize": 16
+                "face": "Maple Mono NF CN",
+                "size": 12
             },
-            "experimental.retroTerminalEffect": true
+            "experimental.retroTerminalEffect": false
         }
     },
     "schemes": [
@@ -71,9 +73,11 @@ scoop bucket add nerd-fonts
 ## PowerShell 支持 ll
 
 ```powershell
-New-Alias -Name ll -Value Get-ChildItem
-New-Alias -Name l -Value Get-ChildItem
+Set-Alias -Name ll -Value Get-ChildItem
+Set-Alias -Name l -Value Get-ChildItem
 ```
+
+`ll` 等价于 `ls`，Windows 上 `ls` 本身就是 `Get-ChildItem` 的别名，所以写成 `Set-Alias ll ls` 也可以。
 
 
 
@@ -83,12 +87,15 @@ New-Alias -Name l -Value Get-ChildItem
 
 ```powershell
 $PROFILE
-
-可能上面的返回的地址是 OneDrive，但是本地版本的也会被识别。
-
 ```
 
-配置地址 C:\Users\your_name\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
+上面返回的地址可能在 OneDrive 下，但本地版本的也会被识别。
+
+配置地址 `~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1`
+
+下面的写法**只改当前会话的环境变量**，不写 `git` / `npm` 的全局配置文件。
+这样忘记 `unproxy` 就关掉终端时，不会留下一份永久生效的代理设置。
+git 的代理交给 `~/.gitconfig` 自行管理（可以在那里针对 GitHub 单独配置）。
 
 ```powershell
 function proxy {
@@ -102,30 +109,16 @@ function proxy {
     $env:HTTPS_PROXY = $proxyHttp
     $env:ALL_PROXY = $proxySocks
 
-    git config --global http.proxy $proxyHttp | Out-Null
-    git config --global https.proxy $proxyHttp | Out-Null
-
-    npm config set proxy $proxyHttp | Out-Null
-    npm config set https-proxy $proxyHttp | Out-Null
-
-    Write-Host '✅ 代理已开启 (127.0.0.1:7777)'
+    Write-Host '✅ 代理已开启 (127.0.0.1:7777) — 仅当前会话'
 }
 
 function unproxy {
-    Remove-Item Env:http_proxy -ErrorAction SilentlyContinue
-    Remove-Item Env:https_proxy -ErrorAction SilentlyContinue
-    Remove-Item Env:all_proxy -ErrorAction SilentlyContinue
-    Remove-Item Env:HTTP_PROXY -ErrorAction SilentlyContinue
-    Remove-Item Env:HTTPS_PROXY -ErrorAction SilentlyContinue
-    Remove-Item Env:ALL_PROXY -ErrorAction SilentlyContinue
+    'http_proxy', 'https_proxy', 'all_proxy',
+    'HTTP_PROXY', 'HTTPS_PROXY', 'ALL_PROXY' | ForEach-Object {
+        Remove-Item "Env:$_" -ErrorAction SilentlyContinue
+    }
 
-    git config --global --unset http.proxy 2>$null
-    git config --global --unset https.proxy 2>$null
-
-    npm config delete proxy 2>$null
-    npm config delete https-proxy 2>$null
-
-    Write-Host '❌ 代理已关闭'
+    Write-Host '❌ 代理已关闭 — 仅当前会话'
 }
 
 function testproxy {
@@ -142,10 +135,61 @@ function testproxy {
 }
 ```
 
+如果只想给 GitHub 走代理，在 `~/.gitconfig` 里单独配置，与上面的会话级代理互不干扰：
+
+```ini
+[http "https://github.com"]
+    proxy = socks5://127.0.0.1:7777
+```
+
 当前会话立即生效：
 
 ```powershell
 . $PROFILE
+```
+
+
+## PowerShell 7 与 Windows PowerShell 5.1
+
+Windows 自带的是 **Windows PowerShell 5.1**（`powershell.exe`），它和 **PowerShell 7**（`pwsh.exe`）是两个不同的产品，不是同一个软件的新旧版本：
+
+| | Windows PowerShell 5.1 | PowerShell 7 |
+|---|---|---|
+| 可执行文件 | `powershell.exe` | `pwsh.exe` |
+| 运行时 | .NET Framework | .NET（Core） |
+| PSEdition | `Desktop` | `Core` |
+| 平台 | 仅 Windows | Windows / macOS / Linux |
+
+5.1 依赖 .NET Framework，而后者是 Windows 的系统组件，因此 5.1 被固定在系统里且**不再有新功能**（版本号永远是 5.1.x）。7 是独立产品，需要单独安装，两者并存。系统自带版本号里那串大数字是 Windows 的构建号，不是 PowerShell 自身的版本。
+
+### 用 scoop 安装（免安装器）
+
+```powershell
+scoop install pwsh
+```
+
+scoop 用的是官方 zip 包，不需要安装器，适合有软件安装策略限制的机器。
+
+### 注意：PS7 会污染子进程的 PSModulePath
+
+PS7 启动时会把自身的模块目录写进 `PSModulePath`，并传给所有子进程。这些目录下的 `psd1` 声明了 `CompatiblePSEditions = "Core"`，当 **5.1 作为子进程**继承该变量时，会优先命中同名模块的 PS7 清单并**静默降级**——命令凭空消失，且不报错。
+
+典型症状：`Get-FileHash`、`Get-ExecutionPolicy` 找不到，导致 `scoop` 报 `Hash check failed`。
+
+排查：
+
+```powershell
+# 在 5.1 里执行，若返回 False 即中招
+[bool](Get-Command Get-FileHash -ErrorAction SilentlyContinue)
+```
+
+解决：在 PS7 的 profile 开头把该目录从导出给子进程的环境里摘掉（PS7 自身的模块经 `$PSHOME` 内部解析，不受影响）：
+
+```powershell
+$env:PSModulePath = (
+    $env:PSModulePath -split ';' |
+        Where-Object { $_ -and $_.TrimEnd('\') -ne (Join-Path $PSHOME 'Modules').TrimEnd('\') }
+) -join ';'
 ```
 
 
