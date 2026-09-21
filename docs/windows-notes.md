@@ -67,6 +67,12 @@ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 
 scoop bucket add extras
 scoop bucket add nerd-fonts
+
+
+# 代理配置
+scoop config proxy 127.0.0.1:7777
+scoop config rm proxy
+
 ```
 
 
